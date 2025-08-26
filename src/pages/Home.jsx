@@ -129,7 +129,10 @@ const LandingPage = ()=>{
 }
 const SectionOne = () => {
     return(
-     <Cards />
+      <section className="bg-gradient-to-r from-black via-gray-900 to-[#1a0f0f]  ">
+           <Cards />
+      </section>
+    
     )
 };
 export default Home;

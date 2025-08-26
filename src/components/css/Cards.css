@@ -6,6 +6,7 @@
 }
 
 .container {
+	/* background: white; */
 	width: 100%;
 	margin: 0 auto;
 	display: flex;
@@ -13,6 +14,7 @@
 }
 
 #cards {
+	/* background: white; */
 	list-style: none;
 	padding-left: 0;
 	display: grid;
@@ -25,6 +27,7 @@
 
 /* Generic Card Styling */
 .card {
+	/* background: white; */
 	width: 100%;
 	max-width: 1200px;
 	min-width: 100px;
@@ -34,8 +37,26 @@
 	padding-top: calc(var(--index) * var(--cardTopPadding));
 	height: var(--cardHeight); /* fallback */
 }
+.card:nth-child(1) {
+   background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77, #1b263b); /* Deep Blue Teal */
+  color: #fff;
+}
 
+.card:nth-child(2) {
+  background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77, #1b263b); /* Dark Violet */
+  color: #fff;
+}
+.card:nth-child(3) {
+  background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77, #1b263b); /* Darker Teal-Blue */
+  color: #fff;
+}
+.card:nth-child(4) {
+ background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77, #1b263b);
+ /* Violet → Pink → Orange */
+  color: #fff;
+}
 .card-body {
+	
 	box-sizing: border-box;
 	padding: 30px;
 	border-radius: 30px;
