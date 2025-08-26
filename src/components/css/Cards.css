@@ -1,0 +1,142 @@
+:root {
+	--cards: 4;
+	--cardHeight: 87vh;
+	--cardTopPadding: 1.5em;
+	--cardMargin: 4vw;
+}
+
+.container {
+	width: 100%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+}
+
+#cards {
+	list-style: none;
+	padding-left: 0;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: repeat(var(--cards), var(--cardHeight));
+	gap: var(--cardMargin);
+	padding-bottom: calc(var(--cards) * var(--cardTopPadding));
+	margin-bottom: var(--cardMargin);
+}
+
+/* Generic Card Styling */
+.card {
+	width: 100%;
+	max-width: 1200px;
+	min-width: 100px;
+	margin: 0 auto;
+	position: sticky;
+	top: 0;
+	padding-top: calc(var(--index) * var(--cardTopPadding));
+	height: var(--cardHeight); /* fallback */
+}
+
+.card-body {
+	box-sizing: border-box;
+	padding: 30px;
+	border-radius: 30px;
+	height: var(--cardHeight);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: all 0.5s;
+	text-align: center;
+	/* width: 100%; */
+}
+
+h2 {
+	font-size: 2em;
+}
+
+/* -------------------
+   Responsive Styles
+------------------- */
+/* @media (max-width: 367px) {
+		:root {
+		--cardHeight: 80vh; 
+		--cardMargin: 5vw;
+		--cardTopPadding: 1.5em;
+	}
+    .card {
+		width: 247px;
+	}
+	.card-body {
+		padding: 30px;
+		border-radius: 25px;
+	}
+
+	h2 {
+		font-size: 2em;
+	}
+} */
+/* Small screens (≤ 768px) */
+@media (max-width: 768px) {
+		:root {
+		--cardHeight: 80vh; 
+		--cardMargin: 5vw;
+		--cardTopPadding: 1.5em;
+	}
+    .card {
+		width: 347px;
+	}
+	.card-body {
+		padding: 30px;
+		border-radius: 25px;
+	}
+
+	h2 {
+		font-size: 2em;
+	}
+}
+
+
+/* Medium screens (769px – 1023px) */
+@media (min-width: 769px) and (max-width: 1023px) {
+	:root {
+		--cardHeight: 80vh; 
+		--cardMargin: 5vw;
+		--cardTopPadding: 1.5em;
+	}
+    .card {
+		width: 650px;
+	}
+	.card-body {
+		padding: 30px;
+		border-radius: 25px;
+	}
+
+	h2 {
+		font-size: 2em;
+	}
+}
+
+/* Large screens (≥ 1024px) */
+@media (min-width: 1024px) {
+	:root {
+		--cardHeight: 95vh;
+		--cardMargin: 5vw;
+		--cardTopPadding: 2em;
+	}
+
+	.container {
+		width: 100%;
+	}
+
+	.card {
+		width: 1000px;
+	}
+
+	.card-body {
+		padding: 40px;
+		border-radius: 0;
+		width: 100%;
+	}
+
+	h2 {
+		font-size: 3em;
+	}
+}
