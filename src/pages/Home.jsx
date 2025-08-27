@@ -91,7 +91,7 @@ const Hero = () => {
 
   {/* Subtitle Text */}
  <p className="mt-10 max-w-xl text-gray-300 text-sm md:text-base lg:text-lg px-4 relative z-20">
-  I blend artistry with cutting-edge technology to deliver websites that not only look stunning but also drive results.
+  We craft timeless architectural designs that blend creativity, functionality, and sustainability to shape spaces that inspire and endure.
 </p>
 
   {/* CTA Button */}
