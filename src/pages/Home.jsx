@@ -9,6 +9,7 @@ import { Building2, Users, Lightbulb , ExternalLink } from "lucide-react";
 import { FaBehance, FaDribbble, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { useInView } from "react-intersection-observer";
 import CountUp from "react-countup";
+import ProfileCard from "../components/ProfileCard";
 
   const items = [
     {
@@ -476,17 +477,18 @@ const Profile = ()=>{
       <div className="max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center">
         
         {/* Profile Card with 3D Hover */}
-        <motion.div
+        {/* <motion.div
           whileHover={{ rotateY: 10, rotateX: 5, scale: 1.05 }}
           transition={{ type: "spring", stiffness: 200, damping: 15 }}
           className="rounded-2xl shadow-2xl overflow-hidden"
-        >
-          <img
+        > */}
+          <ProfileCard />
+          {/* <img
             src="/card_bg_02.jpg" // replace with your image
             alt="profile"
             className="w-full h-full object-cover"
-          />
-        </motion.div>
+          /> */}
+        {/* </motion.div> */}
 
         {/* Content Section */}
         <motion.div

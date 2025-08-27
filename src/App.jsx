@@ -27,7 +27,7 @@ function App() {
   }, []);
   return (
     <div className="">
-      <SplashCursor />
+      {/* <SplashCursor /> */}
 
   
     <Home />
