@@ -71,8 +71,8 @@ const Hero = () => {
   </div>
 
   {/* Background Large Text */}
-<h1 className="absolute top-28 left-1/2 -translate-x-1/2 text-white font-extrabold leading-none 
-  text-[70px] md:text-[140px] lg:text-[200px] text-center z-0 opacity-90 tracking-tight pointer-events-none select-none">
+<h1 className="absolute top-28 left-1/2 -translate-x-1/2 text-white  leading-none 
+  text-[70px] md:text-[140px] lg:text-[180px] text-center z-0 opacity-90 tracking-tight pointer-events-none select-none">
   ARCHEE <br /> SAEED
 </h1>
 
