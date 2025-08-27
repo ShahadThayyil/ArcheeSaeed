@@ -95,7 +95,7 @@ const Hero = () => {
     initial={{ opacity: 0, y: 50 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.8 }}
-    src="/profile_img.png"
+    src="/profile.png"
     alt="Profile"
     className="w-[220px] md:w-[320px] lg:w-[380px] rounded-xl object-cover shadow-lg"
   />

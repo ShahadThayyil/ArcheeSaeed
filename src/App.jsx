@@ -3,7 +3,7 @@ import Lenis from "@studio-freight/lenis";
 import { useEffect } from "react";
 import Home from './pages/Home'
 import SplashCursor from './components/SplashCursor'
-
+// import CustomScrollbar from "custom-react-scrollbar";
 function App() {
     useEffect(() => {
     // Create a new Lenis instance
@@ -26,11 +26,14 @@ function App() {
     };
   }, []);
   return (
+
     <div className="">
-      {/* <SplashCursor /> */}
+      {/* <CustomScrollbar> */}
+      <SplashCursor />
 
   
     <Home />
+    {/* </CustomScrollbar> */}
     </div>
   )
 }
