@@ -2,6 +2,7 @@ import './App.css'
 import Lenis from "@studio-freight/lenis";
 import { useEffect } from "react";
 import Home from './pages/Home'
+import SplashCursor from './components/SplashCursor'
 
 function App() {
     useEffect(() => {
@@ -26,7 +27,8 @@ function App() {
   }, []);
   return (
     <div className="">
-      
+      <SplashCursor />
+
   
     <Home />
     </div>
