@@ -29,7 +29,7 @@ function App() {
 
     <div className="">
       {/* <CustomScrollbar> */}
-      <SplashCursor />
+      {/* <SplashCursor /> */}
 
   
     <Home />

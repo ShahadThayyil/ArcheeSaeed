@@ -10,6 +10,7 @@ import { FaBehance, FaDribbble, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { useInView } from "react-intersection-observer";
 import CountUp from "react-countup";
 import ProfileCard from "../components/ProfileCard";
+import { ScrollTimeline } from "../components/ScrollTimeline";
 
   const items = [
     {
@@ -51,8 +52,10 @@ const Home = () => {
       <Hero />
       {/* <LandingPage /> */}
       <WhyWorkWithMe />
+      {/* <ScrollTimeline /> */}
       <ProjectSection />
-      <Workflow />
+      {/* <Workflow /> */}
+       <ScrollTimeline />
       <Profile />
       <StatsSection />
       <Testimonials />  
