@@ -167,11 +167,11 @@ export const ScrollTimeline = ({
       ? "lg:flex-row lg:justify-start lg:items-center"
       : "lg:flex-row-reverse lg:justify-start lg:items-center"
   )}
-  variants={getCardVariants(index)}
-  initial="initial"
-  whileInView="whileInView"
-  viewport={{ once: false, margin: "-100px" }}
-  style={parallaxIntensity > 0 ? { y: yOffset } : undefined}
+//   variants={getCardVariants(index)}
+//   initial="initial"
+//   whileInView="whileInView"
+//   viewport={{ once: false, margin: "-100px" }}
+//   style={parallaxIntensity > 0 ? { y: yOffset } : undefined}
 >
   {/* Connector Dot */}
   <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 lg:top-1/2">

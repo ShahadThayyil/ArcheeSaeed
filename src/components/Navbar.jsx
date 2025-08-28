@@ -1,5 +1,3 @@
-// "use client"
-
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link, useLocation } from "react-router-dom"
@@ -151,7 +149,7 @@ export default function Navigation() {
         </AnimatePresence>
       </motion.nav>
 
-      {/* Spacer for fixed navigation */}
+      
       <div className="h-16" />
     </>
   )
