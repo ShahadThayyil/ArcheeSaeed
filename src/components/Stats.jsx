@@ -1,28 +1,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import CountUp from "react-countup";
+import {stats} from "../data/stats"
 
-
-const stats = [
-  {
-    value: 5,
-    suffix: "+",
-    title: "Years of Experience",
-    desc: "Decades of experience in delivering exceptional projects.",
-  },
-  {
-    value: 50,
-    suffix: "+",
-    title: "Projects Delivered",
-    desc: "Decades of experience in delivering exceptional projects.",
-  },
-  {
-    value: 98,
-    suffix: "%",
-    title: "Client Satisfaction",
-    desc: "I build long-term partnerships through proven results.",
-  },
-];
 const StatsSection = ()=>{
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
 

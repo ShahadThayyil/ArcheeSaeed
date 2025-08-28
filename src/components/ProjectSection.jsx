@@ -2,27 +2,6 @@ import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import {projects} from '../data/projects';
 
-//   {
-//     title: "Modern Villa Design",
-//     image: "/card_bg_02.jpg",
-//     link: "#",
-//   },
-//   {
-//     title: "Urban Apartment Complex",
-//     image: "/card_bg_03.jpg",
-//     link: "#",
-//   },
-//   {
-//     title: "Cultural Pavilion",
-//     image: "/card_bg_04.jpg",
-//     link: "#",
-//   },
-//   {
-//     title: "Luxury Interior Concept",
-//     image: "/card_bg_01.jpg",
-//     link: "#",
-//   },
-// ];
 const ProjectSection = ()=>{
    return (
     <section className="w-full bg-black text-white py-20 px-6 md:px-16">

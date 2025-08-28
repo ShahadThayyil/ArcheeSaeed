@@ -61,7 +61,7 @@ const CardNav = ({ logo, logoAlt = "Logo", className = "", ease = "power3.out" }
         <div className="hidden md:flex gap-4 text-white text-sm font-medium">
           <a href="/" className="nav-link rounded-full px-4 py-2 active">Home</a>
           <a href="/projects" className="nav-link rounded-full px-4 py-2">Projects</a>
-          <a href="/docs" className="nav-link rounded-full px-4 py-2">About</a>
+          <a href="/about" className="nav-link rounded-full px-4 py-2">About</a>
           <a href="/contact" className="nav-link rounded-full px-4 py-2">Contact</a>
         </div>
 

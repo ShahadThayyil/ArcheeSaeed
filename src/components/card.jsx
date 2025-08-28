@@ -1,5 +1,3 @@
-// src/components/card.jsx
-import React from "react";
 import { cn } from "../lib/utils"; // if you created utils.js as I explained before
 
 // Card wrapper

@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { BorderBeam } from "../components/animations/BorderBeam";
 import { features } from "../data/features";
 
-
 const WhyWorkWithMe = ()=>{
 return (
    <section className="w-full bg-gradient-to-b from-black via-gray-900 to-black text-white py-20 px-6 md:px-16">

@@ -17,7 +17,7 @@ const Home = () => {
       <Profile/>
       <StatsSection />
       <Testimonials />  
-      <Footer />  
+      
     </main>
   );
 };
