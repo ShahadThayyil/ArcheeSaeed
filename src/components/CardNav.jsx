@@ -1,10 +1,12 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { Link, useLocation } from "react-router-dom"; // ✅ import Link + useLocation
 
 const CardNav = ({ logo, logoAlt = "Logo", className = "", ease = "power3.out" }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
   const tlRef = useRef(null);
+  const location = useLocation(); // ✅ to know which route is active
 
   // GSAP drawer animation
   const createTimeline = () => {
@@ -59,10 +61,30 @@ const CardNav = ({ logo, logoAlt = "Logo", className = "", ease = "power3.out" }
 
         {/* Desktop Links */}
         <div className="hidden md:flex gap-4 text-white text-sm font-medium">
-          <a href="/" className="nav-link rounded-full px-4 py-2 active">Home</a>
-          <a href="/projects" className="nav-link rounded-full px-4 py-2">Projects</a>
-          <a href="/about" className="nav-link rounded-full px-4 py-2">About</a>
-          <a href="/contact" className="nav-link rounded-full px-4 py-2">Contact</a>
+          <Link
+            to="/"
+            className={`nav-link rounded-full px-4 py-2 ${location.pathname === "/" ? "active" : ""}`}
+          >
+            Home
+          </Link>
+          <Link
+            to="/projects"
+            className={`nav-link rounded-full px-4 py-2 ${location.pathname === "/projects" ? "active" : ""}`}
+          >
+            Projects
+          </Link>
+          <Link
+            to="/about"
+            className={`nav-link rounded-full px-4 py-2 ${location.pathname === "/about" ? "active" : ""}`}
+          >
+            About
+          </Link>
+          <Link
+            to="/contact"
+            className={`nav-link rounded-full px-4 py-2 ${location.pathname === "/contact" ? "active" : ""}`}
+          >
+            Contact
+          </Link>
         </div>
 
         {/* Hamburger */}
@@ -83,7 +105,7 @@ const CardNav = ({ logo, logoAlt = "Logo", className = "", ease = "power3.out" }
         </div>
       </nav>
 
-      {/* Drawer */}
+      {/* Drawer (mobile menu) */}
       <div
         ref={menuRef}
         className="flex-col items-center justify-center gap-2 text-white 
@@ -91,10 +113,34 @@ const CardNav = ({ logo, logoAlt = "Logo", className = "", ease = "power3.out" }
                    backdrop-blur-lg bg-white/10 border-b border-white/20
                    overflow-hidden"
       >
-        <a href="/" className="nav-link rounded-full px-4 py-2 active">Home</a>
-        <a href="/projects" className="nav-link rounded-full px-4 py-2">Projects</a>
-        <a href="/docs" className="nav-link rounded-full px-4 py-2">About</a>
-        <a href="/contact" className="nav-link rounded-full px-4 py-2">Contact</a>
+        <Link
+          to="/"
+          className={`nav-link rounded-full px-4 py-2 ${location.pathname === "/" ? "active" : ""}`}
+          onClick={toggleMenu}
+        >
+          Home
+        </Link>
+        <Link
+          to="/projects"
+          className={`nav-link rounded-full px-4 py-2 ${location.pathname === "/projects" ? "active" : ""}`}
+          onClick={toggleMenu}
+        >
+          Projects
+        </Link>
+        <Link
+          to="/about"
+          className={`nav-link rounded-full px-4 py-2 ${location.pathname === "/about" ? "active" : ""}`}
+          onClick={toggleMenu}
+        >
+          About
+        </Link>
+        <Link
+          to="/contact"
+          className={`nav-link rounded-full px-4 py-2 ${location.pathname === "/contact" ? "active" : ""}`}
+          onClick={toggleMenu}
+        >
+          Contact
+        </Link>
       </div>
 
       {/* Link styles */}
@@ -121,7 +167,3 @@ const CardNav = ({ logo, logoAlt = "Logo", className = "", ease = "power3.out" }
 };
 
 export default CardNav;
-
-
-// export default CardNav;
-
