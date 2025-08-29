@@ -5,7 +5,7 @@ import WorkFlow from "../components/WorkFlow";
 import Profile from "../components/Profile";
 import StatsSection from "../components/Stats";
 import Testimonials from "../components/Testimonials";
-import Footer from "../components/Footer";
+import WhatsAppButton from "../components/Whatsapp";
 
 const Home = () => {
   return (
@@ -17,7 +17,7 @@ const Home = () => {
       <Profile/>
       <StatsSection />
       <Testimonials />  
-      
+      <WhatsAppButton />
     </main>
   );
 };

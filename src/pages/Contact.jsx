@@ -118,7 +118,7 @@
 
 
 // ContactPage.jsx
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { useForm, ValidationError } from "@formspree/react";
