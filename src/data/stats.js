@@ -6,7 +6,7 @@ export const stats = [
     desc: "Decades of experience in delivering exceptional projects.",
   },
   {
-    value: 50,
+    value: 20,
     suffix: "+",
     title: "Projects Delivered",
     desc: "Decades of experience in delivering exceptional projects.",

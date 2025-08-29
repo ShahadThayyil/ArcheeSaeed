@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -32,6 +33,7 @@ const Hero = () => {
 </p>
 
   {/* CTA Button */}
+  <Link to="/contact">
   <motion.button
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
@@ -39,6 +41,7 @@ const Hero = () => {
   >
     Schedule a consultation
   </motion.button>
+  </Link>
 </div>
 
 </section>

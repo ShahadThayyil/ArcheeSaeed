@@ -52,12 +52,14 @@ const CardNav = ({ logo, logoAlt = "Logo", className = "", ease = "power3.out" }
         backdrop-blur-lg bg-white/10 border-b border-white/20 shadow-lg`}
       >
         {/* Logo */}
-        <div className="flex items-center gap-2">
+        <Link to="/">
+        <div className="flex items-center gap-2 cursor-pointer">
           <img src={logo} alt={logoAlt} className="h-[24px]" />
           <span className="text-white font-medium text-sm md:text-base">
             Archeesaeed
           </span>
         </div>
+        </Link>
 
         {/* Desktop Links */}
         <div className="hidden md:flex gap-4 text-white text-sm font-medium">

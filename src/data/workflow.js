@@ -1,22 +1,22 @@
 export const WORKFLOW_EVENTS = [
   {
-    step: "1. Discovery",
+    step: "1. Consultation",
     description:
-      "I dive deep into understanding your brand, goals, and target audience. Through discovery sessions and market research, I gather essential insights to inform the entire design process.",
+      "I begin by understanding your vision, requirements, and lifestyle needs. Through in-depth discussions and site analysis, I gather the insights necessary to design spaces that align with your goals.",
   },
   {
-    step: "2. Design",
+    step: "2. Concept & Design",
     description:
-      "I transform strategy into captivating and strategic designs. This phase focuses on conceptualizing ideas into visuals that resonate strongly with your brand.",
+      "I translate ideas into creative and practical design concepts. This stage focuses on space planning, aesthetics, and functionality to ensure the design reflects both your style and purpose.",
   },
   {
-    step: "3. Development",
+    step: "3. Development & Detailing",
     description:
-      "I turn creative ideas into fully functional websites. This phase involves seamless coding, integration, and optimization to ensure your digital platform runs smoothly across all devices.",
+      "I refine the approved concept into detailed architectural drawings and specifications. This phase ensures precision in structure, materials, and finishes to bring the vision to life seamlessly.",
   },
   {
-    step: "4. Launch",
+    step: "4. Execution & Handover",
     description:
-      "I prepare and launch the website to ensure everything functions smoothly before going live. Post-launch, I provide ongoing support and guidance to help you extract maximum value from your digital home.",
+      "I oversee the execution process to ensure the design is realized accurately. Once completed, I hand over the finished project, ensuring it is ready for use while providing guidance for long-term upkeep.",
   },
 ];

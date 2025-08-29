@@ -11,6 +11,7 @@ import CardNav from "./components/CardNav";
 import logo from "./assets/logo.png";
 import { items } from "./data/items";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   useEffect(() => {
@@ -33,9 +34,10 @@ function App() {
 
   return (
     <Router>
+     
       <div className="main">
-        <SplashCursor />
-
+         <ScrollToTop />
+        {/* <SplashCursor /> */}
         {/* Navbar always visible */}
         <div className="absolute top-0 left-0 w-full z-20">
           <CardNav

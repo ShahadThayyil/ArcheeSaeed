@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import {Link} from "react-router-dom"
 
 const Footer = ()=>{
    return (
@@ -43,14 +44,10 @@ const Footer = ()=>{
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-12 flex flex-wrap justify-center gap-6 text-sm text-gray-400"
         >
-          {["Home", "About", "Projects", "Services", "Contact"].map((item, i) => (
-            <a
-              key={i}
-              href={`#${item.toLowerCase()}`}
-              className="hover:text-green-400 transition-colors"
-            >
-              {item}
-            </a>
+          {[ "About", "Projects", "Contact"].map((item, i) => (
+              <Link to={`/${item.toLowerCase()}`}>
+                 <a href="" className="hover:text-green-400 transition-colors">{item}</a>
+              </Link>
           ))}
         </motion.nav>
       </div>

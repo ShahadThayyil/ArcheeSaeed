@@ -88,7 +88,7 @@ export const WorkFlow = ({
     <div
       ref={scrollRef}
       className={cn(
-        "relative min-h-screen w-full overflow-hidden py-16",
+        "relative min-h-screen w-full overflow-hidden py-16 pt-24 scroll-mt-24",
         darkMode ? "bg-black text-white" : "bg-white text-black",
         className
       )}
@@ -125,7 +125,7 @@ export const WorkFlow = ({
         )}
 
         {/* Events */}
-        <div className="relative z-20">
+        <div className="relative z-10">
           {events.map((event, index) => {
             const yOffset = useTransform(
               smoothProgress,
@@ -180,7 +180,7 @@ export const WorkFlow = ({
   </div>
 
   {/* Card */}
-  <Card className="bg-gray-900 border border-gray-700 shadow-lg w-full max-w-md lg:w-[calc(50%-40px)] mt-12 lg:mt-0">
+  <Card className="bg-gray-900 border border-gray-700 shadow-lg w-full max-w-md lg:w-[calc(50%-40px)] mt-12 lg:mt-0 ">
     <CardContent className="p-6 text-center lg:text-left">
       <h3 className="text-xl font-bold mb-2 text-white">{event.step}</h3>
       <p className="text-gray-400 leading-relaxed">{event.description}</p>

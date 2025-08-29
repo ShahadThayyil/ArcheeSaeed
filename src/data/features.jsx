@@ -2,18 +2,18 @@ import { Building2, Users, Lightbulb } from "lucide-react";
 
 export const features = [
   {
-    title: "Timeless Design",
-    desc: "I create architectural spaces that blend aesthetics, innovation, and functionality to stand the test of time.",
+    title: "Creative Architecture",
+    desc: "We craft unique architectural spaces that balance functionality, aesthetics, and cultural context — creating designs that truly stand out.",
     icon: <Building2 className="w-10 h-10 text-green-400" />,
   },
   {
-    title: "Collaborative Process",
-    desc: "From concept to construction, I work closely with clients to transform visions into inspiring architectural realities.",
+    title: "Client-Centered Approach",
+    desc: "Every project begins with listening. We work hand-in-hand with our clients, ensuring their vision is translated into meaningful spaces.",
     icon: <Users className="w-10 h-10 text-green-400" />,
   },
   {
-    title: "Innovative Thinking",
-    desc: "Merging creativity with technology, I design forward-looking spaces that push the boundaries of modern architecture.",
+    title: "Sustainable Innovation",
+    desc: "Blending modern technology with eco-conscious practices, we design spaces that are innovative, sustainable, and future-ready.",
     icon: <Lightbulb className="w-10 h-10 text-green-400" />,
   },
 ];
