@@ -42,7 +42,7 @@ const ProfileCardComponent = ({
   showBehindGradient = false,
   className = "",
   enableTilt = true,
-  enableMobileTilt = false,
+  enableMobileTilt = true,
   mobileTiltSensitivity = 5,
   miniAvatarUrl,
   name = "Saeed Ibrahim",
