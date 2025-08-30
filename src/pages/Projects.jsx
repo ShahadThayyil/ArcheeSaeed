@@ -135,7 +135,7 @@ const Projects = () => {
   }, []);
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white py-20 px-6 md:px-16">
+    <section className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white py-28 px-6 md:px-16 ">
       {/* Hero Section */}
       <motion.div
         initial={{ opacity: 0, y: -40 }}
