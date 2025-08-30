@@ -136,7 +136,7 @@ export default function ContactPage() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen bg-black text-gray-200 overflow-hidden">
+    <section className="relative w-full min-h-screen bg-black text-gray-200 overflow-hidden py-8">
       {/* Subtle gradient background */}
       <div
         className="absolute top-0 left-0 w-full h-full"
@@ -203,7 +203,7 @@ export default function ContactPage() {
           {state.succeeded ? (
             <p className="text-green-400 text-lg">✅ Thanks for your message!</p>
           ) : (
-            <div className="space-y-6">
+            <div className="space-y-6 ">
               <div>
                 <label className="block mb-2 text-sm text-gray-400">Name</label>
                 <input
