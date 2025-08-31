@@ -12,6 +12,7 @@ import logo from "./assets/logo.png";
 import { items } from "./data/items";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import ProjectDetail from "./pages/ProjectDetail";
 
 function App() {
   useEffect(() => {
@@ -56,6 +57,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/:id" element={<ProjectDetail />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

@@ -2,29 +2,8 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { BorderBeam } from "../components/animations/BorderBeam"; 
 import { FiExternalLink } from "react-icons/fi";
-
-const projects = [
-  {
-    title: "Luxury Interior Design",
-    image: "/images/project1.jpg",
-    link: "#",
-  },
-  {
-    title: "Urban Apartment Complex",
-    image: "/images/project2.jpg",
-    link: "#",
-  },
-  {
-    title: "Modern Villa",
-    image: "/images/project3.jpg",
-    link: "#",
-  },
-  {
-    title: "Contemporary Architecture",
-    image: "/images/project4.jpg",
-    link: "#",
-  },
-];
+import { Link } from "react-router-dom";
+import {projects} from "../data/projects";
 
 const Projects = () => {
   // 🔹 Always scroll to top when this component loads
@@ -33,7 +12,7 @@ const Projects = () => {
   }, []);
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white py-28 px-6 md:px-16 ">
+    <section className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white py-28 px-6 md:px-16">
       {/* Hero Section */}
       <motion.div
         initial={{ opacity: 0, y: -40 }}
@@ -54,11 +33,8 @@ const Projects = () => {
       {/* Projects Grid */}
       <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-7xl mx-auto">
         {projects.map((project, idx) => (
-          <motion.a
+          <motion.div
             key={idx}
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             whileHover={{ scale: 1.05, rotateY: 5 }}
@@ -89,21 +65,29 @@ const Projects = () => {
               />
             </div>
 
-            {/* Overlay Content */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
+            {/* Overlay Content (Always visible on mobile, hover on desktop) */}
+            <Link
+              to={`/projects/${project.id}`}
+              className="
+                absolute inset-0 
+                bg-gradient-to-t from-black/80 via-black/20 to-transparent 
+                opacity-100 md:opacity-0 md:group-hover:opacity-100 
+                transition-opacity duration-500 
+                flex flex-col justify-end p-6
+              "
+            >
               <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
               <div className="flex items-center gap-2 text-green-400 font-medium">
                 <span>View Project</span>
                 <FiExternalLink />
               </div>
-            </div>
-          </motion.a>
+            </Link>
+          </motion.div>
         ))}
       </div>
     </section>
   );
 };
 
+export { projects };
 export default Projects;
-
-

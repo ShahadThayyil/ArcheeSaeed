@@ -1,9 +1,14 @@
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
-import {projects} from '../data/projects';
+import { Link } from "react-router-dom"; // ✅ Use Link for routing
+import { projects } from "../data/projects";
 
-const ProjectSection = ()=>{
-   return (
+const latestProjects = [...projects]
+.sort((a,b) => b.id - a.id)
+.slice(0,6);
+
+const ProjectSection = () => {
+  return (
     <section className="w-full bg-black text-white py-20 px-6 md:px-16">
       {/* Heading */}
       <motion.h2
@@ -13,12 +18,13 @@ const ProjectSection = ()=>{
         viewport={{ once: true }}
         className="text-3xl md:text-5xl font-bold text-center mb-14"
       >
-        Elevating Spaces with <span className="text-green-400">Design Brilliance</span>
+        Elevating Spaces with{" "}
+        <span className="text-green-400">Design Brilliance</span>
       </motion.h2>
 
       {/* Project Grid */}
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
-        {projects.map((project, idx) => (
+        {latestProjects.map((project, idx) => (
           <motion.div
             key={idx}
             initial={{ opacity: 0, y: 80, rotateX: -15 }}
@@ -36,21 +42,31 @@ const ProjectSection = ()=>{
               whileHover={{ rotateZ: 1 }}
             />
 
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-end p-6">
-              <h3 className="text-lg md:text-xl font-semibold">{project.title}</h3>
-              <a
-                href={project.link}
+            {/* Overlay / Always visible on mobile */}
+            <div
+              className="
+                absolute inset-0 
+                bg-gradient-to-t from-black/70 via-black/20 to-transparent
+                flex flex-col justify-end p-6
+                opacity-100 md:opacity-0 md:group-hover:opacity-100
+                transition duration-500
+              "
+            >
+              <h3 className="text-lg md:text-xl font-semibold">
+                {project.title}
+              </h3>
+              <Link
+                to={`/projects/${project.id}`} // ✅ Route to details page
                 className="mt-3 inline-flex items-center text-green-400 hover:text-green-300 transition"
               >
                 View Project <ExternalLink className="ml-2 w-4 h-4" />
-              </a>
+              </Link>
             </div>
           </motion.div>
         ))}
       </div>
     </section>
   );
-}
+};
 
 export default ProjectSection;
