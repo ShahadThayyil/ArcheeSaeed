@@ -47,7 +47,7 @@ const ProfileCardComponent = ({
   miniAvatarUrl,
   name = "Saeed Ibrahim",
   title = "Architecture Designer",
-  handle = "archeesaeed",
+  handle = "archizaid",
   status = "Online",
   contactText = "Contact",
   showUserInfo = true,

@@ -15,7 +15,24 @@ import ScrollToTop from "./components/ScrollToTop";
 import ProjectDetail from "./pages/ProjectDetail";
 
 function App() {
-  useEffect(() => {
+  // useEffect(() => {
+  //   const lenis = new Lenis({
+  //     duration: 1.5,
+  //     easing: (t) => 1 - Math.pow(1 - t, 3),
+  //     smooth: true,
+  //   });
+
+  //   function raf(time) {
+  //     lenis.raf(time);
+  //     requestAnimationFrame(raf);
+  //   }
+  //   requestAnimationFrame(raf);
+
+  //   return () => {
+  //     lenis.destroy(); // Cleanup when component unmounts
+  //   };
+  // }, []);
+ useEffect(() => {
     const lenis = new Lenis({
       duration: 1.5,
       easing: (t) => 1 - Math.pow(1 - t, 3),
@@ -26,10 +43,12 @@ function App() {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
+
     requestAnimationFrame(raf);
 
+    // Cleanup only Lenis instance
     return () => {
-      lenis.destroy(); // Cleanup when component unmounts
+      lenis.destroy();
     };
   }, []);
 

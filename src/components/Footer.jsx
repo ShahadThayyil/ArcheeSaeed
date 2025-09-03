@@ -34,7 +34,7 @@ const Footer = ()=>{
           href="mailto:hello@wilsonbrock.com"
           className="mt-8 inline-block text-lg md:text-xl text-gray-200 border-b border-gray-600 hover:text-green-400 hover:border-green-400 transition-colors"
         >
-          ↳ hello@wilsonbrock.com
+          ↳ archizaidofficial@gmail.com
         </motion.a>
 
         {/* Bottom Navigation */}

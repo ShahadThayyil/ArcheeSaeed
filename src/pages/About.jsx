@@ -67,7 +67,7 @@ const About = () => {
             <div className="flex items-center gap-3">
               <FiMail className="text-green-400" />
               <a href="mailto:yourmail@example.com" className="hover:text-green-400 transition">
-                yourmail@example.com
+                  archizaid@gmail.com
               </a>
             </div>
             <div className="flex items-center gap-3">
@@ -78,7 +78,7 @@ const About = () => {
             </div>
             <div className="flex items-center gap-3">
               <FiMapPin className="text-green-400" />
-              <span>Dubai, UAE</span>
+              <span>Malappuram, Kerala</span>
             </div>
           </div>
 
