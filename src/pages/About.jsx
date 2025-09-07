@@ -17,9 +17,7 @@ const About = () => {
           About <span className="text-green-400">Me</span>
         </h1>
         <p className="text-gray-400 mt-4 text-lg md:text-xl max-w-3xl mx-auto">
-          A passionate designer & developer crafting immersive digital
-          experiences with creativity, innovation, and modern technology.
-        </p>
+             Crafting timeless spaces with creativity, innovation, and modern design.  </p>
       </motion.div>
 
       {/* Content Grid */}
@@ -56,10 +54,7 @@ const About = () => {
             Who Am I?
           </h2>
           <p className="text-gray-300 leading-relaxed mb-6">
-            I am a creative professional with a strong focus on architecture,
-            interior design, and modern web development. My approach combines
-            aesthetics with functionality, delivering designs that inspire and
-            leave lasting impressions.
+        I am a creative professional specializing in architecture and interior design, with a vision to craft spaces that seamlessly blend aesthetics and functionality. At Archizaid, every project is designed to inspire, elevate lifestyles, and leave a lasting impression through timeless and innovative architectural solutions.
           </p>
 
           {/* Contact Info */}
@@ -67,13 +62,13 @@ const About = () => {
             <div className="flex items-center gap-3">
               <FiMail className="text-green-400" />
               <a href="mailto:yourmail@example.com" className="hover:text-green-400 transition">
-                  archizaid@gmail.com
+                  archizaidofficial@gmail.com
               </a>
             </div>
             <div className="flex items-center gap-3">
               <FiPhone className="text-green-400" />
-              <a href="tel:+1234567890" className="hover:text-green-400 transition">
-                +1 234 567 890
+              <a href="tel:+919567543636" className="hover:text-green-400 transition">
+                +91 95675 43636
               </a>
             </div>
             <div className="flex items-center gap-3">

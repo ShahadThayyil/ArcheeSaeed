@@ -32,10 +32,7 @@ const Profile = ()=>{
 
           {/* Paragraph */}
           <p className="text-gray-400 text-base leading-relaxed">
-            Hello! I’m Wilson Brock, a passionate Web Designer with over 5+ years
-            of experience in creating visually appealing and user-friendly
-            websites. My mission is to bring your brand to life through innovative
-            design solutions tailored to your unique needs.
+Hello! I’m Archizaid, a passionate Architectural Designer dedicated to shaping modern, functional, and timeless spaces. With years of experience in blending creativity and precision, my mission is to transform ideas into structures that inspire and endure. At Archizaid, every design is tailored to reflect individuality, innovation, and excellence in architecture.
           </p>
 
           {/* Social Icons */}

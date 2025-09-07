@@ -54,10 +54,10 @@ const CardNav = ({ logo, logoAlt = "Logo", className = "", ease = "power3.out" }
         {/* Logo */}
         <Link to="/">
         <div className="flex items-center gap-2 cursor-pointer">
-          <img src={logo} alt={logoAlt} className="h-[24px]" />
-          <span className="text-white font-medium text-sm md:text-base">
+          <img src={logo} alt={logoAlt} className="h-[94px]" />
+          {/* <span className="text-white font-medium text-sm md:text-base">
             Archizaid
-          </span>
+          </span> */}
         </div>
         </Link>
 
