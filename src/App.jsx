@@ -13,6 +13,8 @@ import { items } from "./data/items";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import ProjectDetail from "./pages/ProjectDetail";
+import UseSpotlightEffect from "./components/animations/useSpotlightEffect";
+import SpotlightCursor from "./components/SpotlightCursor";
 
 function App() {
   // useEffect(() => {
@@ -58,6 +60,8 @@ function App() {
       <div className="main">
          <ScrollToTop />
         <SplashCursor />
+        {/* <UseSpotlightEffect /> */}
+        {/* <SpotlightCursor /> */}
         {/* Navbar always visible */}
         <div className="absolute top-0 left-0 w-full z-20">
           <CardNav

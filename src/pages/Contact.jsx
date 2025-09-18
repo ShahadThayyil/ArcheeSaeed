@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaInstagram , FaFacebook} from "react-icons/fa";
 import { useForm, ValidationError } from "@formspree/react";
 
 export default function ContactPage() {
@@ -73,18 +73,20 @@ export default function ContactPage() {
           {/* Social Links */}
           <div className="flex space-x-6 pt-6">
             <a
-              href="archizaidofficial@gmail.com"
-              className="text-gray-500 hover:text-green-400 text-2xl transition"
-            >
-              <FaEnvelope />
-            </a>
-            <a
-              href="https://github.com"
+              href="https://www.instagram.com/archizaid/"
               target="_blank"
               rel="noreferrer"
               className="text-gray-500 hover:text-green-400 text-2xl transition"
             >
-              <FaGithub />
+              <FaInstagram />
+            </a>
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noreferrer"
+              className="text-gray-500 hover:text-green-400 text-2xl transition"
+            >
+              <FaFacebook />
             </a>
             <a
               href="https://linkedin.com"

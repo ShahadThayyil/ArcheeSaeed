@@ -1,24 +1,22 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
 const Hero = () => {
-  const [hovered, setHovered] = useState(false);
-
   return (
     <section className="relative flex flex-col min-h-screen w-full bg-gradient-to-b from-black via-neutral-900 to-black overflow-hidden pt-[80px] px-6 py-8">
       {/* Background Accent Shapes */}
       <div className="absolute inset-0 -z-10">
+        {/* Subtle radial glow */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-green-500/10 blur-[160px]" />
+        {/* Diagonal line texture */}
         <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[length:40px_40px]" />
       </div>
 
       {/* Background Large Text */}
       <h1
-        className={`absolute top-28 left-1/2 -translate-x-1/2 font-extrabold leading-none 
-        text-[60px] md:text-[120px] lg:text-[180px] text-center z-0 tracking-tight pointer-events-none select-none 
-        font-[Oswald,sans-serif] uppercase transition-all duration-700  
-        ${hovered ? "neon-outline" : "text-white/10"}`}
+        className="absolute top-28 left-1/2 -translate-x-1/2 text-white font-extrabold leading-none 
+        text-[60px] md:text-[120px] lg:text-[180px] text-center z-0 opacity-10  tracking-tight pointer-events-none select-none 
+        font-[Oswald,sans-serif] uppercase"
       >
         ARCHI <br /> ZAID
       </h1>
@@ -32,12 +30,10 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           src="/profile.png"
           alt="Profile"
-          className="w-[220px] md:w-[320px] lg:w-[380px] brightness-75  rounded-xl object-cover cursor-pointer"
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
+          className="w-[220px] md:w-[320px] lg:w-[380px] rounded-xl object-cover "
         />
 
-        {/* Subtitle */}
+        {/* Subtitle Text */}
         <p className="mt-10 max-w-xl text-gray-300 text-sm md:text-base lg:text-lg px-4 relative z-20 font-[Poppins,sans-serif] leading-relaxed">
           We craft timeless architectural designs that blend creativity,
           functionality, and sustainability to shape spaces that inspire and

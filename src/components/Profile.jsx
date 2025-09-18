@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FaBehance, FaDribbble, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { FaBehance, FaDribbble, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
 import ProfileCard from "./ProfileCard";
 
 const Profile = ()=>{
@@ -38,10 +38,10 @@ Hello! I’m Archizaid, a passionate Architectural Designer dedicated to shaping
           {/* Social Icons */}
           <div className="flex gap-5 pt-4">
             {[
-              { icon: <FaBehance />, link: "#" },
-              { icon: <FaDribbble />, link: "#" },
-              { icon: <FaLinkedin />, link: "#" },
-              { icon: <FaInstagram />, link: "#" },
+              { icon: <FaFacebook />, link: "https://facebook.com/" },
+              { icon: <FaDribbble />, link: "https://archizaid.in/" },
+              { icon: <FaLinkedin />, link: "https://linkedin.com/" },
+              { icon: <FaInstagram />, link: "https://www.instagram.com/archizaid/" },
             ].map((social, i) => (
               <motion.a
                 key={i}

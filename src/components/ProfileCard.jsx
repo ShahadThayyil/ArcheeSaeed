@@ -333,6 +333,7 @@ const ProfileCardComponent = ({
               <div className="pc-status">{status}</div>
             </div>
           </div>
+          <a href="https://www.instagram.com/archizaid/">
           <button
             className="pc-contact-btn"
             onClick={handleContactClick}
@@ -341,7 +342,9 @@ const ProfileCardComponent = ({
             aria-label={`Contact ${name || "user"}`}
           >
             {contactText}
+            
           </button>
+          </a>
         </div>
       )}
     </div>

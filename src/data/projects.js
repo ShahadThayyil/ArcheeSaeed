@@ -3,7 +3,13 @@ export const projects = [
   {
     id: 1,
     title: "Modern Villa",
-    image: "/card_bg_02.jpg",
+      image: "/card_bg_03.jpg",
+   images: [
+      "/card_bg_03.jpg",
+      "/card_bg_02.jpg",
+      "/card_bg_03.jpg",
+      "/card_bg_02.jpg"
+    ],
     desc: "A luxurious modern villa designed with open spaces and natural lighting.",
     points: [
       "Contemporary exterior design",
@@ -63,7 +69,13 @@ export const projects = [
   {
     id: 6,
     title: "Shopping Mall",
-    image: "/images/mall.jpg",
+      image: "/images/office.jpg",
+     images: [
+      "/projects/portfolio1.jpg",
+      "/projects/portfolio2.jpg",
+      "/projects/portfolio3.jpg",
+      "/projects/portfolio4.jpg"
+    ],
     desc: "A modern shopping mall with futuristic architecture and design.",
     points: [
       "Central atrium with skylight",
