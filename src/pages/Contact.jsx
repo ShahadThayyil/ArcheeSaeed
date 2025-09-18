@@ -89,7 +89,7 @@ export default function ContactPage() {
               <FaFacebook />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/mohammed-saeed-a7b494347?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
               target="_blank"
               rel="noreferrer"
               className="text-gray-500 hover:text-green-400 text-2xl transition"

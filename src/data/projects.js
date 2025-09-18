@@ -2,19 +2,22 @@
 export const projects = [
   {
     id: 1,
-    title: "Modern Villa",
-      image: "/card_bg_03.jpg",
+    title: "Commericial Project",
+      image: "/images/projects/p_1_1.png",
    images: [
-      "/card_bg_03.jpg",
-      "/card_bg_02.jpg",
-      "/card_bg_03.jpg",
-      "/card_bg_02.jpg"
+      "/images/projects/p_1_1.png",
+      "/images/projects/p_1_2.png",
+      "/images/projects/p_1_3.png",
+      "/images/projects/p_1_4.png",
     ],
-    desc: "A luxurious modern villa designed with open spaces and natural lighting.",
+    desc: "A luxurious commerical building designed with open spaces and natural lighting.",
     points: [
-      "Contemporary exterior design",
-      "Large glass windows for natural light",
-      "Private pool and garden space",
+      "Location     : Thiruvananthapuram, Kerala, India",
+      "Project Type : Commercial Prjoect",
+      "Client       : Haneefa",
+      "Year         : 2024",
+      "No of Floors : G + 2",
+      "Status       : Ongoing",
     ],
     link: "/projects/1",
   },

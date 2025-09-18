@@ -59,7 +59,7 @@ function App() {
      
       <div className="main">
          <ScrollToTop />
-        <SplashCursor />
+        {/* <SplashCursor /> */}
         {/* <UseSpotlightEffect /> */}
         {/* <SpotlightCursor /> */}
         {/* Navbar always visible */}

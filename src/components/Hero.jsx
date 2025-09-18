@@ -16,7 +16,7 @@ const Hero = () => {
       {/* Background Large Text */}
       <h1
         className={`absolute top-28 left-1/2 -translate-x-1/2 font-extrabold leading-none 
-        text-[60px] md:text-[120px] lg:text-[180px] text-center z-0 tracking-tight pointer-events-none select-none 
+        text-[100px] md:text-[120px] lg:text-[180px] text-center z-0 tracking-tight pointer-events-none select-none 
         font-[Oswald,sans-serif] uppercase transition-all duration-700  
         ${hovered ? "neon-outline" : "text-white/10"}`}
       >
