@@ -15,14 +15,14 @@ import ScrollToTop from "./components/ScrollToTop";
 import ProjectDetail from "./pages/ProjectDetail";
 import UseSpotlightEffect from "./components/animations/useSpotlightEffect";
 import SpotlightCursor from "./components/SpotlightCursor";
-import { Grid } from "ldrs/react";
-// import "ldrs/react/Grid.css";
+import Loader from "./components/Loader";
+import { Grid } from 'ldrs/react'
 
 function App() {
-  const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
 
-  // Lenis smooth scroll setup
-  useEffect(() => {
+
+ useEffect(() => {
     const lenis = new Lenis({
       duration: 1.5,
       easing: (t) => 1 - Math.pow(1 - t, 3),
@@ -33,39 +33,35 @@ function App() {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
+
     requestAnimationFrame(raf);
 
+    // Cleanup only Lenis instance
     return () => {
       lenis.destroy();
     };
   }, []);
-
-  // Loader control
   useEffect(() => {
-    const handleLoad = () => {
+    const timer = setTimeout(() => {
       setLoading(false);
-    };
-
-    window.addEventListener("load", handleLoad);
-    return () => window.removeEventListener("load", handleLoad);
+    }, 5000);
+    return () => clearTimeout(timer);
   }, []);
 
-  if (loading) {
-    return (
-      <div className="h-screen flex items-center justify-center bg-white">
-        <Grid size="60" speed="1.5" color="black" />
-      </div>
-    );
-  }
+// import 'ldrs/react/Grid.css'
 
+// Default values shown
+
+
+  if (loading) return <Loader />;
   return (
     <Router>
+     
       <div className="main">
-        <ScrollToTop />
+         <ScrollToTop />
         {/* <SplashCursor /> */}
         {/* <UseSpotlightEffect /> */}
         {/* <SpotlightCursor /> */}
-
         {/* Navbar always visible */}
         <div className="absolute top-0 left-0 w-full z-20">
           <CardNav
