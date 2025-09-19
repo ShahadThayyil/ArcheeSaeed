@@ -19,6 +19,7 @@
     "custom-react-scrollbar": "^0.0.4",
     "framer-motion": "^12.23.12",
     "gsap": "^3.13.0",
+    "ldrs": "^1.1.7",
     "lenis": "^1.3.9",
     "lucide-react": "^0.542.0",
     "ogl": "^1.0.11",
