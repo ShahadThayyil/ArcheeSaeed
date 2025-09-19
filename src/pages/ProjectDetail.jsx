@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { projects } from "./Projects"; // ✅ Import same data
+import { projects } from "../data/projects"; // ✅ Import same data
 
 const ProjectDetail = () => {
   const { id } = useParams();

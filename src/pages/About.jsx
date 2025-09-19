@@ -33,7 +33,7 @@ const About = () => {
           className="w-full flex justify-center"
         >
           <motion.img
-            src="/profile-about.png" // your profile picture path
+            src="/profile-about.avif" // your profile picture path
             alt="Profile"
             loading="lazy"
             className="w-72 h-72 md:w-96 md:h-96 rounded-3xl object-cover shadow-2xl border-4 border-green-500/30"
