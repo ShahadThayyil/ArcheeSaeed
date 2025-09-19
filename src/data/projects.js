@@ -2,7 +2,7 @@
 export const projects = [
   {
     id: 1,
-    title: "Commericial Project",
+    title: "COMMERCIAL BUILDING",
     image: "/images/projects/p-1-1.avif",
    images: [
       "/images/projects/p-1-1.avif",
@@ -44,7 +44,7 @@ export const projects = [
   },
   {
     id: 3,
-    title: "Luxury Apartment",
+    title: "IQBAL RESIDENCE",
     image: "/images/projects/p-3-1.avif",
     images: [
       "/images/projects/p-3-1.avif",
@@ -52,12 +52,13 @@ export const projects = [
       "/images/projects/p-3-3.avif",
       "/images/projects/p-3-4.avif",
     ],
-    desc: "Premium apartments that combine comfort with elegance.",
+    desc: "Premium residence that combine comfort with elegance.",
     points: [
-      "Location     : Thiruvananthapuram, Kerala, India",
-      "Project Type : Commercial Prjoect",
-      "Client       : Haneefa",
-      "Year         : 2024",
+      "Location     : Tirur, Malappuram, Kerala, India",
+      "Project Type : Residential",
+      "Client       : SR Architects",
+      "Year         : 2025",
+      "Area         : 2800 sqft",
       "No of Floors : G + 2",
       "Status       : Ongoing",
     ],

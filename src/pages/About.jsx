@@ -1,7 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
-import { FiMail, FiPhone, FiMapPin, FiLinkedin, FiGithub } from "react-icons/fi";
+import { FiMail, FiPhone, FiMapPin, FiLinkedin, FiGithub, FiInstagram } from "react-icons/fi";
+import { FaFacebookF } from "react-icons/fa";
 
 const About = () => {
   return (
@@ -79,11 +80,14 @@ const About = () => {
 
           {/* Social Links */}
           <div className="flex gap-6 mt-6">
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-green-400 transition">
+            <a href="https://www.linkedin.com/in/mohammed-saeed-a7b494347?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" className="hover:text-green-400 transition">
               <FiLinkedin size={24} />
             </a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-green-400 transition">
-              <FiGithub size={24} />
+            <a href="https://www.instagram.com/archizaid/" target="_blank" rel="noopener noreferrer" className="hover:text-green-400 transition">
+              <FiInstagram size={24} />
+            </a>
+            <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" className="hover:text-green-400 transition">
+              <FaFacebookF size={24} />
             </a>
           </div>
         </motion.div>

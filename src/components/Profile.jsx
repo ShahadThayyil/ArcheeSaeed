@@ -39,7 +39,7 @@ Hello! I’m Archizaid, a passionate Architectural Designer dedicated to shaping
           <div className="flex gap-5 pt-4">
             {[
               { icon: <FaFacebook />, link: "https://facebook.com/" },
-              { icon: <FaDribbble />, link: "https://archizaid.in/" },
+              { icon: <FaDribbble />, link: "https://issuu.com/mohammedsaeed./docs/mohammed_saeed_portfolio" },
               { icon: <FaLinkedin />, link: "https://www.linkedin.com/in/mohammed-saeed-a7b494347?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
               { icon: <FaInstagram />, link: "https://www.instagram.com/archizaid/" },
             ].map((social, i) => (
