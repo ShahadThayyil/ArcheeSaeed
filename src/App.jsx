@@ -19,10 +19,9 @@ import Loader from "./components/Loader";
 import { Grid } from 'ldrs/react'
 
 function App() {
-    const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
-
- useEffect(() => {
+  useEffect(() => {
     const lenis = new Lenis({
       duration: 1.5,
       easing: (t) => 1 - Math.pow(1 - t, 3),
@@ -36,11 +35,11 @@ function App() {
 
     requestAnimationFrame(raf);
 
-    // Cleanup only Lenis instance
     return () => {
       lenis.destroy();
     };
   }, []);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -48,20 +47,52 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-// import 'ldrs/react/Grid.css'
+  // 🔒 Global right-click, selection, copy, cut, drag, and image protection
+  useEffect(() => {
+    // Disable right-click anywhere
+    const handleContextMenu = (e) => {
+      e.preventDefault();
+      // alert("Right-click is disabled on this website!");
+    };
 
-// Default values shown
+    // Disable image dragging
+    const handleDragStart = (e) => {
+      if (e.target.tagName === "IMG") {
+        e.preventDefault();
+      }
+    };
 
+    // Disable text selection
+    document.body.style.userSelect = "none";
+
+    // Disable copy and cut
+    const preventActions = (e) => e.preventDefault();
+
+    document.addEventListener("contextmenu", handleContextMenu);
+    document.addEventListener("dragstart", handleDragStart);
+    document.addEventListener("copy", preventActions);
+    document.addEventListener("cut", preventActions);
+
+    // Cleanup on unmount
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+      document.removeEventListener("dragstart", handleDragStart);
+      document.removeEventListener("copy", preventActions);
+      document.removeEventListener("cut", preventActions);
+      document.body.style.userSelect = "auto";
+    };
+  }, []);
 
   if (loading) return <Loader />;
+
   return (
     <Router>
-     
-      <div className="main">
-         <ScrollToTop />
+      <div className="main ">
+        <ScrollToTop />
         {/* <SplashCursor /> */}
         {/* <UseSpotlightEffect /> */}
         {/* <SpotlightCursor /> */}
+
         {/* Navbar always visible */}
         <div className="absolute top-0 left-0 w-full z-20">
           <CardNav

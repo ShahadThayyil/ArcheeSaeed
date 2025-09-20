@@ -1,14 +1,13 @@
-
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGithub, FaLinkedin, FaInstagram , FaFacebook} from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
 import { useForm, ValidationError } from "@formspree/react";
 
 export default function ContactPage() {
   const [offsetY, setOffsetY] = useState(0);
 
   // Formspree integration
-  const [state, handleSubmit] = useForm("mblazayk"); 
+  const [state, handleSubmit] = useForm("mblazayk");
   const [showPopup, setShowPopup] = useState(false);
 
   // Controlled inputs
@@ -16,18 +15,44 @@ export default function ContactPage() {
     name: "",
     email: "",
     message: "",
+    website: "", // Honeypot field
   });
+
+  // Sanitize input
+  const sanitizeInput = (value) => {
+    return value.replace(/[<>\/"'`]/g, ""); // remove harmful characters
+  };
 
   // Handle input change
   const handleChange = (e) => {
-    setFormValues({ ...formValues, [e.target.name]: e.target.value });
+    setFormValues({ ...formValues, [e.target.name]: sanitizeInput(e.target.value) });
+  };
+
+  // Validate form
+  const validateForm = () => {
+    const { name, email, message, website } = formValues;
+    if (website) return false; // Honeypot filled → bot detected
+    if (!name || !email || !message) return false;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) return false;
+    return true;
+  };
+
+  // Handle submit
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (!validateForm()) {
+      alert("Please enter valid details!");
+      return;
+    }
+    handleSubmit(e);
   };
 
   // Clear + popup after success
   useEffect(() => {
     if (state.succeeded) {
       setShowPopup(true);
-      setFormValues({ name: "", email: "", message: "" }); // reset inputs
+      setFormValues({ name: "", email: "", message: "", website: "" }); // reset inputs
       const timer = setTimeout(() => setShowPopup(false), 3000);
       return () => clearTimeout(timer);
     }
@@ -101,12 +126,15 @@ export default function ContactPage() {
 
         {/* Right side – Contact Form */}
         <motion.form
-          onSubmit={handleSubmit}
+          onSubmit={onSubmit}
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
           className="w-full bg-gray-900/40 backdrop-blur-xl rounded-2xl p-8 shadow-lg border border-gray-800"
         >
+          {/* Honeypot (hidden field) */}
+          <input type="text" name="website" style={{ display: "none" }} value={formValues.website} onChange={handleChange} />
+
           <div className="space-y-6">
             <div>
               <label className="block mb-2 text-sm text-gray-400">Name</label>
@@ -116,6 +144,7 @@ export default function ContactPage() {
                 name="name"
                 value={formValues.name}
                 onChange={handleChange}
+                onPaste={(e) => e.preventDefault()}
                 placeholder="Your name"
                 className="w-full p-3 rounded-lg bg-black border border-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 text-white"
               />
@@ -129,6 +158,7 @@ export default function ContactPage() {
                 name="email"
                 value={formValues.email}
                 onChange={handleChange}
+                onPaste={(e) => e.preventDefault()}
                 placeholder="you@example.com"
                 className="w-full p-3 rounded-lg bg-black border border-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 text-white"
               />
@@ -142,6 +172,7 @@ export default function ContactPage() {
                 rows="5"
                 value={formValues.message}
                 onChange={handleChange}
+                onPaste={(e) => e.preventDefault()}
                 placeholder="Write your message..."
                 className="w-full p-3 rounded-lg bg-black border border-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 text-white"
               />
@@ -170,7 +201,7 @@ export default function ContactPage() {
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="fixed top-5 right-5 bg-green-600 text-white px-6 py-3 rounded-xl shadow-2xl z-50"
           >
-             Message sent successfully!
+            Message sent successfully!
           </motion.div>
         )}
       </AnimatePresence>
