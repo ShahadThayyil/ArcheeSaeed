@@ -6,6 +6,7 @@ import Profile from "../components/Profile";
 import StatsSection from "../components/Stats";
 import Testimonials from "../components/Testimonials";
 import WhatsAppButton from "../components/Whatsapp";
+import LogoSlider from "../components/LogoSlider";
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
       <Profile/>
       <StatsSection />
       <Testimonials />  
+      <LogoSlider />
       <WhatsAppButton />
     </main>
   );
