@@ -5,8 +5,8 @@ const logos = [
   "https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png",
   "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg",
   "https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg",
-  "https://upload.wikimedia.org/wikipedia/commons/a/a1/Amazon_Web_Services_Logo.svg",
-  "https://upload.wikimedia.org/wikipedia/commons/4/4f/Visual_Studio_Code_1.35_icon.svg",
+  "/mc-logo.png",
+  "../assets/logo.png",
 ];
 
 export default function LogoSlider() {
@@ -42,6 +42,12 @@ export default function LogoSlider() {
           display: flex;
           width: max-content;
           animation: marquee 25s linear infinite;
+            
+
+        }
+        .animate-marquee:hover {
+          animation-play-state: paused;
+           
         }
       `}</style>
     </div>

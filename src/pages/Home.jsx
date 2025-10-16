@@ -13,12 +13,12 @@ const Home = () => {
     <main>
       <Hero />
       <WhyWorkWithMe />
+      <LogoSlider />
       <ProjectSection />
       <WorkFlow />
       <Profile/>
       <StatsSection />
       <Testimonials />  
-      <LogoSlider />
       <WhatsAppButton />
     </main>
   );

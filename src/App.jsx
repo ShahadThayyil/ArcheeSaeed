@@ -89,7 +89,7 @@ function App() {
     <Router>
       <div className="main ">
         <ScrollToTop />
-        {/* <SplashCursor /> */}
+        <SplashCursor />
         {/* <UseSpotlightEffect /> */}
         {/* <SpotlightCursor /> */}
 

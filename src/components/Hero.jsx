@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-
+// import BackgroundHero from "./animations/BackgroundHero";
 const Hero = () => {
   const [hovered, setHovered] = useState(false);
 
   return (
     <section className="relative flex flex-col min-h-screen w-full bg-gradient-to-b from-black via-neutral-900 to-black overflow-hidden pt-[80px] px-6 py-8">
+      {/* <BackgroundHero />  */}
       {/* Background Accent Shapes */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-green-500/10 blur-[160px]" />
