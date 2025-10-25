@@ -6,6 +6,7 @@ const Footer = () => {
     // UPDATED: Changed background, text color, and base font
     <footer className="w-full bg-[#F5EFE6] text-[#1F1F1F] py-20 px-6 font-['Inter',_sans-serif]">
       <div className="max-w-4xl mx-auto text-center">
+      
         
         {/* Badge */}
         <motion.div

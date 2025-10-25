@@ -2,19 +2,31 @@
 body, html, #root {
   margin: 0;
   padding: 0;
-  height: 100%;
   width: 100%;
+  /* Removed height: 100% to allow body to grow with content */
   background: #111136;   /* deep dark background like ReactBits */
   color: white;
   font-family: 'Arial', sans-serif;
+  
+  /* Add this to prevent horizontal overflow on the root level */
+  overflow-x: hidden; 
 }
 
 /* Parent wrapper */
 .app {
   position: relative;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
+  
+  /* FIX: Changed width from 100vw to 100%. */
+  width: 100%; 
+  
+  /* FIX: Removed fixed height and overflow-y.
+    Added min-height: 100vh.
+    Ithu cheyyunnath page-ine swabhavikമായി scroll cheyyan anumathikkum,
+    pakshe content kuravanenkil screen full aayi nilkkukayum cheyyum.
+  */
+  min-height: 100vh; /* Ensures it's at least full screen height, but can grow */
+  /* Removed overflow-y: auto; */
+  /* Removed overflow-x: hidden; (already on body) */
 }
 
 /* Aurora background fills screen */
@@ -31,14 +43,23 @@ body, html, #root {
 .content {
   position: relative;
   z-index: 1;
-  height: 100%;
+  
+  /* FIX: Changed height: 100% to min-height: 100vh.
+    Ithu content-ine center cheyyan sahayikkum,
+    pakshe content valതാണെങ്കിൽ page-n valaran anumathikkum.
+  */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+  
+  /* Add small padding to prevent content from touching edges */
+  box-sizing: border-box; /* Ensures padding is included in height/width */
+  padding: 1rem;
 }
 
 /* Glowing animated scrollbar */
- 
+/* (Your scrollbar styles would go here) */
 

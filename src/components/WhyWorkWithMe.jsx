@@ -31,22 +31,22 @@ const WhyWorkWithMe = () => {
       <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
         {features.map((feature, idx) => (
           <motion.div
-            key={idx}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{
-              scale: 1.05,
-              rotateX: 6,
-              rotateY: -6,
-              y: -8,
-            }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true }}
+            // key={idx}
+            // initial={{ opacity: 0, y: 40 }}
+            // whileInView={{ opacity: 1, y: 0 }}
+            // whileHover={{
+            //   scale: 1.05,
+            //   rotateX: 6,
+            //   rotateY: -6,
+            //   y: -8,
+            // }}
+            // transition={{ duration: 0.6, ease: "easeOut" }}
+            // viewport={{ once: true }}
             className="relative flex flex-col items-center text-center rounded-[2rem] p-8 
               border border-white/20 bg-white /5  backdrop-blur-[35px]
               shadow-[inset_0_0_20px_rgba(255,255,255,0.25),0_0_50px_rgba(208,193,162,0.25)]
               hover:shadow-[0_20px_60px_rgba(192,182,161,0.4)] 
-              transition-all duration-700 ease-out"
+              transition-all duration-700 ease-out  hover:cursor-pointer hover:scale-110"
             style={{
               background:
                 "linear-gradient(145deg, rgba(255,255,255,0.25) 0%, rgba(232,223,209,0.1) 40%, rgba(192,182,161,0.05) 100%)",

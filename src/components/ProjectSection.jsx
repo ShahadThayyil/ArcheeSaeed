@@ -32,12 +32,12 @@ const ProjectSection = () => {
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
         {latestProjects.map((project, idx) => (
           <motion.div
-            key={idx}
-            initial={{ opacity: 0, y: 80, rotateX: -15 }}
-            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-            whileHover={{ scale: 1.05, rotateY: 5 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true }}
+            // key={idx}
+            // initial={{ opacity: 0, y: 80, rotateX: -15 }}
+            // whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+            // whileHover={{ scale: 1.05, rotateY: 5 }}
+            // transition={{ duration: 0.6, ease: "easeOut" }}
+            // viewport={{ once: true }}
             className="relative group rounded-2xl overflow-hidden shadow-lg
               border border-white/20 bg-white/20 backdrop-blur-xl
               hover:shadow-2xl transition-all duration-500

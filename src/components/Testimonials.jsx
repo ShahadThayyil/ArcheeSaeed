@@ -4,7 +4,8 @@ import { testimonials } from '../data/testimonials'; // Assuming testimonials da
 const Testimonials = () => {
   return (
     // UPDATED: Changed background, base text color, and base font
-    <section className="w-full py-20 px-6 bg-[#F5EFE6] text-[#1F1F1F] font-['Inter',_sans-serif]">
+    <section className="w-full py-20 px-6 bg-[#F5EFE6] text-[#1F1F1F] font-['Inter',_sans-serif] ">
+     
       <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
         
         {/* Intro Card */}
@@ -77,6 +78,7 @@ const Testimonials = () => {
           </motion.div>
         ))}
       </div>
+      
     </section>
   );
 };
