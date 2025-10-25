@@ -30,7 +30,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          src="/hero.png"
+          src="/hero.avif"
           alt="Profile"
           className="w-[220px] md:w-[320px] lg:w-[380px] rounded-2xl object-cover cursor-pointer "
           onMouseEnter={() => setHovered(true)}
