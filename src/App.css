@@ -40,48 +40,5 @@ body, html, #root {
 }
 
 /* Glowing animated scrollbar */
-::-webkit-scrollbar {
-  width: 10px; /* scrollbar width */
-}
-
-::-webkit-scrollbar-track {
-  background: #111136; /* match background */
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    180deg,
-    #29ec71,
-    #06b6d4,
-    #facc15,
-    #ef4444,
-    #a855f7
-  );
-  border-radius: 5px;
-  animation: scrollGlow 2s linear infinite;
-}
-
-/* Optional hover effect */
-::-webkit-scrollbar-thumb:hover {
-  filter: brightness(1.2);
-}
-
-/* Glowing animation */
-@keyframes scrollGlow {
-  0% {
-    background-position: 0 0;
-  }
-  50% {
-    background-position: 0 100%;
-  }
-  100% {
-    background-position: 0 0;
-  }
-}
-
-/* To make scrollbar thumb gradient move */
-::-webkit-scrollbar-thumb {
-  background-size: 100% 200%;
-}
+ 
 

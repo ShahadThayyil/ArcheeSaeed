@@ -48,48 +48,48 @@ function App() {
   }, []);
 
   // 🔒 Global right-click, selection, copy, cut, drag, and image protection
-  useEffect(() => {
-    // Disable right-click anywhere
-    const handleContextMenu = (e) => {
-      e.preventDefault();
-      // alert("Right-click is disabled on this website!");
-    };
+  // useEffect(() => {
+  //   // Disable right-click anywhere
+  //   const handleContextMenu = (e) => {
+  //     e.preventDefault();
+  //     // alert("Right-click is disabled on this website!");
+  //   };
 
-    // Disable image dragging
-    const handleDragStart = (e) => {
-      if (e.target.tagName === "IMG") {
-        e.preventDefault();
-      }
-    };
+  //   // Disable image dragging
+  //   const handleDragStart = (e) => {
+  //     if (e.target.tagName === "IMG") {
+  //       e.preventDefault();
+  //     }
+  //   };
 
-    // Disable text selection
-    document.body.style.userSelect = "none";
+  //   // Disable text selection
+  //   document.body.style.userSelect = "none";
 
-    // Disable copy and cut
-    const preventActions = (e) => e.preventDefault();
+  //   // Disable copy and cut
+  //   const preventActions = (e) => e.preventDefault();
 
-    document.addEventListener("contextmenu", handleContextMenu);
-    document.addEventListener("dragstart", handleDragStart);
-    document.addEventListener("copy", preventActions);
-    document.addEventListener("cut", preventActions);
+  //   document.addEventListener("contextmenu", handleContextMenu);
+  //   document.addEventListener("dragstart", handleDragStart);
+  //   document.addEventListener("copy", preventActions);
+  //   document.addEventListener("cut", preventActions);
 
-    // Cleanup on unmount
-    return () => {
-      document.removeEventListener("contextmenu", handleContextMenu);
-      document.removeEventListener("dragstart", handleDragStart);
-      document.removeEventListener("copy", preventActions);
-      document.removeEventListener("cut", preventActions);
-      document.body.style.userSelect = "auto";
-    };
-  }, []);
+  //   // Cleanup on unmount
+  //   return () => {
+  //     document.removeEventListener("contextmenu", handleContextMenu);
+  //     document.removeEventListener("dragstart", handleDragStart);
+  //     document.removeEventListener("copy", preventActions);
+  //     document.removeEventListener("cut", preventActions);
+  //     document.body.style.userSelect = "auto";
+  //   };
+  // }, []);
 
-  if (loading) return <Loader />;
+  // if (loading) return <Loader />;
 
   return (
     <Router>
       <div className="main ">
         <ScrollToTop />
-        <SplashCursor />
+        {/* <SplashCursor /> */}
         {/* <UseSpotlightEffect /> */}
         {/* <SpotlightCursor /> */}
 

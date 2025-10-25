@@ -11,7 +11,7 @@ export default function WhatsAppButton() {
       href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`}
       target="_blank"
       rel="noreferrer"
-      className="fixed bottom-6 right-6 z-50 p-4 bg-green-500 rounded-full shadow-2xl flex items-center justify-center"
+     className="fixed bottom-8 right-18 z-50 p-4 bg-green-500 rounded-full shadow-2xl flex items-center justify-center"
       whileHover={{ scale: 1.15, rotate: 10 }}
       whileTap={{ scale: 0.9 }}
       style={{

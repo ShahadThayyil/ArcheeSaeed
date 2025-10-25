@@ -11,11 +11,24 @@ const logos = [
 
 export default function LogoSlider() {
   return (
-    <div className="w-full py-16 bg-gradient-to-b from-black via-[#0a0a0a] to-black overflow-hidden relative">
-      <h2 className="text-center text-white text-3xl font-bold mb-10 tracking-wide relative z-10">
-        Our <span className="text-green-400">Trusted Partners</span>
+    <div className="py-16 backdrop-blur-xl  pointer-events-none bg-[#F5EFE6]"
+     
+    >
+      {/* Heading */}
+      <h2 className="text-center text-gray-900 md:text-5xl  text-3xl font-bold mb-10 tracking-wide relative z-10">
+        Our{" "}
+        <span className="font-['Playfair_Display',_serif] bg-gradient-to-r from-[#1a1a1a] to-[#000000] bg-clip-text text-[#C0B6A1] ">
+          Trusted Partners
+        </span>
       </h2>
 
+      {/* Soft background glow blobs for depth */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute w-[500px] h-[500px] bg-[#E8DFD1]/60 rounded-full blur-[120px] top-[-120px] left-[-100px]" />
+        <div className="absolute w-[400px] h-[400px] bg-[#C0B6A1]/50 rounded-full blur-[150px] bottom-[-100px] right-[-50px]" />
+      </div>
+
+      {/* Logo Row Animation */}
       <div className="group flex overflow-hidden relative">
         <div className="flex animate-marquee group-hover:[animation-play-state:paused]">
           {logos.concat(logos).map((logo, index) => (
@@ -23,16 +36,23 @@ export default function LogoSlider() {
               key={index}
               className="flex-shrink-0 px-12 flex items-center justify-center relative"
             >
-              <img
-                src={logo}
-                alt={`logo-${index}`}
-                className="h-16 w-auto object-contain brightness-0 invert opacity-90 hover:opacity-100 transition-all duration-300"
-              />
+              <div className="p-6 rounded-2xl backdrop-blur-xl   hover:shadow-[0_0_40px_rgba(192,182,161,0.4)] transition-all duration-500">
+                <img
+                  src={logo}
+                  alt={`logo-${index}`}
+                  className="h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-500"
+                  style={{
+                    filter:
+                      "drop-shadow(0 3px 8px rgba(192,182,161,0.4)) brightness(0.9)",
+                  }}
+                />
+              </div>
             </div>
           ))}
         </div>
       </div>
 
+      {/* Marquee Animation */}
       <style>{`
         @keyframes marquee {
           0% { transform: translateX(0%); }
@@ -42,93 +62,12 @@ export default function LogoSlider() {
           display: flex;
           width: max-content;
           animation: marquee 25s linear infinite;
-            
-
         }
-        .animate-marquee:hover {
-          animation-play-state: paused;
-           
+        @keyframes float {
+          0% { transform: translateY(0px); }
+          100% { transform: translateY(40px); }
         }
       `}</style>
     </div>
   );
 }
-
-
-// import React from "react";
-// import Slider from "react-slick";
-// import { motion } from "framer-motion";
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
-
-// export default function LogoSlider() {
-//   const logos = [
-//     "/mc-logo.png",
-//     "/logos/logo2.png",
-//     "/logos/logo3.png",
-//     "/logos/logo4.png",
-//     "/logos/logo5.png",
-//     "/logos/logo6.png",
-//   ];
-
-//   const settings = {
-//     dots: false,
-//     infinite: true,
-//     slidesToShow: 4,
-//     slidesToScroll: 1,
-//     autoplay: true,
-//     autoplaySpeed: 2000,
-//     speed: 3000,
-//     cssEase: "linear",
-//     pauseOnHover: true,
-//     arrows: true,
-//     responsive: [
-//       {
-//         breakpoint: 1024,
-//         settings: {
-//           slidesToShow: 3,
-//           slidesToScroll: 1,
-//         },
-//       },
-//       {
-//         breakpoint: 768,
-//         settings: {
-//           slidesToShow: 2,
-//           slidesToScroll: 1,
-//         },
-//       },
-//       {
-//         breakpoint: 480,
-//         settings: {
-//           slidesToShow: 1,
-//           slidesToScroll: 1,
-//         },
-//       },
-//     ],
-//   };
-
-//   return (
-//     <div className="bg-black py-10">
-//       <h2 className="text-center text-white text-2xl font-semibold mb-6">
-//         Our Partners
-//       </h2>
-//       <div className="max-w-6xl mx-auto px-4">
-//         <Slider {...settings}>
-//           {logos.map((logo, index) => (
-//             <motion.div
-//               whileHover={{ scale: 1.1 }}
-//               key={index}
-//               className="flex items-center justify-center"
-//             >
-//               <img
-//                 src={logo}
-//                 alt={`logo-${index}`}
-//                 className="w-32 h-32 object-contain filter invert opacity-80 hover:opacity-100 transition-all duration-500"
-//               />
-//             </motion.div>
-//           ))}
-//         </Slider>
-//       </div>
-//     </div>
-//   );
-// }

@@ -7,14 +7,83 @@ import StatsSection from "../components/Stats";
 import Testimonials from "../components/Testimonials";
 import WhatsAppButton from "../components/Whatsapp";
 import LogoSlider from "../components/LogoSlider";
+import { ThreeDMarquee } from "../components/animations/ThreeMarque";
 
+const images = [
+  {
+    src: "/mc-logo.png",
+    alt: "Description 1"
+  },
+  {
+    src: "/mc-logo.png",
+    alt: "Description 2"
+  }
+];
+const clickableImages = [
+  {
+    src: "/profile-ai.png",
+    alt: "Portfolio Item 1",
+    href: "https://example.com/project1",
+    target: "_blank"
+  },
+  {
+    src: "/profile-about.avif",
+    alt: "Portfolio Item 2",
+    href: "https://example.com/project2",
+    target: "_blank"
+  },
+   {
+    src: "/profile-about.avif",
+    alt: "Portfolio Item 2",
+    href: "https://example.com/project2",
+    target: "_blank"
+  },
+     {
+    src: "/profile-about.avif",
+    alt: "Portfolio Item 2",
+    href: "https://example.com/project2",
+    target: "_blank"
+  },
+    {
+    src: "/profile-about.avif",
+    alt: "Portfolio Item 2",
+    href: "https://example.com/project2",
+    target: "_blank"
+  },
+     {
+    src: "/profile-about.avif",
+    alt: "Portfolio Item 2",
+    href: "https://example.com/project2",
+    target: "_blank"
+  },
+    {
+    src: "/profile-about.avif",
+    alt: "Portfolio Item 2",
+    href: "https://example.com/project2",
+    target: "_blank"
+  },
+    {
+    src: "/profile-about.avif",
+    alt: "Portfolio Item 2",
+    href: "https://example.com/project2",
+    target: "_blank"
+  },
+
+];
 const Home = () => {
   return (
     <main>
       <Hero />
       <WhyWorkWithMe />
-      <LogoSlider />
+    
       <ProjectSection />
+       {/* <ThreeDMarquee
+        images={clickableImages}
+        onImageClick={(image, index) => {
+          console.log("Clicked:", image.alt, "at index:", index);
+          }}
+          /> */}
+          <LogoSlider />
       <WorkFlow />
       <Profile/>
       <StatsSection />

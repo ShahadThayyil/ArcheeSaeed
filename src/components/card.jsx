@@ -2,10 +2,11 @@ import { cn } from "../lib/utils"; // if you created utils.js as I explained bef
 
 // Card wrapper
 export const Card = ({ className, children, ...props }) => {
-  return (
+return (
     <div
       className={cn(
-        "rounded-xl border bg-white shadow-md dark:bg-gray-900 dark:border-gray-700 transition-all duration-300",
+        // CHANGED: Glassmorphism theme aakki
+        "rounded-xl border  bg-[#C0B6A1] backdrop-blur-md border-white/75 shadow-xl   transition-all duration-300",
         className
       )}
       {...props}

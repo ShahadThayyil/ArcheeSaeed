@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { cn } from "../lib/utils";
 import { Card, CardContent } from "./card";
-import {WORKFLOW_EVENTS} from "../data/workflow"
+import { WORKFLOW_EVENTS } from "../data/workflow";
 
 export const WorkFlow = ({
   events = WORKFLOW_EVENTS,
@@ -11,7 +11,6 @@ export const WorkFlow = ({
   animationOrder = "sequential",
   cardAlignment = "alternating",
   progressIndicator = true,
-  darkMode = true,
   parallaxIntensity = 0.1,
   progressLineWidth = 3,
   progressLineCap = "round",
@@ -50,6 +49,7 @@ export const WorkFlow = ({
   }, [scrollYProgress, events.length, activeIndex]);
 
   const getCardVariants = (index) => {
+    // ... (This function is unchanged)
     const baseDelay =
       animationOrder === "simultaneous"
         ? 0
@@ -89,17 +89,20 @@ export const WorkFlow = ({
       ref={scrollRef}
       className={cn(
         "relative min-h-screen w-full overflow-hidden py-16 pt-24 scroll-mt-24",
-        darkMode ? "bg-black text-white" : "bg-white text-black",
+        // This background color matches your image perfectly
+        "bg-[#F5EFE6] text-gray-900",
         className
       )}
     >
       {/* Section Header */}
       <div className="text-center mb-12 px-4">
-        <h3 className="text-green-400 uppercase tracking-wider text-sm font-bold">
+        <h3 className="text-[#C0B6A1] uppercase tracking-wider text-sm font-bold font-['Cormorant_Garamond',serif]">
           My Process
         </h3>
-        <h2 className="text-3xl md:text-5xl font-bold mt-2">{title}</h2>
-        <p className="text-gray-400 text-lg mt-2">{subtitle}</p>
+        <h2 className="text-3xl md:text-5xl font-bold mt-2 text-gray-900 font-['Playfair_Display',_serif]">
+          {title}
+        </h2>
+        <p className="text-[#C0B6A1] text-lg mt-2 font-['Cormorant_Garamond',serif]">{subtitle}</p>
       </div>
 
       {/* Timeline Wrapper */}
@@ -114,10 +117,11 @@ export const WorkFlow = ({
                 width: progressLineWidth,
                 borderRadius:
                   progressLineCap === "round" ? "9999px" : "0px",
-                background: "linear-gradient(to bottom, #22d3ee, #6366f1, #a855f7)",
+                // CHANGED: Set to the subtle faded text color from your theme
+                background: "#C0B6A1",
                 boxShadow: `
-                  0 0 15px rgba(99,102,241,0.5),
-                  0 0 25px rgba(168,85,247,0.3)
+                  0 0 15px rgba(192, 182, 161, 0.4),
+                  0 0 25px rgba(192, 182, 161, 0.2)
                 `,
               }}
             />
@@ -133,61 +137,71 @@ export const WorkFlow = ({
               [parallaxIntensity * 100, -parallaxIntensity * 100]
             );
             return (
-            <motion.div
-  key={index}
-  className={cn(
-    "relative flex flex-col items-center mb-16", // ✅ mobile = centered
-    cardAlignment === "alternating"
-      ? index % 2 === 0
-        ? "lg:flex-row lg:justify-start lg:items-center"
-        : "lg:flex-row-reverse lg:justify-start lg:items-center"
-      : cardAlignment === "left"
-      ? "lg:flex-row lg:justify-start lg:items-center"
-      : "lg:flex-row-reverse lg:justify-start lg:items-center"
-  )}
-//   variants={getCardVariants(index)}
-//   initial="initial"
-//   whileInView="whileInView"
-//   viewport={{ once: false, margin: "-100px" }}
-//   style={parallaxIntensity > 0 ? { y: yOffset } : undefined}
->
-  {/* Connector Dot */}
-  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 lg:top-1/2">
-    <motion.div
-      className={cn(
-        "w-6 h-6 rounded-full border-4 bg-black flex items-center justify-center",
-        index <= activeIndex ? "border-indigo-500" : "border-gray-600"
-      )}
-      animate={
-        index <= activeIndex
-          ? {
-              scale: [1, 1.3, 1],
-              boxShadow: [
-                "0 0 0px rgba(99,102,241,0)",
-                "0 0 12px rgba(99,102,241,0.6)",
-                "0 0 0px rgba(99,102,241,0)",
-              ],
-            }
-          : {}
-      }
-      transition={{
-        duration: 0.8,
-        repeat: Infinity,
-        repeatDelay: 4,
-        ease: "easeInOut",
-      }}
-    />
-  </div>
+              <motion.div
+                key={index}
+                className={cn(
+                  "relative flex flex-col items-center mb-16",
+                  cardAlignment === "alternating"
+                    ? index % 2 === 0
+                      ? "lg:flex-row lg:justify-start lg:items-center"
+                      : "lg:flex-row-reverse lg:justify-start lg:items-center"
+                    : cardAlignment === "left"
+                    ? "lg:flex-row lg:justify-start lg:items-center"
+                    : "lg:flex-row-reverse lg:justify-start lg:items-center"
+                )}
+                // ... (variants and parallax)
+              >
+                {/* Connector Dot */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 lg:top-1/2">
+                  <motion.div
+                    className={cn(
+                      "w-6 h-6 rounded-full border-4 flex items-center justify-center",
+                      // CHANGED: Colors updated for the light theme
+                      "bg-white", // White dot background
+                      index <= activeIndex
+                        ? "border-gray-900" // Active border (dark)
+                        : "border-gray-300" // Inactive border (light grey)
+                    )}
+                    animate={
+                      index <= activeIndex
+                        ? {
+                            scale: [1, 1.3, 1],
+                            boxShadow: [
+                              "0 0 0px rgba(68, 64, 60, 0)",
+                              "0 0 12px rgba(68, 64, 60, 0.6)", // Dark glow (looks good)
+                              "0 0 0px rgba(68, 64, 60, 0)",
+                            ],
+                          }
+                        : {}
+                    }
+                    transition={{
+                      duration: 0.8,
+                      repeat: Infinity,
+                      repeatDelay: 4,
+                      ease: "easeInOut",
+                    }}
+                  />
+                </div>
 
-  {/* Card */}
-  <Card className="bg-gray-900 border border-gray-700 shadow-lg w-full max-w-md lg:w-[calc(50%-40px)] mt-12 lg:mt-0 ">
-    <CardContent className="p-6 text-center lg:text-left">
-      <h3 className="text-xl font-bold mb-2 text-white">{event.step}</h3>
-      <p className="text-gray-400 leading-relaxed">{event.description}</p>
-    </CardContent>
-  </Card>
-</motion.div>
-
+                {/* --- CARD THEME CHANGED --- */}
+                <Card
+                  className={cn(
+                    "shadow-xl w-full max-w-md lg:w-[calc(50%-40px)] mt-12 lg:mt-0",
+                    // CHANGED: Removed blur, added solid white background
+                    "bg-white"
+                  )}
+                >
+                  <CardContent className="p-6 text-center lg:text-left">
+                    {/* CHANGED: Text colors to dark */}
+                    <h3 className="text-xl font-bold mb-2 text-gray-900 font-['Cormorant_Garamond',serif]">
+                      {event.step}
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed font-['Rubik',cursive]">
+                      {event.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             );
           })}
         </div>
