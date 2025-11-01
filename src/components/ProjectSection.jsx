@@ -113,7 +113,7 @@ const ProjectSection = () => {
 
   return (
     <section
-      className="w-full py-24 px-6 md:px-12 bg-[#F5EFE6] relative overflow-hidden"
+      className="w-full py-24 px-6 md:px-12 bg-white relative overflow-hidden"
       style={{
         color: "#1F1F1F",
       }}
