@@ -10,41 +10,64 @@ const FeatureItem = ({ feature, index }) => {
   // ഈ ഐറ്റത്തിൻ്റെ സ്ക്രോൾ പുരോഗതി ട്രാക്ക് ചെയ്യുന്നു
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"],
+    offset: ["start end", "end start"], // എലമെൻ്റ് വ്യൂപോർട്ടിൽ വരുമ്പോൾ തുടങ്ങി പുറത്തുപോകുമ്പോൾ അവസാനിക്കുന്നു
   });
 
   // പാരലാക്സ് എഫക്റ്റിനായി y-axis ട്രാൻസ്ഫോം ചെയ്യുന്നു
   // സ്ക്രോൾ 0 ആയിരിക്കുമ്പോൾ -60px, 1 ആയിരിക്കുമ്പോൾ 60px
-  const y = useTransform(scrollYProgress, [0, 1], [-60, 60]);
+  const y = useTransform(scrollYProgress, [0, 1], [-50, 50]); // Y-axis parallax കുറച്ചുകൂടി മൃദലമാക്കി
 
-  // ഇരട്ട സംഖ്യയാണോ എന്ന് പരിശോധിക്കുന്നു (లేఅவுட் മാറ്റാൻ)
+  // **പുതിയ 3D/Zoom എഫക്റ്റുകൾ (ചിത്രത്തിന്):**
+  // സ്കെയിൽ: 0.98 ൽ നിന്ന് 1.02 ലേക്ക് സൂം ചെയ്യുന്നു (കൂടുതൽ subtle)
+  const scale = useTransform(scrollYProgress, [0, 1], [0.98, 1.02]); 
+  
+  // റൊട്ടേഷൻ (3D): X-അക്ഷത്തിൽ ചെറുതായി കറങ്ങുന്നു
+  const rotateX = useTransform(scrollYProgress, [0, 1], [2, -2]); 
+
+  // തിരശ്ചീനമായ ചെരിവ് (Skew): ചിത്രത്തിന് ഒരു ഡൈനാമിക് ലുക്ക് നൽകുന്നു
+  const skewX = useTransform(scrollYProgress, [0, 1], index % 2 === 0 ? [1, -1] : [-1, 1]); // Skew കുറച്ചുകൂടി subtle ആക്കി
+
+
+  // ഇരട്ട സംഖ്യയാണോ എന്ന് പരിശോധിക്കുന്നു (ലേഔട്ട് മാറ്റാൻ)
   const isEven = index % 2 === 0;
 
   return (
     <div
       ref={ref}
-      className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center max-w-5xl mx-auto"
+      className="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center max-w-5xl mx-auto"
     >
-      {/* 1. പാരലാക്സ് എഫക്റ്റുള്ള ചിത്രം */}
+      {/* 1. പാരലാക്സ്, 3D എഫക്റ്റുകളുള്ള ചിത്രം */}
       <motion.div
-        className={`relative flex items-center justify-center ${
+        className={`relative flex items-center justify-center perspective-[1000px] ${
           isEven ? "md:order-1" : "md:order-2" // ഓർഡർ മാറ്റുന്നു
         }`}
-        style={{ y }} // <-- പാരലാക്സ് എഫക്റ്റ് ഇവിടെയാണ് നൽകുന്നത്
+        style={{ 
+            y, // <-- ലംബമായ പാരലാക്സ്
+            skewX, // <-- തിരശ്ചീനമായ ചെരിവ്
+        }}
       >
-        {/* മോഡേൺ, റെസ്പോൺസീവ് ഇമേജ് കണ്ടെയ്നർ */}
-        <div className="relative w-full h-64 md:h-80 lg:h-96 rounded-xl overflow-hidden shadow-lg">
+        {/* മോഡേൺ, റെസ്പോൺസീവ് ഇമേജ് കണ്ടെയ്നർ വിത്ത് കസ്റ്റം ഷേപ്പ് */}
+        <motion.div 
+            style={{ 
+                scale, 
+                rotateX,
+                // കസ്റ്റം ഷേപ്പിനായി clip-path ഉപയോഗിക്കുന്നു
+                clipPath: "polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%)", // ഒരു അൺകൺവെൻഷണൽ ചതുരം
+            }} 
+            className="relative w-full h-64 md:h-80 lg:h-96 overflow-hidden 
+                       border border-solid border-[#C0B6A1]/30" // നേരിയ ബോർഡർ
+        >
           <img
             src={feature.image} // <-- ഡാറ്റയിൽ നിന്നുള്ള ചിത്രം
             alt={feature.title}
             className="absolute inset-0 w-full h-full object-cover"
           />
-          {/* വേണമെങ്കിൽ ചിത്രത്തിന് മുകളിൽ ഒരു ഓവർലേ നൽകാം */}
-          {/* <div className="absolute inset-0 bg-black opacity-10" /> */}
-        </div>
+          {/* ചിത്രത്തിന് മുകളിലുള്ള ആകർഷകമായ ഓവർലേ (കൂടുതൽ subtle ആക്കി) */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+        </motion.div>
       </motion.div>
 
-      {/* 2. ടെക്സ്റ്റ് കണ്ടന്റ് (പഴയത് പോലെ തന്നെ) */}
+      {/* 2. ടെക്സ്റ്റ് കണ്ടന്റ് (പരിഷ്കരിച്ചത്) */}
       <motion.div
         className={`flex flex-col text-center md:text-left ${
           isEven ? "md:order-2" : "md:order-1" // ഓർഡർ മാറ്റുന്നു
@@ -54,10 +77,12 @@ const FeatureItem = ({ feature, index }) => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.3 }}
       >
-        <h3 className="text-3xl md:text-4xl font-semibold mb-4 text-[#1F1F1F] font-['Cormorant_Garamond',serif]">
+        {/* ടൈറ്റിൽ: സൈസ് കൂട്ടി, കളർ ഡാർക്ക് ആക്കി, ബോൾഡ്നെസ്സ് കൂട്ടി */}
+        <h3 className="text-4xl md:text-5xl font-extrabold mb-5 text-[#1F1F1F] font-['Playfair_Display',serif] leading-tight">
           {feature.title}
         </h3>
-        <p className="text-[#4A4A4A] font-['Rubik',cursive] text-base max-w-md mx-auto md:mx-0">
+        {/* ഡിസ്ക്രിപ്ഷൻ: സൈസ് കൂട്ടി, കളർ കോൺട്രാസ്റ്റ് കൂട്ടി */}
+        <p className="text-[#333333] font-['Rubik',cursive] text-lg md:text-xl max-w-md mx-auto md:mx-0 leading-relaxed">
           {feature.desc}
         </p>
       </motion.div>
@@ -65,14 +90,11 @@ const FeatureItem = ({ feature, index }) => {
   );
 };
 
+// --- Main Component ---
 const WhyWorkWithMe = () => {
   return (
     <section
-      className="relative w-full min-h-screen py-24 px-6 md:px-16 overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(180deg, #F5EFE6 0%, #E8DFD1 35%, #D9CBB3 70%, #C0B6A1 100%)",
-      }}
+      className="relative bg-[#F5EFE6] w-full min-h-screen py-24 px-6 md:px-16 overflow-hidden"
     >
       {/* Soft moving blurred shapes behind content */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -80,13 +102,13 @@ const WhyWorkWithMe = () => {
         <div className="absolute w-[500px] h-[500px] bg-[#C0B6A1] rounded-full blur-[180px] opacity-30 bottom-[-150px] right-[-100px] animate-[float_12s_ease-in-out_infinite_alternate]" />
       </div>
 
-      {/* Heading */}
+      {/* Heading (പരിഷ്കരിച്ചത്) */}
       <motion.h2
         initial={{ opacity: 0, y: -40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="text-3xl md:text-5xl font-bold text-center mb-20 md:mb-32 text-gray-900 font-['Playfair_Display',_serif]"
+        className="text-4xl md:text-6xl font-extrabold text-center mb-20 md:mb-32 text-[#1F1F1F] font-['Playfair_Display',_serif]"
       >
         Why Work With{" "}
         <span className="text-[#A0937D] font-['Playfair_Display',_serif]">
@@ -94,8 +116,8 @@ const WhyWorkWithMe = () => {
         </span>
       </motion.h2>
 
-      {/* New Feature List Layout */}
-      <div className="space-y-28 md:space-y-40">
+      {/* Feature List Layout - സ്‌പേസിംഗ് കുറച്ചു */}
+      <div className="space-y-16 md:space-y-24"> 
         {features.map((feature, idx) => (
           <FeatureItem key={idx} feature={feature} index={idx} />
         ))}

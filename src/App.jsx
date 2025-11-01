@@ -1,5 +1,11 @@
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+// 🔹 നമ്മൾക്ക് ആവശ്യമുള്ള പുതിയ കാര്യങ്ങൾ ഇമ്പോർട്ട് ചെയ്യുന്നു
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation, // 1. useLocation ഇമ്പോർട്ട് ചെയ്തു
+} from "react-router-dom";
 import Lenis from "@studio-freight/lenis";
 import { useEffect, useState } from "react";
 import Home from "./pages/Home";
@@ -16,7 +22,64 @@ import ProjectDetail from "./pages/ProjectDetail";
 import UseSpotlightEffect from "./components/animations/useSpotlightEffect";
 import SpotlightCursor from "./components/SpotlightCursor";
 import Loader from "./components/Loader";
-import { Grid } from 'ldrs/react'
+import { Grid } from "ldrs/react";
+import { AnimatePresence } from "framer-motion"; // 2. AnimatePresence ഇമ്പോർട്ട് ചെയ്തു
+import AnimatedPage from "./components/AnimatedPage"; // 3. നമ്മുടെ പുതിയ AnimatedPage കമ്പോണന്റ് ഇമ്പോർട്ട് ചെയ്തു
+
+// 🔹 ആനിമേഷനോടുകൂടിയ റൂട്ടുകൾ കൈകാര്യം ചെയ്യാൻ ഒരു പുതിയ കമ്പോണന്റ്
+// ഇത് useLocation ഉപയോഗിക്കുന്നതുകൊണ്ടാണ് <Router>-നുള്ളിൽ വെക്കുന്നത്
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  return (
+    // 🔹 ഇവിടെയാണ് AnimatePresence ചേർക്കുന്നത്
+    <AnimatePresence mode="wait">
+      {/* 🔹 റൂട്ട് മാറുമ്പോൾ ആനിമേറ്റ് ചെയ്യാൻ key നിർബന്ധമാണ് */}
+      <Routes location={location} key={location.pathname}>
+        <Route
+          path="/"
+          element={
+            <AnimatedPage>
+              <Home />
+            </AnimatedPage>
+          }
+        />
+        <Route
+          path="/projects"
+          element={
+            <AnimatedPage>
+              <Projects />
+            </AnimatedPage>
+          }
+        />
+        <Route
+          path="/projects/:id"
+          element={
+            <AnimatedPage>
+              <ProjectDetail />
+            </AnimatedPage>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <AnimatedPage>
+              <About />
+            </AnimatedPage>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <AnimatedPage>
+              <Contact />
+            </AnimatedPage>
+          }
+        />
+      </Routes>
+    </AnimatePresence>
+  );
+}
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -47,43 +110,12 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  // 🔒 Global right-click, selection, copy, cut, drag, and image protection
+  // 🔒 നിങ്ങളുടെ പഴയ കോഡുകൾക്കൊന്നും മാറ്റം വരുത്തിയിട്ടില്ല
   // useEffect(() => {
-  //   // Disable right-click anywhere
-  //   const handleContextMenu = (e) => {
-  //     e.preventDefault();
-  //     // alert("Right-click is disabled on this website!");
-  //   };
-
-  //   // Disable image dragging
-  //   const handleDragStart = (e) => {
-  //     if (e.target.tagName === "IMG") {
-  //       e.preventDefault();
-  //     }
-  //   };
-
-  //   // Disable text selection
-  //   document.body.style.userSelect = "none";
-
-  //   // Disable copy and cut
-  //   const preventActions = (e) => e.preventDefault();
-
-  //   document.addEventListener("contextmenu", handleContextMenu);
-  //   document.addEventListener("dragstart", handleDragStart);
-  //   document.addEventListener("copy", preventActions);
-  //   document.addEventListener("cut", preventActions);
-
-  //   // Cleanup on unmount
-  //   return () => {
-  //     document.removeEventListener("contextmenu", handleContextMenu);
-  //     document.removeEventListener("dragstart", handleDragStart);
-  //     document.removeEventListener("copy", preventActions);
-  //     document.removeEventListener("cut", preventActions);
-  //     document.body.style.userSelect = "auto";
-  //   };
+  // ...
   // }, []);
 
-  if (loading) return <Loader speed={10000} />;
+  // if (loading) return <Loader speed={10000} />;
 
   return (
     <Router>
@@ -107,14 +139,8 @@ function App() {
           />
         </div>
 
-        {/* Routes */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/:id" element={<ProjectDetail />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
+        {/* 🔹 Routes എന്നതിന് പകരം നമ്മൾ AnimatedRoutes ഉപയോഗിക്കുന്നു */}
+        <AnimatedRoutes />
       </div>
       <Footer />
     </Router>

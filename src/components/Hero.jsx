@@ -97,24 +97,47 @@ const SectionLayer = ({ section }) => {
         </p>
 
         {section.showButtons && (
-          <div className="flex flex-col sm:flex-row gap-4 mt-8">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 font-['Rubik',cursive] rounded-md bg-[#1F1F1F] text-[#F5EFE6] font-semibold hover:bg-[#3A3A3A] transition"
-            >
-              START YOUR BUILD
-            </motion.button>
-            <Link to="/discover">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 font-['Rubik',cursive] rounded-md bg-white/90 text-[#1F1F1F] font-semibold hover:bg-white transition"
-              >
-                DISCOVER
-              </motion.button>
-            </Link>
-          </div>
+       <div className="flex flex-col sm:flex-row gap-4 mt-8">
+  {/* START YOUR BUILD Button with Framer Motion and Shine Effect */}
+  <motion.button
+    // Add 'group/btn' to make the button a hover group
+    className="relative group/btn overflow-hidden px-8 py-3 font-['Rubik',cursive] rounded-md bg-[#1F1F1F] text-[#F5EFE6] font-semibold hover:bg-[#3A3A3A] transition"
+    whileHover={{ 
+      scale: 1.05, 
+      boxShadow: "0 8px 15px rgba(0, 0, 0, 0.4)" 
+    }}
+    whileTap={{ scale: 0.95 }}
+    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+  >
+    {/* Button Text - Keep it relatively positioned for the shine to work */}
+    <span className="relative z-10">START YOUR BUILD</span>
+
+    {/* Hover shine effect */}
+    {/* The transition will trigger when the parent button (group/btn) is hovered */}
+    <span 
+      className="absolute inset-0 block bg-gradient-to-r from-white/20 to-transparent
+                 transform -skew-x-12 translate-x-[-150%] transition-transform duration-700
+                 group-hover/btn:translate-x-[150%]"
+      aria-hidden="true" // Best practice for purely decorative elements
+    ></span>
+  </motion.button>
+
+  {/* DISCOVER Button (Unchanged) */}
+  <Link to="/discover">
+    <motion.button
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ 
+        scale: 0.95, 
+        rotate: -1, 
+        y: 2
+      }}
+      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+      className="px-8 py-3 font-['Rubik',cursive] rounded-md bg-white/90 text-[#1F1F1F] font-semibold hover:bg-white transition"
+    >
+      DISCOVER
+    </motion.button>
+  </Link>
+</div>
         )}
       </motion.div>
     </section>

@@ -1,4 +1,6 @@
 import React from "react";
+// 1. IMPORT THE TILT COMPONENT
+import Tilt from "react-parallax-tilt";
 
 const logos = [
   "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
@@ -11,11 +13,10 @@ const logos = [
 
 export default function LogoSlider() {
   return (
-    <div className="py-16 backdrop-blur-xl  pointer-events-none bg-[#F5EFE6]"
-     
-    >
+    // 2. REMOVED 'pointer-events-none' TO ALLOW MOUSE INTERACTION
+    <div className="py-16 backdrop-blur-xl bg-[#F5EFE6]">
       {/* Heading */}
-      <h2 className="text-center text-gray-900 md:text-5xl  text-3xl font-bold mb-10 tracking-wide relative z-10">
+      <h2 className="text-center text-gray-900 md:text-5xl text-3xl font-bold mb-10 tracking-wide relative z-10">
         Our{" "}
         <span className="font-['Playfair_Display',_serif] bg-gradient-to-r from-[#1a1a1a] to-[#000000] bg-clip-text text-[#C0B6A1] ">
           Trusted Partners
@@ -36,23 +37,35 @@ export default function LogoSlider() {
               key={index}
               className="flex-shrink-0 px-12 flex items-center justify-center relative"
             >
-              <div className="p-6 rounded-2xl backdrop-blur-xl   hover:shadow-[0_0_40px_rgba(192,182,161,0.4)] transition-all duration-500">
-                <img
-                  src={logo}
-                  alt={`logo-${index}`}
-                  className="h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-500"
-                  style={{
-                    filter:
-                      "drop-shadow(0 3px 8px rgba(192,182,161,0.4)) brightness(0.9)",
-                  }}
-                />
-              </div>
+              {/* 3. WRAP YOUR LOGO CARD WITH THE <Tilt> COMPONENT */}
+              <Tilt
+                className="parallax-effect"
+                perspective={1000}
+                glareEnable={true}
+                glareMaxOpacity={0.15}
+                glareColor="#C0B6A1" // Use your brand color for the glare
+                glarePosition="all"
+                scale={1.05} // Add a slight "pop" on hover
+                transitionSpeed={1500}
+              >
+                <div className="p-6 rounded-2xl backdrop-blur-xl hover:shadow-[0_0_40px_rgba(192,182,161,0.4)] transition-all duration-500">
+                  <img
+                    src={logo}
+                    alt={`logo-${index}`}
+                    className="h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-500"
+                    style={{
+                      filter:
+                        "drop-shadow(0 3px 8px rgba(192,182,161,0.4)) brightness(0.9)",
+                    }}
+                  />
+                </div>
+              </Tilt>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Marquee Animation */}
+      {/* Marquee Animation (Your original CSS) */}
       <style>{`
         @keyframes marquee {
           0% { transform: translateX(0%); }
@@ -66,6 +79,11 @@ export default function LogoSlider() {
         @keyframes float {
           0% { transform: translateY(0px); }
           100% { transform: translateY(40px); }
+        }
+        /* Optional: Give the tilt component some size */
+        .parallax-effect {
+          width: 100%;
+          height: 100%;
         }
       `}</style>
     </div>
