@@ -74,7 +74,7 @@ const clickableImages = [
 const Home = () => {
   return (
     <main>
-      {/* <Hero /> */}
+      <Hero />
       <WhyWorkWithMe />
     
       <ProjectSection />
@@ -87,9 +87,9 @@ const Home = () => {
           <LogoSlider />
           <ServicesSection />
       <WorkFlow />
-      <Profile/>
-      <StatsSection />
       <Testimonials />  
+      {/* <Profile/> */}
+      <StatsSection />
       {/* <WhatsAppButton /> */}
     </main>
   );

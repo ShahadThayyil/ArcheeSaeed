@@ -53,7 +53,7 @@ const About = () => {
             </span>
           </h1>
           <p
-            className="mt-6 text-xl max-w-lg font-normal font-sans font-light" // Font changed
+            className="mt-6 text-xl max-w-lg  font-sans font-light" // Font changed
             style={{ color: TEXT_COLOR }}
           >
             Crafting timeless spaces with creativity, innovation, and a focus on

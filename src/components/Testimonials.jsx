@@ -1,98 +1,141 @@
-// 1. Import useRef, useScroll, and useTransform
+import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { testimonials } from '../data/testimonials'; // Assuming testimonials data is available
+import { Quote } from "lucide-react";
 
-const Testimonials = () => {
-  // 2. Create a ref to track the main section
-  const parallaxRef = useRef(null);
+// --- DATA (Placeholder Data) ---
+const testimonials = [
+  {
+    id: 1,
+    name: "Rinshad & Fathima",
+    location: "Malappuram, KL",
+    text: "We wanted a home that felt like a resort but functioned like a traditional Kerala house. The team at Vynx didn't just design walls; they sculpted light and space. The way the courtyard breathes is pure magic.",
+    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2653&auto=format&fit=crop",
+  },
+  {
+    id: 2,
+    name: "Dr. Anjali Menon",
+    location: "Kochi, KL",
+    text: "Professionalism meets poetry. That's how I describe their work. They transformed our chaotic plot into a serene minimalist haven. The 'Modern Terracotta' accents they suggested became the talk of the neighborhood.",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2670&auto=format&fit=crop",
+  },
+  {
+    id: 3,
+    name: "Techno Steel Industries",
+    location: "Calicut, KL",
+    text: "For our factory office, we needed structure and discipline, but also creativity. They delivered a workspace that boosts morale. The industrial aesthetics blended with nature is simply brilliant.",
+    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2632&auto=format&fit=crop",
+  },
+];
 
-  // 3. Set up the scroll tracking
+// --- SUB-COMPONENT: Individual Parallax Card ---
+const ParallaxCard = ({ data, index }) => {
+  const containerRef = useRef(null);
+
   const { scrollYProgress } = useScroll({
-    target: parallaxRef,
-    offset: ["start end", "end start"], // Track from when bottom enters to when top leaves
+    target: containerRef,
+    offset: ["start end", "end start"],
   });
 
-  // 4. Define different transforms for parallax (Kept your logic)
-  const introY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-  const cardsY = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
+  // --- THE 3D EFFECT LOGIC ---
+  const yImage = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  const yText = useTransform(scrollYProgress, [0, 1], ["20%", "-30%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
+
+  const isEven = index % 2 === 0;
 
   return (
-    // 5. Add the ref and apply dark theme
-    <section
-      ref={parallaxRef}
-      className="w-full py-20 md:py-32 px-6 md:px-12 bg-[#1a1a1a] text-white font-['Inter',_sans-serif] overflow-hidden"
+    <div
+      ref={containerRef}
+      className={`relative w-full min-h-[80vh] flex items-center justify-center py-20 ${
+        isEven ? "md:flex-row" : "md:flex-row-reverse"
+      } flex-col gap-0 md:gap-10`}
     >
-      <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+      {/* --- LAYER 1: THE PHOTO (Background) --- */}
+      <motion.div
+        style={{ y: yImage, opacity }}
+        className="w-full md:w-3/5 h-[50vh] md:h-[70vh] relative z-0"
+      >
+        <div className="w-full h-full overflow-hidden rounded-none md:rounded-sm shadow-xl">
+          <img
+            src={data.image}
+            alt={data.name}
+            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
+          />
+        </div>
         
-        {/* Intro Card - RESTYLED as Standard Header */}
-        <motion.div
-          // 6. Apply the 'introY' parallax style
-          style={{ y: introY }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col justify-center" // Removed card styling
-        >
-          {/* --- STANDARD MODERN HEADER --- */}
-          <div className="text-left">
-            <h3 className="font-serif text-3xl md:text-4xl font-bold text-gray-600 mb-6">
-              (06)
-            </h3>
-            <h2 className="text-5xl md:text-7xl font-bold uppercase text-white font-['Playfair_Display',_serif]">
-              WHAT <br /> THEY SAY
-            </h2>
-            <p className="font-sans font-light text-gray-400 text-lg md:text-xl mt-8 max-w-2xl">
-              A selection of testimonials from clients and partners.
-            </p>
+        {/* Decorative Border Line */}
+        <div className={`absolute -bottom-6 ${isEven ? "-left-6" : "-right-6"} w-full h-full border border-[#BC4B32] opacity-30 z-[-1] hidden md:block`}></div>
+      </motion.div>
+
+      {/* --- LAYER 2: THE TEXT (Floating Glass Card) --- */}
+      <motion.div
+        style={{ y: yText }}
+        className={`w-[90%] md:w-2/5 z-10 absolute md:relative ${
+          isEven ? "bottom-[-10%] md:bottom-auto md:-ml-24" : "bottom-[-10%] md:bottom-auto md:-mr-24"
+        }`}
+      >
+        {/* GLASSMORPHISM STYLES APPLIED HERE:
+          - bg-[#F8F7F5]/80: Semi-transparent background
+          - backdrop-blur-md: The frosted glass effect
+          - border-white/40: Subtle, glassy border
+          - shadow-xl shadow-black/5: Soft, diffused shadow for depth
+        */}
+        <div className="bg-[#F8F7F5]/80 backdrop-blur-md p-8 md:p-12 shadow-xl shadow-black/5 border border-white/40 relative rounded-sm">
+          
+          {/* Quote Icon - Kept solid for contrast */}
+          <div className="absolute -top-6 left-8 bg-[#BC4B32] p-3 text-white shadow-lg rounded-sm">
+            <Quote size={24} fill="currentColor" />
           </div>
-        </motion.div>
 
-        {/* Testimonial Cards - RESTYLED */}
-        {testimonials.map((t, i) => (
-          <motion.div
-            key={i}
-            // 7. Apply the 'cardsY' parallax style
-            style={{ y: cardsY }}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: i * 0.2 }}
-            // UPDATED: Removed shadow/rounding, applied flat styles
-            className={`p-8 flex flex-col justify-between ${
-              t.dark
-                ? "bg-[#2a2a2a]" // Darker panel
-                : "bg-transparent border border-gray-700" // Transparent w/ border
-            }`}
-          >
-            {/* Stars (Gold color looks good) */}
-            <div className="flex gap-1 text-[#C0B6A1] mb-4">
-              {Array.from({ length: t.stars }).map((_, idx) => (
-                <span key={idx}>★</span>
-              ))}
-            </div>
+          {/* Review Text */}
+          <p className="font-manrope text-[#666666] text-lg md:text-xl leading-relaxed italic mb-8">
+            "{data.text}"
+          </p>
 
-            {/* Quote (Font changed) */}
-            <p className="text-sm leading-relaxed mb-6 font-sans font-light text-gray-400">
-              "{t.text}"
-            </p>
+          {/* Client Details */}
+          <div className="border-t border-[#BC4B32]/20 pt-6 flex flex-col">
+            <h4 className="font-serif text-2xl text-[#1A1A1A] mb-1">
+              {data.name}
+            </h4>
+            <span className="font-mono text-xs text-[#BC4B32] tracking-widest uppercase">
+              {data.location}
+            </span>
+          </div>
 
-            {/* Profile (Fonts and borders updated) */}
-            <div className="flex items-center gap-3 border-t pt-4 border-gray-700 font-sans">
-              <img
-                src={t.img}
-                alt={t.name}
-                className="w-10 h-10 rounded-full object-cover"
-              />
-              <div>
-                <h4 className="text-sm font-semibold text-white">{t.name}</h4>
-                <p className="text-xs text-gray-400">{t.role}</p>
-              </div>
-            </div>
-          </motion.div>
+          {/* Page Number aesthetic */}
+          <span className="absolute bottom-4 right-4 font-mono text-[10px] text-[#BC4B32]/40">
+            0{index + 1}
+          </span>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
+// --- MAIN COMPONENT ---
+const ClientDiaries = () => {
+  return (
+    <section className="w-full bg-[#F8F7F5] py-32 px-6 overflow-hidden">
+      
+      {/* Header Section */}
+      <div className="max-w-7xl mx-auto mb-20 md:mb-32">
+        <h3 className="font-mono text-xs font-bold text-[#BC4B32] tracking-[0.4em] uppercase mb-4">
+          Testimonials
+        </h3>
+        <h2 className="font-serif text-5xl md:text-7xl text-[#1A1A1A]">
+          Client <span className="italic font-light">Diaries</span>
+        </h2>
+      </div>
+
+      {/* List of Parallax Cards */}
+      <div className="max-w-7xl mx-auto flex flex-col gap-20 md:gap-0">
+        {testimonials.map((item, index) => (
+          <ParallaxCard key={item.id} data={item} index={index} />
         ))}
       </div>
+
     </section>
   );
 };
 
-export default Testimonials;
+export default ClientDiaries;

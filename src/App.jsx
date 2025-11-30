@@ -13,7 +13,7 @@ import SplashCursor from "./components/animations/SplashCursor";
 import Projects from "./pages/Projects";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import CardNav from "./components/CardNav";
+// import CardNav from "./components/CardNav";
 import logo from "./assets/logo.png";
 import { items } from "./data/items";
 import Footer from "./components/Footer";
@@ -126,7 +126,7 @@ function App() {
         {/* <SpotlightCursor /> */}
 
         {/* Navbar always visible */}
-        <div className="absolute top-0 left-0 w-full z-20">
+        {/* <div className="absolute top-0 left-0 w-full z-20">
           <CardNav
             logo={logo}
             logoAlt="Company Logo"
@@ -137,7 +137,7 @@ function App() {
             buttonTextColor="#fff"
             ease="power3.out"
           />
-        </div>
+        </div> */}
 
         {/* 🔹 Routes എന്നതിന് പകരം നമ്മൾ AnimatedRoutes ഉപയോഗിക്കുന്നു */}
         <AnimatedRoutes />

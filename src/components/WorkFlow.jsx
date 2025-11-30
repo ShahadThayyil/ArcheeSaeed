@@ -1,200 +1,214 @@
-import React, { useRef, useState } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { Check } from "lucide-react";
+import React, { useRef } from "react";
+import { useScroll, useTransform, motion, useSpring } from "framer-motion";
+import { Layers, Compass, Cuboid, Ruler, FileCheck } from "lucide-react";
 
 // --- DATA ---
 const processSteps = [
-  { id: "01", title: "Concept", description: "Analyzing topography & client aspirations.", specs: "PHASE: I" },
-  { id: "02", title: "Drafting", description: "Transforming abstract ideas into blueprints.", specs: "PHASE: II" },
-  { id: "03", title: "Modeling", description: "3D Fabrication & Light testing.", specs: "PHASE: III" },
-  { id: "04", title: "Execution", description: "Construction & material integration.", specs: "PHASE: IV" },
-  { id: "05", title: "Handover", description: "Final quality checks & key handover.", specs: "PHASE: V" },
+  { 
+    id: "01", 
+    title: "Site Analysis & Concept", 
+    description: "Decoding topography and zoning. Generating initial massing models to test volume constraints.", 
+    specs: "PHASE: I",
+    duration: "4 Weeks",
+    deliverables: ["Survey", "Massing"],
+    icon: <Compass size={20} />
+  },
+  { 
+    id: "02", 
+    title: "Schematic Drafting", 
+    description: "Transforming abstract concepts into CAD blueprints. Defining spatial flow and structural grids.", 
+    specs: "PHASE: II",
+    duration: "6 Weeks",
+    deliverables: ["Plans", "Elevations"],
+    icon: <Ruler size={20} />
+  },
+  { 
+    id: "03", 
+    title: "BIM Modeling", 
+    description: "Developing a digital twin. Simulating lighting, material textures, and structural loads.", 
+    specs: "PHASE: III",
+    duration: "4 Weeks",
+    deliverables: ["3D Renders", "VR"],
+    icon: <Cuboid size={20} />
+  },
+  { 
+    id: "04", 
+    title: "Material Execution", 
+    description: "Coordinating with contractors and selecting premium materials for onsite integration.", 
+    specs: "PHASE: IV",
+    duration: "8 Months",
+    deliverables: ["Material Board"],
+    icon: <Layers size={20} />
+  },
+  { 
+    id: "05", 
+    title: "Handover", 
+    description: "Final quality inspections, systems testing, and delivery of As-Built documentation.", 
+    specs: "PHASE: V",
+    duration: "2 Weeks",
+    deliverables: ["As-Built Docs", "Keys"],
+    icon: <FileCheck size={20} />
+  },
 ];
 
-// --- COMPONENTS (Same as before) ---
-const GlassPipeHorizontal = ({ progress }) => {
-  return (
-    <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full h-12 z-0">
-      <div className="absolute inset-0 w-full h-full bg-white/40 rounded-full border border-white/80 shadow-inner backdrop-blur-md z-10 overflow-hidden">
-         <div className="absolute top-0 left-0 w-full h-[40%] bg-gradient-to-b from-white/90 to-transparent opacity-60"></div>
-      </div>
-      <div className="absolute inset-[3px] rounded-full overflow-hidden z-0">
-         <motion.div 
-            style={{ scaleX: progress }} 
-            className="h-full w-full bg-gradient-to-r from-[#BC4B32] via-[#ff8f75] to-[#BC4B32] origin-left shadow-[0_0_20px_#BC4B32]"
-         >
-            <div className="w-full h-full animate-pulse opacity-50 bg-white/10"></div>
-         </motion.div>
-      </div>
+// --- COMPONENT: Background Grid ---
+const BlueprintGrid = () => (
+    <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.03]"
+         style={{ 
+             backgroundImage: 'linear-gradient(#1A1A1A 1px, transparent 1px), linear-gradient(90deg, #1A1A1A 1px, transparent 1px)', 
+             backgroundSize: '60px 60px' 
+         }}>
     </div>
-  );
+);
+
+// --- COMPONENT: The Vacuum Tube ---
+const GlowingGaugeTube = ({ scrollYProgress }) => {
+    const liquidHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+    return (
+        // Adjusted for Mobile: visible on all screens
+        <div className="absolute left-0 md:left-8 top-8 bottom-32 w-8 md:w-12 z-10">
+            
+            {/* Measurement Ticks (Hidden on very small screens to reduce clutter) */}
+            <div className="absolute right-full mr-1 md:mr-2 top-0 bottom-0 flex flex-col justify-between py-4 opacity-30 hidden sm:flex">
+                {[...Array(15)].map((_, i) => (
+                    <div key={i} className="w-2 h-[1px] bg-[#BC4B32]"></div>
+                ))}
+            </div>
+
+            {/* The Glass Tube Shell */}
+            <div className="w-3 md:w-4 mx-auto h-full rounded-full overflow-hidden backdrop-blur-sm border border-[#BC4B32]/20 bg-white/5 shadow-inner">
+                {/* The Glowing Liquid */}
+                <motion.div
+                    style={{ height: liquidHeight }}
+                    className="w-full bg-gradient-to-b from-[#BC4B32] via-[#ff8f75] to-[#BC4B32] origin-top relative rounded-b-full shadow-[0_0_15px_#BC4B32]"
+                >
+                    <div className="absolute inset-0 opacity-50 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] mix-blend-overlay"></div>
+                    <div className="absolute bottom-0 w-full h-4 bg-white/50 blur-[2px]"></div>
+                </motion.div>
+            </div>
+        </div>
+    );
 };
 
-const ProcessNode = ({ active }) => {
-  return (
-    <div className="relative z-20 -mb-[28px] md:-mb-[26px]"> 
-       <motion.div 
-         animate={{ scale: active ? 1.2 : 1, backgroundColor: active ? "#BC4B32" : "#E0E0E0" }}
-         className={`w-12 h-12 md:w-14 md:h-14 rounded-full border-4 border-white flex items-center justify-center transition-all duration-500 shadow-lg
-           ${active ? 'shadow-[#BC4B32]/40' : ''}`}
-       >
-          {active && <Check className="text-white" size={20} strokeWidth={3} />}
-       </motion.div>
-    </div>
-  );
+// --- COMPONENT: The Card ---
+const ArchitectCard = ({ step, index }) => {
+    const cardRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: cardRef,
+        offset: ["start 90%", "end 30%"]
+    });
+
+    const lineScale = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
+    const yMove = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
+    const opacityFade = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+
+    return (
+        // Adjusted padding for mobile: pl-10 instead of pl-24
+        <div ref={cardRef} className="flex items-start w-full mb-16 md:mb-32 relative pl-10 md:pl-24">
+            
+            {/* --- Dynamic Connector Line --- */}
+            {/* Now visible on mobile, adjusted length/position */}
+            <div className="absolute left-4 md:left-8 top-12 md:top-16 w-6 md:w-24 h-[2px] z-0">
+                <motion.div 
+                    style={{ scaleX: lineScale }}
+                    className="h-full w-full bg-[#BC4B32]/50 origin-left"
+                />
+                <motion.div 
+                    style={{ scale: lineScale }}
+                    className="absolute right-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 md:w-2 md:h-2 bg-[#BC4B32] rounded-full" 
+                />
+            </div>
+
+            {/* --- The Card --- */}
+            <motion.div 
+                style={{ 
+                    y: yMove, 
+                    opacity: opacityFade,
+                    clipPath: "polygon(0 0, 100% 0, 100% 120%, 0% 120%)" 
+                }}
+                className="relative w-full max-w-4xl bg-[#F0F0F0]/90 backdrop-blur-md border border-white/60 shadow-xl overflow-hidden group rounded-lg md:rounded-none"
+            >
+                {/* Blueprint Crosshairs */}
+                <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#BC4B32]/50"></div>
+                <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-[#BC4B32]/50"></div>
+                <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-[#BC4B32]/50"></div>
+                <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#BC4B32]/50"></div>
+
+                {/* Header Bar */}
+                <div className="flex justify-between items-center px-4 md:px-6 py-2 md:py-3 border-b border-[#BC4B32]/10 bg-white/40">
+                    <span className="font-mono text-[8px] md:text-[10px] text-[#BC4B32] tracking-widest font-bold">REF: {step.id}</span>
+                    <span className="font-mono text-[8px] md:text-[10px] text-[#666666] tracking-widest">{step.specs}</span>
+                </div>
+
+                <div className="p-6 md:p-10 flex flex-col md:flex-row gap-6 md:gap-8">
+                    {/* Icon & Specs */}
+                    <div className="flex-shrink-0 flex row md:flex-col items-center md:items-start gap-4 md:border-r border-[#BC4B32]/10 md:pr-8">
+                        <div className="w-10 h-10 md:w-14 md:h-14 bg-white border border-[#BC4B32]/20 flex items-center justify-center text-[#BC4B32] shadow-sm">
+                            {step.icon}
+                        </div>
+                        <div className="text-left md:text-left">
+                            <div className="font-mono text-[8px] md:text-[10px] text-[#666666] uppercase mb-1">Duration</div>
+                            <div className="font-serif text-sm md:text-lg text-[#1A1A1A]">{step.duration}</div>
+                        </div>
+                    </div>
+
+                    {/* Main Content */}
+                    <div>
+                        <h3 className="font-serif text-2xl md:text-4xl text-[#1A1A1A] mb-3 md:mb-4">{step.title}</h3>
+                        <p className="font-manrope text-xs md:text-base text-[#666666] leading-relaxed max-w-xl">
+                            {step.description}
+                        </p>
+                        
+                        <div className="mt-4 md:mt-6 flex flex-wrap gap-2">
+                            {step.deliverables.map((tag, i) => (
+                                <span key={i} className="px-2 py-1 bg-white/60 border border-[#BC4B32]/10 text-[8px] md:text-[10px] font-mono text-[#666666] uppercase tracking-wider">
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
+        </div>
+    );
 };
 
-const StepCard = ({ step, active }) => {
-  return (
-    <motion.div 
-      animate={{ opacity: active ? 1 : 0.3, y: active ? 0 : 10, filter: active ? "blur(0px)" : "blur(1px)" }}
-      transition={{ duration: 0.5 }}
-      className="mt-14 w-[280px] md:w-[320px] text-center px-4"
-    >
-       <span className="font-mono text-[10px] text-[#BC4B32] tracking-[0.3em] font-bold block mb-2">
-         {step.specs}
-       </span>
-       <h3 className="font-serif text-2xl md:text-3xl text-[#1A1A1A] mb-3">{step.title}</h3>
-       <p className="font-manrope text-sm text-[#666666] leading-relaxed">
-         {step.description}
-       </p>
-    </motion.div>
-  );
-};
-
-// --- LOGIC WRAPPERS ---
-const StepGroup = ({ step, index, total, currentProgress }) => {
-    const [isActive, setIsActive] = useState(false);
-    useTransform(currentProgress, (value) => {
-        const threshold = index / total; 
-        if (value >= threshold && !isActive) setIsActive(true);
-        if (value < threshold && isActive) setIsActive(false);
+const ArchitectureProcess = () => {
+    const containerRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start center", "end center"]
     });
 
     return (
-        <div className="relative flex flex-col items-center justify-center pt-10 flex-shrink-0">
-            <ProcessNode active={isActive} />
-            <div className="h-10 w-1 bg-transparent"></div>
-            <StepCard step={step} active={isActive} />
-        </div>
-    )
-}
+        <div className="relative w-full bg-[#F8F7F5] z-10 py-16 md:py-32 border-t border-[#BC4B32]/10">
+            <BlueprintGrid />
 
-const MobileStep = ({ step, index }) => (
-    <motion.div 
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6, delay: index * 0.1 }}
-        className="relative pl-10"
-    >
-        <div className="absolute -left-[22px] top-0 bg-[#F8F7F5] p-1">
-             <div className="w-8 h-8 rounded-full bg-[#BC4B32] border-4 border-[#F8F7F5] shadow-md flex items-center justify-center text-white">
-                <span className="font-mono text-[10px] font-bold">{index + 1}</span>
-             </div>
-        </div>
-        <div>
-            <span className="font-mono text-[10px] text-[#BC4B32] tracking-widest block mb-1">{step.specs}</span>
-            <h3 className="font-serif text-2xl text-[#1A1A1A] mb-2">{step.title}</h3>
-            <p className="font-manrope text-sm text-[#666666] leading-relaxed">{step.description}</p>
-        </div>
-    </motion.div>
-);
+            <div className="container mx-auto px-4 md:px-6 relative z-10">
+                <div className="mb-12 md:mb-24 pl-4 md:pl-24">
+                    <h4 className="font-mono text-xs font-bold text-[#BC4B32] tracking-[0.4em] uppercase mb-2 md:mb-4">Workflow</h4>
+                    <h2 className="font-serif text-4xl md:text-6xl text-[#1A1A1A]">Design Protocol</h2>
+                </div>
 
-// --- MAIN COMPONENT ---
-const ProcessTimeline = () => {
-  const targetRef = useRef(null);
-  
-  // 1. SCROLL TRACKING
-  // This tracks how far we have scrolled within the 500vh container
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ["start start", "end end"] 
-  });
+                {/* RELATIVE CONTAINER FOR TUBE & CARDS */}
+                <div ref={containerRef} className="relative max-w-6xl mx-auto">
+                    {/* Progress Tube - Now visible on mobile */}
+                    <GlowingGaugeTube scrollYProgress={scrollYProgress} />
 
-  // 2. SMOOTHING
-  // Acts like GSAP 'scrub: 1'
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100, damping: 30, restDelta: 0.001
-  });
-
-  // 3. HORIZONTAL MOVEMENT LOGIC
-  // 0% scroll = 5% x (Start slightly right)
-  // 100% scroll = -95% x (Move fully left so last item is visible)
-  const x = useTransform(smoothProgress, [0, 1], ["5%", "-95%"]);
-
-  return (
-    <div className="relative w-full bg-[#F8F7F5]">
-        
-      {/* =================================================
-          DESKTOP VIEW (> 768px) - "PINNED" HORIZONTAL SCROLL
-         ================================================= */}
-      
-      {/* CONTAINER HEIGHT (500vh):
-          ഇതാണ് "Pinning Duration". ഈ 500vh ഹൈറ്റ് തീരുന്നത് വരെ 
-          അകത്തുള്ള കണ്ടന്റ് 'sticky' ആയി നിൽക്കും.
-      */}
-      <section ref={targetRef} className="hidden md:block relative h-[500vh]">
-        
-        {/* STICKY WRAPPER:
-            ഇതാണ് സ്ക്രീനിൽ ഒട്ടി നിൽക്കുന്ന ഭാഗം (Like GSAP pin).
-            top-0 ഉം h-screen ഉം ഉള്ളതുകൊണ്ട് ഇത് വ്യൂപോർട്ടിൽ ഫിക്സഡ് ആയിരിക്കും.
-        */}
-        <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center bg-[#F8F7F5] z-10">
-            
-            {/* Header (Static) */}
-            <div className="absolute top-12 left-12 md:left-24 z-30 pointer-events-none">
-                <h4 className="font-mono text-xs font-bold text-[#BC4B32] tracking-[0.4em] uppercase mb-2">Workflow</h4>
-                <h2 className="font-serif text-5xl text-[#1A1A1A]">Process Map</h2>
-            </div>
-
-            {/* Horizontal Moving Track */}
-            <div className="relative w-full h-[60vh] flex items-center">
-                <motion.div style={{ x }} className="flex items-center gap-[25vw] pl-[10vw] pr-[10vw] w-max">
-                   
-                   {/* Background Pipe */}
-                   <div className="absolute left-0 w-[120%] h-full pointer-events-none">
-                      <GlassPipeHorizontal progress={smoothProgress} />
-                   </div>
-
-                   {/* Steps */}
-                   {processSteps.map((step, index) => (
-                      <StepGroup key={index} step={step} index={index} total={processSteps.length} currentProgress={scrollYProgress} />
-                   ))}
-
-                </motion.div>
-            </div>
-
-            {/* Progress Percentage */}
-            <div className="absolute bottom-12 right-12 font-mono text-xs text-[#BC4B32]">
-                <motion.span>{useTransform(smoothProgress, value => Math.round(value * 100))}</motion.span>% COMPLETE
-            </div>
-            
-             {/* Scroll Hint */}
-             <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[#BC4B32]/40 animate-bounce">
-               <span className="font-mono text-[10px] tracking-widest uppercase">Scroll Down</span>
+                    <div className="flex flex-col pt-8">
+                        {processSteps.map((step, index) => (
+                            <ArchitectCard 
+                                key={index} 
+                                step={step} 
+                                index={index} 
+                            />
+                        ))}
+                    </div>
+                </div>
             </div>
         </div>
-      </section>
-
-      {/* =================================================
-          MOBILE VIEW (< 768px) - Vertical Stack
-         ================================================= */}
-      <section className="md:hidden py-20 px-6 relative min-h-screen bg-[#F8F7F5]">
-          <div className="mb-16">
-            <h4 className="font-mono text-xs font-bold text-[#BC4B32] tracking-[0.4em] uppercase mb-2">Workflow</h4>
-            <h2 className="font-serif text-4xl text-[#1A1A1A]">Process Map</h2>
-          </div>
-
-          <div className="relative ml-4 border-l-4 border-[#E0E0E0] space-y-16 pb-20">
-             {processSteps.map((step, index) => (
-                 <MobileStep key={index} step={step} index={index} />
-             ))}
-          </div>
-      </section>
-
-    </div>
-  );
+    );
 };
 
-export default ProcessTimeline;
+export default ArchitectureProcess;
