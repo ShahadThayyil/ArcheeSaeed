@@ -9,7 +9,8 @@ export default defineConfig({
     tailwindcss()
    
 
-  ],  base: "/",
+  ], 
+     base: "/",
   server: {
     host: "0.0.0.0",   // expose to network
     port: 5173, //5173        // force fixed port

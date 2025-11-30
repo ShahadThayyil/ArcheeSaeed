@@ -1,91 +1,124 @@
-import React from "react";
-// 1. IMPORT THE TILT COMPONENT
-import Tilt from "react-parallax-tilt";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
+
+// Mock Data
 const logos = [
-  "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
-  "https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png",
-  "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg",
-  "https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg",
-  "/mc-logo.png",
-  "../assets/logo.png",
+  { name: "Techno Steel", img: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?q=80&w=400&auto=format&fit=crop" },
+  { name: "Vynx Web", img: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=400&auto=format&fit=crop" },
+  { name: "Impronta", img: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?q=80&w=400&auto=format&fit=crop" },
+  { name: "Andre", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=400&auto=format&fit=crop" },
+  { name: "Archizaid", img: "https://images.unsplash.com/photo-1560179707-f14e90ef3dab?q=80&w=400&auto=format&fit=crop" },
+  { name: "BuildTech", img: "https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?q=80&w=400&auto=format&fit=crop" },
 ];
 
-export default function LogoSlider() {
-  return (
-    // 2. REMOVED 'pointer-events-none' TO ALLOW MOUSE INTERACTION
-    <div className="py-16 backdrop-blur-xl bg-[#F5EFE6]">
-      {/* Heading */}
-      <h2 className="text-center text-gray-900 md:text-5xl text-3xl font-bold mb-10 tracking-wide relative z-10">
-        Our{" "}
-        <span className="font-['Playfair_Display',_serif] bg-gradient-to-r from-[#1a1a1a] to-[#000000] bg-clip-text text-[#C0B6A1] ">
-          Trusted Partners
-        </span>
-      </h2>
+// Create Columns data
+const col1 = [...logos, ...logos];
+const col2 = [...logos, ...logos].reverse(); 
+const col3 = [...logos, ...logos];
 
-      {/* Soft background glow blobs for depth */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute w-[500px] h-[500px] bg-[#E8DFD1]/60 rounded-full blur-[120px] top-[-120px] left-[-100px]" />
-        <div className="absolute w-[400px] h-[400px] bg-[#C0B6A1]/50 rounded-full blur-[150px] bottom-[-100px] right-[-50px]" />
+const CollaboratorsParallax = () => {
+  const sectionRef = useRef(null);
+  const col1Ref = useRef(null);
+  const col2Ref = useRef(null);
+  const col3Ref = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom", 
+          end: "bottom top",   
+          scrub: 1.5,          
+        }
+      });
+
+      // Column 1: Moves UP
+      tl.to(col1Ref.current, { y: "-20%", ease: "none" }, "move");
+      
+      // Column 2: Moves DOWN
+      tl.fromTo(col2Ref.current, 
+        { y: "-20%" }, 
+        { y: "10%", ease: "none" }, 
+        "move"
+      );
+
+      // Column 3: Moves UP (Desktop only)
+      if (col3Ref.current) {
+          tl.to(col3Ref.current, { y: "-20%", ease: "none" }, "move");
+      }
+
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="relative w-full min-h-screen bg-[#F0EFEA] overflow-hidden py-24 px-4 md:px-12">
+      
+      {/* --- HEADER (Left Aligned) --- */}
+      <div className="max-w-7xl mx-auto mb-16 pl-2 md:pl-4">
+            <div className="w-12 h-[3px] bg-[#BC4B32] mb-6"></div>
+            <h4 className="font-manrope text-xs font-bold text-[#666666] uppercase tracking-[0.4em] mb-4">
+                Trusted By
+            </h4>
+            <h2 className="font-serif text-5xl md:text-7xl text-[#1A1A1A] leading-[1.1]">
+                Our <span className="italic text-[#BC4B32]">Partners.</span>
+            </h2>
       </div>
 
-      {/* Logo Row Animation */}
-      <div className="group flex overflow-hidden relative">
-        <div className="flex animate-marquee group-hover:[animation-play-state:paused]">
-          {logos.concat(logos).map((logo, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 px-12 flex items-center justify-center relative"
-            >
-              {/* 3. WRAP YOUR LOGO CARD WITH THE <Tilt> COMPONENT */}
-              <Tilt
-                className="parallax-effect"
-                perspective={1000}
-                glareEnable={true}
-                glareMaxOpacity={0.15}
-                glareColor="#C0B6A1" // Use your brand color for the glare
-                glarePosition="all"
-                scale={1.05} // Add a slight "pop" on hover
-                transitionSpeed={1500}
-              >
-                <div className="p-6 rounded-2xl backdrop-blur-xl hover:shadow-[0_0_40px_rgba(192,182,161,0.4)] transition-all duration-500">
-                  <img
-                    src={logo}
-                    alt={`logo-${index}`}
-                    className="h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-500"
-                    style={{
-                      filter:
-                        "drop-shadow(0 3px 8px rgba(192,182,161,0.4)) brightness(0.9)",
-                    }}
-                  />
-                </div>
-              </Tilt>
-            </div>
+      {/* --- THE KINETIC COLUMNS --- */}
+      {/* 🔥 FIX: grid-cols-2 for Mobile, grid-cols-3 for Desktop */}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-10 h-[80vh] overflow-hidden relative">
+        
+        {/* Gradient Overlays */}
+        <div className="absolute top-0 left-0 w-full h-24 md:h-32 bg-gradient-to-b from-[#F0EFEA] to-transparent z-20"></div>
+        <div className="absolute bottom-0 left-0 w-full h-24 md:h-32 bg-gradient-to-t from-[#F0EFEA] to-transparent z-20"></div>
+
+        {/* COLUMN 1 (Up) */}
+        <div ref={col1Ref} className="flex flex-col gap-4 md:gap-10 will-change-transform">
+          {col1.map((logo, i) => (
+            <LogoCard key={i} logo={logo} />
           ))}
         </div>
-      </div>
 
-      {/* Marquee Animation (Your original CSS) */}
-      <style>{`
-        @keyframes marquee {
-          0% { transform: translateX(0%); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-          display: flex;
-          width: max-content;
-          animation: marquee 25s linear infinite;
-        }
-        @keyframes float {
-          0% { transform: translateY(0px); }
-          100% { transform: translateY(40px); }
-        }
-        /* Optional: Give the tilt component some size */
-        .parallax-effect {
-          width: 100%;
-          height: 100%;
-        }
-      `}</style>
-    </div>
+        {/* COLUMN 2 (Down) */}
+        <div ref={col2Ref} className="flex flex-col gap-4 md:gap-10 will-change-transform -translate-y-1/4">
+          {col2.map((logo, i) => (
+            <LogoCard key={i} logo={logo} />
+          ))}
+        </div>
+
+        {/* COLUMN 3 (Up) - 🔥 HIDDEN ON MOBILE */}
+        <div ref={col3Ref} className="hidden md:flex flex-col gap-4 md:gap-10 will-change-transform">
+          {col3.map((logo, i) => (
+            <LogoCard key={i} logo={logo} />
+          ))}
+        </div>
+
+      </div>
+    </section>
   );
-}
+};
+
+// Separate Card Component
+const LogoCard = ({ logo }) => (
+  <div className="w-full aspect-square bg-white rounded-xl md:rounded-2xl flex items-center justify-center p-4 md:p-8 shadow-sm border border-[#1A1A1A]/5 group hover:border-[#BC4B32]/30 transition-all duration-300 hover:shadow-md">
+     <div className="text-center flex flex-col items-center">
+        <img 
+            src={logo.img} 
+            alt={logo.name} 
+            className="w-12 h-12 md:w-24 md:h-24 object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 mb-3 md:mb-4" 
+        />
+        <p className="font-manrope text-[8px] md:text-xs font-bold uppercase tracking-widest text-[#1A1A1A]/40 group-hover:text-[#BC4B32] transition-colors">
+            {logo.name}
+        </p>
+     </div>
+  </div>
+);
+
+export default CollaboratorsParallax;

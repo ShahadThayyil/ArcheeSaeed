@@ -8,6 +8,7 @@ import Testimonials from "../components/Testimonials";
 import WhatsAppButton from "../components/Whatsapp";
 import LogoSlider from "../components/LogoSlider";
 import { ThreeDMarquee } from "../components/animations/ThreeMarque";
+import ServicesSection from "../components/ServicesSection";
 
 const images = [
   {
@@ -73,7 +74,7 @@ const clickableImages = [
 const Home = () => {
   return (
     <main>
-      <Hero />
+      {/* <Hero /> */}
       <WhyWorkWithMe />
     
       <ProjectSection />
@@ -84,11 +85,12 @@ const Home = () => {
           }}
           /> */}
           <LogoSlider />
+          <ServicesSection />
       <WorkFlow />
       <Profile/>
       <StatsSection />
       <Testimonials />  
-      <WhatsAppButton />
+      {/* <WhatsAppButton /> */}
     </main>
   );
 };

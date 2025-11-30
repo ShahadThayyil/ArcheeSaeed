@@ -1,138 +1,215 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { features } from "../data/features"; // Assuming features data is correct
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// A separate component for each feature item to apply parallax
-// ഒരു ഫീച്ചർ ഐറ്റം കാണിക്കുന്ന കമ്പോണന്റ്
-const FeatureItem = ({ feature, index }) => {
-  const ref = useRef(null);
+gsap.registerPlugin(ScrollTrigger);
 
-  // ഈ ഐറ്റത്തിൻ്റെ സ്ക്രോൾ പുരോഗതി ട്രാക്ക് ചെയ്യുന്നു
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"], // എലമെൻ്റ് വ്യൂപോർട്ടിൽ വരുമ്പോൾ തുടങ്ങി പുറത്തുപോകുമ്പോൾ അവസാനിക്കുന്നു
-  });
-
-  // പാരലാക്സ് എഫക്റ്റിനായി y-axis ട്രാൻസ്ഫോം ചെയ്യുന്നു
-  // സ്ക്രോൾ 0 ആയിരിക്കുമ്പോൾ -60px, 1 ആയിരിക്കുമ്പോൾ 60px
-  const y = useTransform(scrollYProgress, [0, 1], [-50, 50]); // Y-axis parallax കുറച്ചുകൂടി മൃദലമാക്കി
-
-  // **പുതിയ 3D/Zoom എഫക്റ്റുകൾ (ചിത്രത്തിന്):**
-  // സ്കെയിൽ: 0.98 ൽ നിന്ന് 1.02 ലേക്ക് സൂം ചെയ്യുന്നു (കൂടുതൽ subtle)
-  const scale = useTransform(scrollYProgress, [0, 1], [0.98, 1.02]); 
+const PhilosophySection = () => {
+  const containerRef = useRef(null);
+  const largeTextRef = useRef(null);
+  const glassCardRef = useRef(null);
   
-  // റൊട്ടേഷൻ (3D): X-അക്ഷത്തിൽ ചെറുതായി കറങ്ങുന്നു
-  const rotateX = useTransform(scrollYProgress, [0, 1], [2, -2]); 
+  // Lens Refs
+  const imageWrapperRef = useRef(null);
+  const lensRef = useRef(null);
+  const innerImageRef = useRef(null);
 
-  // തിരശ്ചീനമായ ചെരിവ് (Skew): ചിത്രത്തിന് ഒരു ഡൈനാമിക് ലുക്ക് നൽകുന്നു
-  const skewX = useTransform(scrollYProgress, [0, 1], index % 2 === 0 ? [1, -1] : [-1, 1]); // Skew കുറച്ചുകൂടി subtle ആക്കി
+  // GSAP QuickTo for smooth performance
+  const xToLens = useRef(null);
+  const yToLens = useRef(null);
+  const xToImg = useRef(null);
+  const yToImg = useRef(null);
 
+  // ----------------- 1. GSAP ANIMATIONS -----------------
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      
+      // Setup QuickTo
+      xToLens.current = gsap.quickTo(lensRef.current, "x", { duration: 0.1, ease: "power3" });
+      yToLens.current = gsap.quickTo(lensRef.current, "y", { duration: 0.1, ease: "power3" });
+      
+      // Counter-movement for the inner image to make it look "static"
+      xToImg.current = gsap.quickTo(innerImageRef.current, "x", { duration: 0.1, ease: "power3" });
+      yToImg.current = gsap.quickTo(innerImageRef.current, "y", { duration: 0.1, ease: "power3" });
 
-  // ഇരട്ട സംഖ്യയാണോ എന്ന് പരിശോധിക്കുന്നു (ലേഔട്ട് മാറ്റാൻ)
-  const isEven = index % 2 === 0;
+      // --- SCROLL ANIMATIONS ---
+      gsap.to(largeTextRef.current, {
+        xPercent: -20, 
+        ease: "none",
+        scrollTrigger: { 
+          trigger: containerRef.current, 
+          start: "top bottom", 
+          end: "bottom top", 
+          scrub: 1 
+        }
+      });
 
-  return (
-    <div
-      ref={ref}
-      className="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center max-w-5xl mx-auto"
-    >
-      {/* 1. പാരലാക്സ്, 3D എഫക്റ്റുകളുള്ള ചിത്രം */}
-      <motion.div
-        className={`relative flex items-center justify-center perspective-[1000px] ${
-          isEven ? "md:order-1" : "md:order-2" // ഓർഡർ മാറ്റുന്നു
-        }`}
-        style={{ 
-            y, // <-- ലംബമായ പാരലാക്സ്
-            skewX, // <-- തിരശ്ചീനമായ ചെരിവ്
-        }}
-      >
-        {/* മോഡേൺ, റെസ്പോൺസീവ് ഇമേജ് കണ്ടെയ്നർ വിത്ത് കസ്റ്റം ഷേപ്പ് */}
-        <motion.div 
-            style={{ 
-                scale, 
-                rotateX,
-                // കസ്റ്റം ഷേപ്പിനായി clip-path ഉപയോഗിക്കുന്നു
-                clipPath: "polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%)", // ഒരു അൺകൺവെൻഷണൽ ചതുരം
-            }} 
-            className="relative w-full h-64 md:h-80 lg:h-96 overflow-hidden 
-                       border border-solid border-[#C0B6A1]/30" // നേരിയ ബോർഡർ
-        >
-          <img
-            src={feature.image} // <-- ഡാറ്റയിൽ നിന്നുള്ള ചിത്രം
-            alt={feature.title}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          {/* ചിത്രത്തിന് മുകളിലുള്ള ആകർഷകമായ ഓവർലേ (കൂടുതൽ subtle ആക്കി) */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
-        </motion.div>
-      </motion.div>
+      gsap.fromTo(glassCardRef.current, 
+        { y: 50 }, 
+        { 
+          y: -50, 
+          ease: "none",
+          scrollTrigger: { 
+            trigger: containerRef.current, 
+            start: "top bottom", 
+            end: "bottom top", 
+            scrub: 1.2 
+          }
+        }
+      );
 
-      {/* 2. ടെക്സ്റ്റ് കണ്ടന്റ് (പരിഷ്കരിച്ചത്) */}
-      <motion.div
-        className={`flex flex-col text-center md:text-left ${
-          isEven ? "md:order-2" : "md:order-1" // ഓർഡർ മാറ്റുന്നു
-        }`}
-        initial={{ opacity: 0, x: isEven ? 50 : -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        {/* ടൈറ്റിൽ: സൈസ് കൂട്ടി, കളർ ഡാർക്ക് ആക്കി, ബോൾഡ്നെസ്സ് കൂട്ടി */}
-        <h3 className="text-4xl md:text-5xl font-extrabold mb-5 text-[#1F1F1F] font-['Playfair_Display',serif] leading-tight">
-          {feature.title}
-        </h3>
-        {/* ഡിസ്ക്രിപ്ഷൻ: സൈസ് കൂട്ടി, കളർ കോൺട്രാസ്റ്റ് കൂട്ടി */}
-        <p className="text-[#333333] font-['Rubik',cursive] text-lg md:text-xl max-w-md mx-auto md:mx-0 leading-relaxed">
-          {feature.desc}
-        </p>
-      </motion.div>
-    </div>
-  );
-};
+      // Image Entrance
+      gsap.fromTo(imageWrapperRef.current, 
+        { clipPath: "inset(100% 0% 0% 0%)" }, 
+        { 
+          clipPath: "inset(0% 0% 0% 0%)", 
+          duration: 1.5, 
+          ease: "power4.out",
+          scrollTrigger: { 
+            trigger: containerRef.current, 
+            start: "top 70%" 
+          }
+        }
+      );
 
-// --- Main Component ---
-const WhyWorkWithMe = () => {
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  // ----------------- 2. SMOOTH LENS LOGIC -----------------
+  const handleMouseMove = (e) => {
+    if (!imageWrapperRef.current || !lensRef.current) return;
+    
+    const rect = imageWrapperRef.current.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    const lensSize = 100; // Half of 200px width
+
+    // Move Lens Circle
+    xToLens.current(mouseX - lensSize);
+    yToLens.current(mouseY - lensSize);
+
+    // Move Inner Image Opposite (To keep it fixed in place)
+    xToImg.current(-(mouseX - lensSize));
+    yToImg.current(-(mouseY - lensSize));
+  };
+
+  const handleMouseEnter = () => {
+    gsap.to(lensRef.current, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.7)" });
+  };
+
+  const handleMouseLeave = () => {
+    gsap.to(lensRef.current, { scale: 0, opacity: 0, duration: 0.3 });
+  };
+
   return (
     <section
-      className="relative bg-[#F5EFE6] w-full min-h-screen py-24 px-6 md:px-16 overflow-hidden"
+      ref={containerRef}
+      className="relative w-full min-h-[120vh] bg-[#F0EFEA] overflow-hidden flex flex-col justify-center items-center py-20"
     >
-      {/* Soft moving blurred shapes behind content */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute w-[600px] h-[600px] bg-[#E8DFD1] rounded-full blur-[150px] opacity-40 top-[-100px] left-[-150px] animate-[float_10s_ease-in-out_infinite_alternate]" />
-        <div className="absolute w-[500px] h-[500px] bg-[#C0B6A1] rounded-full blur-[180px] opacity-30 bottom-[-150px] right-[-100px] animate-[float_12s_ease-in-out_infinite_alternate]" />
-      </div>
-
-      {/* Heading (പരിഷ്കരിച്ചത്) */}
-      <motion.h2
-        initial={{ opacity: 0, y: -40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="text-4xl md:text-6xl font-extrabold text-center mb-20 md:mb-32 text-[#1F1F1F] font-['Playfair_Display',_serif]"
-      >
-        Why Work With{" "}
-        <span className="text-[#A0937D] font-['Playfair_Display',_serif]">
-          Me
-        </span>
-      </motion.h2>
-
-      {/* Feature List Layout - സ്‌പേസിംഗ് കുറച്ചു */}
-      <div className="space-y-16 md:space-y-24"> 
-        {features.map((feature, idx) => (
-          <FeatureItem key={idx} feature={feature} index={idx} />
-        ))}
-      </div>
-
-      {/* Animations */}
       <style>{`
-        @keyframes float {
-          0% { transform: translateY(0px) translateX(0px); }
-          50% { transform: translateY(30px) translateX(20px); }
-          100% { transform: translateY(0px) translateX(0px); }
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap');
+        .font-serif-display { font-family: 'Playfair Display', serif; }
+        .font-manrope { font-family: 'Manrope', sans-serif; }
+        .sketch-filter { filter: grayscale(100%) contrast(120%) brightness(110%) sepia(20%); }
       `}</style>
+
+      {/* --- BACKGROUND TEXT --- */}
+      <div className="absolute top-[10%] left-0 w-full pointer-events-none select-none z-0 overflow-visible opacity-[0.15]">
+        <h1 ref={largeTextRef} className="font-serif-display text-[15vw] md:text-[13vw] whitespace-nowrap leading-none text-[#1A1A1A] translate-x-[10%]">
+          Philosophy — Vision — Reality —
+        </h1>
+      </div>
+
+      <div className="container mx-auto max-w-[95%] md:max-w-[90%] relative z-10 flex flex-col md:flex-row items-center md:items-start justify-center h-full">
+        
+        {/* --- IMAGE CANVAS (The Magic Lens Area) --- */}
+        <div className="w-full md:w-[65%] h-[60vh] md:h-[85vh] relative md:ml-auto">
+          <div 
+            ref={imageWrapperRef} 
+            onMouseMove={handleMouseMove} 
+            onMouseEnter={handleMouseEnter} 
+            onMouseLeave={handleMouseLeave} 
+            className="w-full h-full relative cursor-none overflow-hidden rounded-sm shadow-xl md:shadow-none bg-[#E0E0E0] group"
+          >
+             {/* 1. Base Layer: The Sketch */}
+             <img 
+                src="/sketch.png" 
+                alt="Sketch" 
+                className="absolute inset-0 w-full h-full object-cover sketch-filter opacity-90 pointer-events-none" 
+             />
+             <div className="absolute inset-0 border-[1px] border-white/30 m-4 pointer-events-none"></div>
+
+             {/* 2. The Moving Lens (Window) */}
+             <div 
+                ref={lensRef}
+                className="absolute top-0 left-0 w-[200px] h-[200px] rounded-full border-[2px] border-white/50 shadow-[0_0_20px_rgba(0,0,0,0.3)] overflow-hidden z-20 opacity-0 scale-0 pointer-events-none bg-[#F0EFEA]"
+             >
+                {/* 3. The Real Image (Inside the Lens) */}
+                <div 
+                    ref={innerImageRef}
+                    className="absolute top-0 left-0 w-full h-full"
+                    style={{ width: imageWrapperRef.current?.offsetWidth || '100%', height: imageWrapperRef.current?.offsetHeight || '100%' }}
+                >
+                    <img 
+                        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop" 
+                        alt="Real" 
+                        // 🔥 CHANGED: Removed scale-125. Now it's normal size.
+                        className="w-full h-full object-cover" 
+                    />
+                </div>
+                
+                {/* Lens Gloss */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/40 to-transparent opacity-50 pointer-events-none"></div>
+             </div>
+
+             {/* Cursor Hint */}
+             <div className="absolute top-4 right-4 z-10 mix-blend-difference pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
+                <span className="font-manrope text-white text-xs uppercase tracking-[0.2em] font-bold">
+                    [ Explore Reality ]
+                </span>
+             </div>
+
+          </div>
+        </div>
+
+        {/* --- GLASS CARD --- */}
+        <div ref={glassCardRef} className="w-[90%] md:w-[450px] relative -mt-24 md:mt-0 md:absolute md:left-[5%] md:bottom-[15%] z-20">
+          <div className="relative p-6 md:p-10 backdrop-blur-3xl bg-white/70 md:bg-white/60 border border-white/50 shadow-2xl rounded-sm">
+             <div className="w-12 h-[2px] bg-[#BC4B32] mb-6"></div>
+             <h2 className="font-serif-display text-3xl md:text-5xl text-[#1A1A1A] leading-tight mb-4 md:mb-6">
+               Frozen <br/> <span className="italic font-light">Music.</span>
+             </h2>
+             <p className="font-manrope text-[#444] text-sm md:text-base leading-relaxed mb-6 md:mb-8">
+               At Archizaid, we don't just build walls. We sculpt light and shadow to create spaces that breathe. 
+               Blending Kerala’s heritage with futuristic minimalism.
+             </p>
+             <div className="flex justify-between items-end border-t border-black/10 pt-4">
+                <div>
+                  <span className="block font-manrope text-[10px] text-gray-500 uppercase tracking-widest">Architect</span>
+                  <span className="block font-manrope text-sm font-bold text-[#1A1A1A]">Ar. Zaid</span>
+                </div>
+                <button className="group flex items-center gap-2">
+                  <span className="font-manrope text-xs font-bold uppercase tracking-widest group-hover:text-[#BC4B32] transition-colors">Read Story</span>
+                  <span className="w-8 h-[1px] bg-black group-hover:w-12 group-hover:bg-[#BC4B32] transition-all duration-300"></span>
+                </button>
+             </div>
+          </div>
+        </div>
+
+      </div>
+
+      {/* Decorative Lines */}
+      <div className="absolute left-12 top-0 bottom-0 w-[1px] bg-black/5 hidden md:block"></div>
+      <div className="absolute right-12 top-0 bottom-0 w-[1px] bg-black/5 hidden md:block"></div>
+      <div className="absolute bottom-6 left-12 font-manrope text-[10px] text-black/30 rotate-180 hidden md:block" style={{ writingMode: 'vertical-rl' }}>
+          EST. 2025 — ARCHIZAID STUDIO
+      </div>
+
     </section>
   );
 };
 
-export default WhyWorkWithMe;
+export default PhilosophySection;

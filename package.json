@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "@formspree/react": "^3.0.0",
+    "@gsap/react": "^2.1.2",
     "@react-three/drei": "^9.111.2",
     "@react-three/fiber": "^8.15.12",
+    "@splinetool/react-spline": "^4.1.0",
     "@studio-freight/lenis": "^1.0.42",
     "@tailwindcss/vite": "^4.1.12",
     "clsx": "^2.1.1",

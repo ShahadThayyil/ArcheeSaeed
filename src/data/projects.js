@@ -2,7 +2,7 @@
 export const projects = [
   {
     id: 1,
-    title: "COMMERCIAL BUILDING",
+    title: "TOWER",
     image: "/images/projects/p-1-1.avif",
    images: [
       "/images/projects/p-1-1.avif",
@@ -34,7 +34,7 @@ export const projects = [
     desc: "A high-rise office building focused on sustainability and functionality.",
     points: [
       "Location     : Thiruvananthapuram, Kerala, India",
-      "Project Type : Commercial Prjoect",
+      "Project Type : Commercial",
       "Client       : Haneefa",
       "Year         : 2024",
       "No of Floors : G + 2",
@@ -129,7 +129,7 @@ export const projects = [
   },
   {
     id: 7,
-    title: "Museum Architecture",
+    title: "Museum",
     image: "/images/projects/p-7-1.avif",
     images: [
       "/images/projects/p-7-1.avif",
