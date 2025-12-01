@@ -9,20 +9,14 @@ import {
 import Lenis from "@studio-freight/lenis";
 import { useEffect, useState } from "react";
 import Home from "./pages/Home";
-import SplashCursor from "./components/animations/SplashCursor";
 import Projects from "./pages/Projects";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-// import CardNav from "./components/CardNav";
-import logo from "./assets/logo.png";
-import { items } from "./data/items";
+
 import Footer from "./components/Footer";
-import ScrollToTop from "./components/ScrollToTop";
+
 import ProjectDetail from "./pages/ProjectDetail";
-import UseSpotlightEffect from "./components/animations/useSpotlightEffect";
-import SpotlightCursor from "./components/SpotlightCursor";
-import Loader from "./components/Loader";
-import { Grid } from "ldrs/react";
+
 import { AnimatePresence } from "framer-motion"; // 2. AnimatePresence ഇമ്പോർട്ട് ചെയ്തു
 import AnimatedPage from "./components/AnimatedPage"; // 3. നമ്മുടെ പുതിയ AnimatedPage കമ്പോണന്റ് ഇമ്പോർട്ട് ചെയ്തു
 
@@ -120,7 +114,7 @@ function App() {
   return (
     <Router>
       <div className="main ">
-        <ScrollToTop />
+        {/* <ScrollToTop /> */}
         {/* <SplashCursor /> */}
         {/* <UseSpotlightEffect /> */}
         {/* <SpotlightCursor /> */}

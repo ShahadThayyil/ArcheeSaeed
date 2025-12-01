@@ -2,12 +2,12 @@ import Hero from "../components/Hero";
 import WhyWorkWithMe from "../components/WhyWorkWithMe";
 import ProjectSection from "../components/ProjectSection";
 import WorkFlow from "../components/WorkFlow";
-import Profile from "../components/Profile";
+// import Profile from "../components/Profile";
 import StatsSection from "../components/Stats";
 import Testimonials from "../components/Testimonials";
-import WhatsAppButton from "../components/Whatsapp";
+// import WhatsAppButton from "../components/Whatsapp";
 import LogoSlider from "../components/LogoSlider";
-import { ThreeDMarquee } from "../components/animations/ThreeMarque";
+// import { ThreeDMarquee } from "../components/animations/ThreeMarque";
 import ServicesSection from "../components/ServicesSection";
 
 const images = [
