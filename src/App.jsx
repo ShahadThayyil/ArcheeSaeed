@@ -19,6 +19,7 @@ import ProjectDetail from "./pages/ProjectDetail";
 
 import { AnimatePresence } from "framer-motion"; // 2. AnimatePresence ഇമ്പോർട്ട് ചെയ്തു
 import AnimatedPage from "./components/AnimatedPage"; // 3. നമ്മുടെ പുതിയ AnimatedPage കമ്പോണന്റ് ഇമ്പോർട്ട് ചെയ്തു
+import Navbar from "./components/Navbar";
 
 // 🔹 ആനിമേഷനോടുകൂടിയ റൂട്ടുകൾ കൈകാര്യം ചെയ്യാൻ ഒരു പുതിയ കമ്പോണന്റ്
 // ഇത് useLocation ഉപയോഗിക്കുന്നതുകൊണ്ടാണ് <Router>-നുള്ളിൽ വെക്കുന്നത്
@@ -112,8 +113,11 @@ function App() {
   // if (loading) return <Loader speed={10000} />;
 
   return (
+    
     <Router>
+
       <div className="main ">
+        <Navbar />
         {/* <ScrollToTop /> */}
         {/* <SplashCursor /> */}
         {/* <UseSpotlightEffect /> */}

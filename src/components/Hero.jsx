@@ -11,8 +11,6 @@ export default function HeroSection() {
   const textRef = useRef(null);
   const videoRef = useRef(null);
   const contentRef = useRef(null);
-  
-  // New Ref for the Video Overlay Text
   const overlayRef = useRef(null);
 
   useGSAP(() => {
@@ -34,17 +32,18 @@ export default function HeroSection() {
       duration: 5, 
       ease: "power2.inOut",
     })
-    // Step B: Fade Out "ARCHIZAID" Text (Happens near end of zoom)
+    
+    // Step B: Fade Out "ARCHIZAID" Text & Background
     .to(textRef.current, {
       opacity: 0, 
       duration: 1,
     }, "-=1")
     
-    // Step C: Fade In Overlay Text (Happens AFTER text is gone)
+    // Step C: Fade In Overlay HUD
     .to(overlayRef.current, {
-      opacity: 1, // Make it visible
+      opacity: 1, 
       duration: 1,
-    });
+    }, "<");
 
   }, { scope: containerRef });
 
@@ -52,12 +51,15 @@ export default function HeroSection() {
   // 2. NEXT SECTION PARALLAX ENTRY
   useGSAP(() => {
     gsap.fromTo(contentRef.current, 
-      { y: 100, opacity: 0 },
+      { y: 150, opacity: 0 },
       {
-        y: 0, opacity: 1, duration: 1, ease: "power3.out",
+        y: 0,
+        opacity: 1,
+        duration: 1.5,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: contentRef.current,
-          start: "top bottom-=10%",
+          start: "top bottom",
           end: "top center",
           scrub: 1,
         }
@@ -66,27 +68,9 @@ export default function HeroSection() {
   }, { scope: contentRef });
 
   return (
+    // THEME BACKGROUND
     <div className="relative bg-[#F8F7F5]">
       
-      {/* CSS FOR SHADOW ANIMATION */}
-      <style>{`
-        @keyframes sway-slow {
-          0%, 100% { transform: translate(0, 0) rotate(0deg); }
-          50% { transform: translate(20px, 30px) rotate(2deg); }
-        }
-        @keyframes sway-medium {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(-30px, 10px) scale(1.1); }
-        }
-        .shadow-blob {
-          filter: blur(80px);
-          background-color: #1A1A1A;
-          opacity: 0.08;
-          position: absolute;
-          border-radius: 50%;
-        }
-      `}</style>
-
       {/* 1. HERO PINNED CONTAINER */}
       <div 
         ref={containerRef} 
@@ -99,18 +83,17 @@ export default function HeroSection() {
             autoPlay loop muted playsInline
             className="w-full h-full object-cover"
           >
+            {/* Keeping your video */}
             <source src="/video.mp4" type="video/mp4" />
           </video>
           
           <div className="absolute inset-0 bg-black/20"></div>
 
           {/* --- ARCHITECTURAL HUD OVERLAY (Initially Hidden) --- */}
-          {/* Added ref={overlayRef} and opacity-0 */}
           <div 
             ref={overlayRef}
             className="absolute inset-0 z-10 p-6 md:p-12 flex flex-col justify-between pointer-events-none opacity-0"
           >
-              
               {/* Top Row */}
               <div className="flex justify-between items-start opacity-70">
                   <div className="font-mono text-white text-[10px] tracking-[0.2em] leading-loose">
@@ -145,49 +128,59 @@ export default function HeroSection() {
                       10.85°N / 76.27°E
                   </div>
               </div>
-
           </div>
           {/* --- END OVERLAY --- */}
 
         </div>
 
-        {/* B. MASK LAYER */}
+        {/* B. MASK LAYER (CLEAN ARCHITECTURAL BACKGROUND) */}
         <div 
           ref={textRef} 
-          className="relative z-10 w-full h-full flex items-center justify-center bg-[#F8F7F5] mix-blend-screen origin-center overflow-hidden px-4 md:px-12 lg:px-24"
+          className="relative z-10 w-full h-full flex items-center justify-center bg-[#F8F7F5] mix-blend-screen origin-center overflow-hidden"
         >
             
-            {/* 1. WALL TEXTURE */}
-            <div className="absolute inset-0 opacity-[0.4] pointer-events-none mix-blend-multiply z-0"
-                 style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}>
-            </div>
+            {/* --- 1. CLEAN GRID (AutoCAD Style) --- */}
+            <svg className="absolute inset-0 w-full h-full opacity-[0.1] pointer-events-none z-0" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    {/* Small Grid Unit */}
+                    <pattern id="smallGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                        <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1A1A1A" strokeWidth="0.5"/>
+                    </pattern>
+                    {/* Large Grid Block (100x100) */}
+                    <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
+                        <rect width="100" height="100" fill="url(#smallGrid)"/>
+                        <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#1A1A1A" strokeWidth="1"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
 
-            {/* 2. SHADOWS */}
-            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-                <div className="shadow-blob w-[60vw] h-[60vw] top-[-20%] left-[-10%]" 
-                     style={{ animation: 'sway-slow 15s ease-in-out infinite' }}></div>
-                <div className="shadow-blob w-[50vw] h-[50vw] bottom-[-10%] right-[-10%]"
-                     style={{ animation: 'sway-medium 20s ease-in-out infinite reverse' }}></div>
-                <div className="shadow-blob w-[40vw] h-[40vw] top-[20%] left-[30%] opacity-[0.05]"
-                     style={{ animation: 'sway-slow 25s ease-in-out infinite' }}></div>
+            {/* --- 2. TECHNICAL MARKERS (Clean Lines) --- */}
+            {/* Left Vertical Ruler */}
+            <div className="absolute left-8 top-1/2 -translate-y-1/2 h-40 w-[1px] bg-[#1A1A1A] opacity-20 hidden md:block">
+                <div className="absolute top-0 left-[-4px] w-3 h-[1px] bg-[#1A1A1A]"></div>
+                <div className="absolute bottom-0 left-[-4px] w-3 h-[1px] bg-[#1A1A1A]"></div>
+                <div className="absolute top-1/2 left-[-8px] w-5 h-[1px] bg-[#1A1A1A]"></div>
             </div>
             
-            {/* MAIN TEXT */}
-            <h1 className="relative z-20 w-full text-[14vw] md:text-[12vw] font-black text-black leading-none tracking-tighter text-center uppercase select-none">
+            {/* Right Vertical Ruler */}
+            <div className="absolute right-8 top-1/2 -translate-y-1/2 h-40 w-[1px] bg-[#1A1A1A] opacity-20 hidden md:block">
+                <div className="absolute top-0 right-[-4px] w-3 h-[1px] bg-[#1A1A1A]"></div>
+                <div className="absolute bottom-0 right-[-4px] w-3 h-[1px] bg-[#1A1A1A]"></div>
+                <div className="absolute top-1/2 right-[-8px] w-5 h-[1px] bg-[#1A1A1A]"></div>
+            </div>
+
+            {/* --- MAIN TEXT --- */}
+            <h1 className="relative z-20 w-full text-[14vw] md:text-[12vw] font-black text-black leading-none tracking-tighter text-center uppercase select-none px-4 md:px-12">
               ARCHIZAID
             </h1>
         </div>
 
-        {/* C. SCROLL HINT */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-2 mix-blend-multiply opacity-60">
-            <span className="text-xs font-bold tracking-[0.3em] text-[#1A1A1A] uppercase">Scroll to Enter</span>
-            <div className="w-[1px] h-10 bg-[#1A1A1A] animate-bounce"></div>
-        </div>
+     
 
       </div>
 
      
-
     </div>
   );
 }
