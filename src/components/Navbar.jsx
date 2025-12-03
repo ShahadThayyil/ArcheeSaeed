@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import {Link} from "react-router-dom";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
 
-  const navLinks = ["HOME", "PROJECTS", "STUDIO", "JOURNAL"];
+  const navLinks = [
+  { name: "THE STUDIO", path: "/" },
+  { name: "SHOWCASE", path: "/projects" },
+  { name: "INSIDE US", path: "/about" },
+  { name: "SAY HELLO", path: "/contact" }
+];
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   // --- SMART SCROLL LOGIC ---
@@ -69,14 +75,15 @@ export default function Navbar() {
         <div className="flex justify-between items-start -mt-2">
             {/* --- TOP LEFT: LOGO --- */}
             <div className={topItemStyle}>
-                <a href="#" className="block group">
+                <Link to="/" className="block group">
                     <img 
                         src="/logo.png" 
                         alt="AZ Logo" 
                         className="w-16 h-10 md:w-24 md:h-24 object-contain transition-transform group-hover:scale-105"
                     />
-                </a>
+                </Link>
             </div>
+  
 
             {/* --- TOP RIGHT: MENU BUTTON --- */}
             <div className={`${topItemStyle} pt-2`}>
@@ -109,8 +116,8 @@ export default function Navbar() {
 
             {/* --- BOTTOM RIGHT: INQUIRY CTA --- */}
             <div>
-                <a 
-                    href="#contact" 
+                <Link to="/contact"
+                    
                     className="group flex items-center gap-2 md:gap-3 pb-1 relative overflow-hidden"
                 >
                     <span className="relative flex h-2 w-2">
@@ -123,7 +130,7 @@ export default function Navbar() {
                         </span>
                         <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#BC4B32] transition-all duration-300 group-hover:w-full"></span>
                     </div>
-                </a>
+                </Link>
             </div>
         </motion.div>
       </motion.div>
@@ -171,7 +178,7 @@ export default function Navbar() {
                 className="flex-1 flex flex-col justify-evenly px-6 md:px-24 lg:px-32 w-full max-w-[1400px] mx-auto py-2"
              >
                 {navLinks.map((item, i) => (
-                    <div key={item} className="relative group cursor-pointer w-full">
+                    <div key={item.name} className="relative group cursor-pointer w-full">
                         
                         {/* Top Line Divider */}
                         <motion.div 
@@ -180,7 +187,8 @@ export default function Navbar() {
                         />
 
                         {/* Link Container - Padding adjusted for tight fit */}
-                        <a href={`#${item.toLowerCase()}`} onClick={toggleMenu} className="block w-full py-3 md:py-6">
+                       {/* Change this specific line inside the map loop */}
+                        <Link to={item.path} onClick={toggleMenu} className="block w-full py-3 md:py-6">
                             <div className="flex items-center justify-between">
                                 
                                 {/* Link Content Wrapper */}
@@ -192,7 +200,7 @@ export default function Navbar() {
                                     
                                     {/* Main Text - Adjusted sizes to fit one screen */}
                                     <span className="text-3xl sm:text-4xl md:text-6xl lg:text-6xl font-light text-[#F8F7F5] tracking-tighter group-hover:translate-x-4 group-hover:text-[#BC4B32] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]">
-                                        {item}
+                                        {item.name}
                                     </span>
                                 </motion.div>
 
@@ -203,7 +211,7 @@ export default function Navbar() {
                                     </svg>
                                 </div>
                             </div>
-                        </a>
+                        </Link>
                         
                         {/* Bottom Line (Only for last item) */}
                         {i === navLinks.length - 1 && (
