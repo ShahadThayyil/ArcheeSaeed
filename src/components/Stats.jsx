@@ -18,6 +18,7 @@ const stats = [
 ];
 
 // --- PARTICLE NUMBER COMPONENT (Adapted for Light Theme) ---
+// --- PARTICLE NUMBER COMPONENT (FULL FIXED VERSION) ---
 const ParticleNumber = ({ value, label, sub, containerInView }) => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
@@ -26,16 +27,19 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d", { willReadFrequently: true });
-    
-    // Canvas Dimensions
-    const width = 400;
-    const height = 200;
+
+    // Responsive dynamic width
+    const rect = containerRef.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = 240;
+
     const dpr = window.devicePixelRatio || 1;
-    
+
+    // Canvas setup
     canvas.width = width * dpr;
     canvas.height = height * dpr;
-    canvas.style.width = "100%";
-    canvas.style.height = "200px"; // Fixed height for layout stability
+    canvas.style.width = width + "px";
+    canvas.style.height = height + "px";
     ctx.scale(dpr, dpr);
 
     let particles = [];
@@ -47,9 +51,11 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
         this.y = Math.random() * height;
         this.originX = x;
         this.originY = y;
-        this.size = Math.random() * 2 + 1; // Slightly larger for "Architectural Block" feel
-        // 30% Terracotta, 70% Charcoal
-        this.color = Math.random() > 0.7 ? THEME.accent : THEME.text; 
+        this.size = Math.random() * 2 + 1;
+
+        // Terracotta + charcoal palette
+        this.color = Math.random() > 0.7 ? THEME.accent : THEME.text;
+
         this.vx = 0;
         this.vy = 0;
         this.friction = 0.92;
@@ -58,7 +64,7 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
 
       draw() {
         ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.size, this.size); // Sharp squares
+        ctx.fillRect(this.x, this.y, this.size, this.size);
       }
 
       update() {
@@ -71,6 +77,7 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
           const angle = Math.atan2(dy, dx);
           const pushX = Math.cos(angle) * force;
           const pushY = Math.sin(angle) * force;
+
           this.vx -= pushX * 0.08;
           this.vy -= pushY * 0.08;
         }
@@ -79,8 +86,7 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
           this.x += (this.originX - this.x) * this.ease;
           this.y += (this.originY - this.y) * this.ease;
         } else {
-            // Disperse downwards when out of view (Gravity effect)
-           this.y += Math.random() * 2;
+          this.y += Math.random() * 2;
         }
 
         this.x += this.vx;
@@ -90,28 +96,37 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
       }
     }
 
-    const init = () => {
+    const init = async () => {
       particles = [];
-      
-      // 1. Draw Text (Black text to scan pixels)
+
+      // Wait for fonts
+      await document.fonts.ready;
+
+      // Ensure layout fully settled
+      await new Promise((resolve) => requestAnimationFrame(resolve));
+
+      // Dynamic responsive scale
+      const scale = Math.min(width, height) * 0.45;
+
+      // Draw number in center
+      ctx.clearRect(0, 0, width, height);
       ctx.fillStyle = "black";
-      ctx.font = "900 120px 'Inter', sans-serif"; // Heavier, cleaner font
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
+      ctx.font = `900 ${scale}px 'Inter', sans-serif`;
       ctx.fillText(value, width / 2, height / 2);
 
-      // 2. Scan
+      // Scan pixels
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // 3. Create Particles
-      const gap = 5 * dpr; // Tighter gap for denser look
-      
+      const gap = 6 * dpr;
+
       for (let y = 0; y < canvas.height; y += gap) {
         for (let x = 0; x < canvas.width; x += gap) {
           const index = (y * canvas.width + x) * 4;
           const alpha = imageData.data[index + 3];
-          
+
           if (alpha > 128) {
             const posX = x / dpr;
             const posY = y / dpr;
@@ -122,11 +137,12 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
     };
 
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, width, height);
       particles.forEach((p) => {
         p.draw();
         p.update();
       });
+
       animationFrameId = requestAnimationFrame(animate);
     };
 
@@ -148,27 +164,24 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
   };
 
   return (
-    <div 
-        ref={containerRef} 
-        className="flex flex-col items-center justify-center w-full h-full relative group cursor-crosshair py-12"
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
+    <div
+      ref={containerRef}
+      className="flex flex-col items-center justify-center w-full h-full relative group cursor-crosshair py-12"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
     >
-        {/* Architectural Crosshairs */}
-        <div className="absolute top-4 left-4 w-4 h-4 border-t border-l border-[#BC4B32]/30" />
-        <div className="absolute top-4 right-4 w-4 h-4 border-t border-r border-[#BC4B32]/30" />
-        <div className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-[#BC4B32]/30" />
-        <div className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-[#BC4B32]/30" />
-
       <canvas ref={canvasRef} className="block w-full pointer-events-none z-10" />
-      
+
       <div className="text-center mt-2 z-20">
-        <h4 className="text-[#1A1A1A] text-lg font-bold uppercase tracking-widest font-sans">{label}</h4>
+        <h4 className="text-[#1A1A1A] text-lg font-bold uppercase tracking-widest font-sans">
+          {label}
+        </h4>
         <p className="text-[#BC4B32] font-serif italic mt-1">{sub}</p>
       </div>
     </div>
   );
 };
+
 
 // --- MAIN SECTION ---
 const ModernStats = () => {

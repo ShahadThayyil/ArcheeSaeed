@@ -125,7 +125,7 @@ const ClientDiaries = () => {
         <h2 className="font-serif text-5xl md:text-7xl text-[#1A1A1A]">
           Client <span className="italic font-light">Diaries</span>
         </h2>
-      </div>
+      </div> 
 
       {/* List of Parallax Cards */}
       <div className="max-w-7xl mx-auto flex flex-col gap-20 md:gap-0">

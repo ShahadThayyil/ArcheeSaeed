@@ -151,8 +151,10 @@ const PhilosophySection = () => {
                 <div 
                     ref={innerImageRef}
                     className="absolute top-0 left-0 w-full h-full"
-                    style={{ width: imageWrapperRef.current?.offsetWidth || '100%', height: imageWrapperRef.current?.offsetHeight || '100%' }}
-                >
+style={{
+  width: imageWrapperRef.current?.offsetWidth || '100%',
+  height: imageWrapperRef.current?.offsetHeight || '100%'
+}}                > 
                     <img 
                         src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop" 
                         alt="Real" 

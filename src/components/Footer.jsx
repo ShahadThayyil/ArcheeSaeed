@@ -53,6 +53,9 @@ const MagneticButton = () => {
 
   const handleClick = () => {
     setIsClicked(true);
+    setTimeout(() => {
+    window.location.href = "/contact";
+  }, 800); 
     // Optional: Add navigation logic here after a delay
     // setTimeout(() => window.location.href = 'mailto:archizaidofficial@gmail.com', 800);
   };
