@@ -13,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 const WALL_TEXTURE_URL = "/wall.avif"
 const PILLAR_TEXTURE_URL = WALL_TEXTURE_URL; 
 
-const FLOOR_TEXTURE_URL = "/Floor.jpg"
+const FLOOR_TEXTURE_URL = "/Floor.avif"
 const CEILING_TEXTURE_URL = WALL_TEXTURE_URL;
 
 const Projects = () => {
