@@ -12,7 +12,7 @@ export default defineConfig({
   ], 
      base: "/",
   server: {
-    host: "0.0.0.0",   // expose to network
+    host: true,   // expose to network
     port: 5173, //5173        // force fixed port
   },
 })
