@@ -179,7 +179,7 @@ const Footer = () => {
 
             {/* Right: Links */}
             <nav className="flex gap-8 text-sm font-sans font-bold uppercase tracking-widest text-[#1A1A1A]">
-                {["About", "Work", "Contact"].map((item) => (
+                {["About", "Projects", "Contact"].map((item) => (
                     <Link 
                         key={item} 
                         to={`/${item.toLowerCase()}`} 

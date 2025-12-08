@@ -178,9 +178,9 @@ const Projects = () => {
                                 {project.location} • {project.year || "2027"}
                             </p>
                         </div>
-                        <div className="w-8 h-8 flex items-center justify-center bg-white/10 rounded-none border border-white/20 group-hover:bg-[#BC4B32] group-hover:border-[#BC4B32] transition-all duration-300 delay-200">
+                        {/* <div className="w-8 h-8 flex items-center justify-center bg-white/10 rounded-none border border-white/20 group-hover:bg-[#BC4B32] group-hover:border-[#BC4B32] transition-all duration-300 delay-200">
                             <ArrowUpRight size={16} className="text-white" />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
 

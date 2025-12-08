@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
-import {Link} from "react-router-dom";
+import {Link,useLocation} from "react-router-dom";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const location = useLocation();
 
   const navLinks = [
   { name: "THE STUDIO", path: "/" },
@@ -68,71 +69,77 @@ export default function Navbar() {
         }}
         animate={isVisible ? "visible" : "hidden"}
         transition={{ duration: 0.35, ease: "easeInOut" }}
-        className="fixed inset-0 z-50 pointer-events-none p-6 md:p-8 lg:p-12 flex flex-col justify-between supports-[padding:max(0px)]:p-[max(24px,env(safe-area-inset-top))_max(24px,env(safe-area-inset-right))_max(24px,env(safe-area-inset-bottom))_max(24px,env(safe-area-inset-left))]"
+        className="fixed inset-0 z-50 pointer-events-none p-6 md:p-8 lg:p-6 flex flex-col justify-between supports-[padding:max(0px)]:p-[max(24px,env(safe-area-inset-top))_max(24px,env(safe-area-inset-right))_max(24px,env(safe-area-inset-bottom))_max(24px,env(safe-area-inset-left))]"
       >
-        
-        {/* ================= TOP ROW ================= */}
-        <div className="flex justify-between items-start -mt-2">
-            {/* --- TOP LEFT: LOGO --- */}
-            <div className={topItemStyle}>
-                <Link to="/" className="block group">
-                    <img 
-                        src="/logo.png" 
-                        alt="AZ Logo" 
-                        className="w-16 h-10 md:w-24 md:h-24 object-contain transition-transform group-hover:scale-105"
-                    />
-                </Link>
-            </div>
-  
+     {/* ================= TOP ROW ================= */}
+<div className="flex justify-between items-center  w-full">
 
-            {/* --- TOP RIGHT: MENU BUTTON --- */}
-            <div className={`${topItemStyle} pt-2`}>
-                <button 
-                    onClick={toggleMenu}
-                    className={`text-[#1A1A1A] group flex items-center gap-3 ${accentHover}`}
-                >
-                    <span className="hidden md:block text-xs font-bold tracking-[0.2em] uppercase">Menu</span>
-                    <div className="flex flex-col gap-1.5 items-end justify-center h-full">
-                        <span className="w-8 h-[2px] bg-current group-hover:w-6 transition-all duration-300"></span>
-                        <span className="w-6 h-[2px] bg-current group-hover:w-8 transition-all duration-300"></span>
-                    </div>
-                </button>
+    {/* --- TOP LEFT: LOGO --- */}
+    <div className={topItemStyle}>
+        <Link to="/" className="block group">
+            <img 
+                src="/logo.png" 
+                alt="AZ Logo" 
+                className="w-24 h-20 md:w-36 md:h-24 object-contain transition-transform group-hover:scale-105"
+            />
+        </Link>
+    </div>
+
+    {/* --- TOP RIGHT: MENU BUTTON --- */}
+    <div className={topItemStyle}>
+        <button 
+            onClick={toggleMenu}
+            className={`text-[#1A1A1A] group flex items-center gap-3 ${accentHover}`}
+        >
+            <span className="hidden md:block text-xs font-bold tracking-[0.2em] uppercase">
+                Menu
+            </span>
+
+            <div className="flex flex-col gap-1.5 items-end justify-center">
+                <span className="w-8 h-[2px] bg-current group-hover:w-6 transition-all duration-300"></span>
+                <span className="w-6 h-[2px] bg-current group-hover:w-8 transition-all duration-300"></span>
+            </div>
+        </button>
+    </div>
+
+</div>
+
+
+        {/* ================= BOTTOM ROW ================= */}
+      {location.pathname === "/" && (
+    <motion.div 
+        animate={{ opacity: isVisible && scrollY.get() < 100 ? 1 : 0 }}
+        className="flex justify-between items-end text-[#1A1A1A] pointer-events-auto" 
+        style={{ pointerEvents: bottomPointerEvents }}
+    >
+        {/* --- BOTTOM LEFT: LOCATION --- */}
+        <div className="block max-w-[50%]">
+            <div className="font-mono text-[9px] md:text-[10px] tracking-[0.15em] md:tracking-[0.2em] leading-relaxed opacity-90">
+                <p className="whitespace-nowrap">KERALA, INDIA</p>
+                <p className="whitespace-nowrap">LAT: 10.85°N</p>
             </div>
         </div>
 
-        {/* ================= BOTTOM ROW ================= */}
-        <motion.div 
-            animate={{ opacity: isVisible && scrollY.get() < 100 ? 1 : 0 }}
-            className="flex justify-between items-end text-[#1A1A1A] pointer-events-auto" 
-            style={{ pointerEvents: bottomPointerEvents }}
-        >
-            {/* --- BOTTOM LEFT: LOCATION --- */}
-            <div className="block max-w-[50%]">
-                <div className="font-mono text-[9px] md:text-[10px] tracking-[0.15em] md:tracking-[0.2em] leading-relaxed opacity-90">
-                    <p className="whitespace-nowrap">KERALA, INDIA</p>
-                    <p className="whitespace-nowrap">LAT: 10.85°N</p>
-                </div>
-            </div>
-
-            {/* --- BOTTOM RIGHT: INQUIRY CTA --- */}
-            <div>
-                <Link to="/contact"
-                    
-                    className="group flex items-center gap-2 md:gap-3 pb-1 relative overflow-hidden"
-                >
-                    <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#BC4B32] opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-[#BC4B32]"></span>
+        {/* --- BOTTOM RIGHT: INQUIRY CTA --- */}
+        <div>
+            <Link to="/contact"
+                className="group flex items-center gap-2 md:gap-3 pb-1 relative overflow-hidden"
+            >
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#BC4B32] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#BC4B32]"></span>
+                </span>
+                <div className="relative flex flex-col">
+                    <span className={`text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase ${accentHover}`}>
+                        Inquiry
                     </span>
-                    <div className="relative flex flex-col">
-                        <span className={`text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase ${accentHover}`}>
-                            Inquiry
-                        </span>
-                        <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#BC4B32] transition-all duration-300 group-hover:w-full"></span>
-                    </div>
-                </Link>
-            </div>
-        </motion.div>
+                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#BC4B32] transition-all duration-300 group-hover:w-full"></span>
+                </div>
+            </Link>
+        </div>
+    </motion.div>
+)}
+
       </motion.div>
 
       {/* 2. FULL SCREEN ARCHITECTURAL MENU OVERLAY */}

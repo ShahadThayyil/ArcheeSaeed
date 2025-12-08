@@ -1,80 +1,35 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import Lenis from "@studio-freight/lenis";
-import { useEffect, useLayoutEffect } from "react"; // useLayoutEffect impoted
-import { AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import Preloader from "./components/PreLoader";
 
 // Pages
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import ProjectDetail from "./pages/ProjectDetail";
 
 // Components
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import AnimatedPage from "./components/AnimatedPage";
 
-// 🔹 Routes Logic + Scroll To Top Fix
-function AnimatedRoutes() {
+function ScrollToTopWithLenis() {
   const location = useLocation();
 
-  // ✅ FIX: പേജ് മാറുമ്പോൾ മുകളിലേക്ക് സ്ക്രോൾ ചെയ്യാൻ
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0);
+  useEffect(() => {
+    if (window.lenis) {
+      window.lenis.scrollTo(0, { immediate: true });
+    }
   }, [location.pathname]);
 
-  return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route
-          path="/"
-          element={
-            <AnimatedPage>
-              <Home />
-            </AnimatedPage>
-          }
-        />
-        <Route
-          path="/projects"
-          element={
-            <AnimatedPage>
-              <Projects />
-            </AnimatedPage>
-          }
-        />
-        <Route
-          path="/projects/:id"
-          element={
-            <AnimatedPage>
-              <ProjectDetail />
-            </AnimatedPage>
-          }
-        />
-        <Route
-          path="/about"
-          element={
-            <AnimatedPage>
-              <About />
-            </AnimatedPage>
-          }
-        />
-        <Route
-          path="/contact"
-          element={
-            <AnimatedPage>
-              <Contact />
-            </AnimatedPage>
-          }
-        />
-      </Routes>
-    </AnimatePresence>
-  );
+  return null;
 }
 
 function App() {
-  // 🔹 Smooth Scroll Logic (Lenis)
+  const [loaded, setLoaded] = useState(false);
+
+  // Smooth scroll using Lenis
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.5,
@@ -89,6 +44,9 @@ function App() {
 
     requestAnimationFrame(raf);
 
+    // expose lenis globally
+    window.lenis = lenis;
+
     return () => {
       lenis.destroy();
     };
@@ -96,16 +54,31 @@ function App() {
 
   return (
     <Router>
-      <div className="main">
-        {/* Navbar */}
-        <Navbar />
 
-        {/* Routes */}
-        <AnimatedRoutes />
+      {/* Route scroll fix */}
+      <ScrollToTopWithLenis />
+
+      {/* PRELOADER */}
+      {!loaded && <Preloader onLoaded={() => setLoaded(true)} />}
+
+      {/* MAIN CONTENT */}
+      <div
+        className={`${loaded ? "opacity-100" : "opacity-0"} transition-opacity duration-700`}
+      >
+        {/* Navbar - animation OFF */}
+        <Navbar noMotion={true} />
+
+        {/* DIRECT ROUTES */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+
+        {/* Footer */}
+        <Footer />
       </div>
-      
-      {/* Footer */}
-      <Footer />
     </Router>
   );
 }

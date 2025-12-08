@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef,useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -19,7 +19,25 @@ const PhilosophySection = () => {
   const yToLens = useRef(null);
   const xToImg = useRef(null);
   const yToImg = useRef(null);
+const [imgSize, setImgSize] = useState({ w: 0, h: 0 });
 
+useEffect(() => {
+  if (!imageWrapperRef.current) return;
+
+  const update = () => {
+    setImgSize({
+      w: imageWrapperRef.current.offsetWidth,
+      h: imageWrapperRef.current.offsetHeight
+    });
+  };
+
+  update();
+
+  const observer = new ResizeObserver(update);
+  observer.observe(imageWrapperRef.current);
+
+  return () => observer.disconnect();
+}, []);
   // ----------------- 1. GSAP ANIMATIONS -----------------
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -151,16 +169,16 @@ const PhilosophySection = () => {
                 <div 
                     ref={innerImageRef}
                     className="absolute top-0 left-0 w-full h-full"
-style={{
-  width: imageWrapperRef.current?.offsetWidth || '100%',
-  height: imageWrapperRef.current?.offsetHeight || '100%'
-}}                > 
+ style={{
+    width: imgSize.w,
+    height: imgSize.h
+  }}              > 
                     <img 
                         src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop" 
                         alt="Real" 
                         // 🔥 CHANGED: Removed scale-125. Now it's normal size.
                         className="w-full h-full object-cover" 
-                    />
+                    /> 
                 </div>
                 
                 {/* Lens Gloss */}
