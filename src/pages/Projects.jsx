@@ -10,7 +10,7 @@ import { projects } from "../data/projects";
 gsap.registerPlugin(ScrollTrigger);
 
 // --- TEXTURE URLS ---
-const WALL_TEXTURE_URL = "/Wall.jpg"
+const WALL_TEXTURE_URL = "/wall.avif"
 const PILLAR_TEXTURE_URL = WALL_TEXTURE_URL; 
 
 const FLOOR_TEXTURE_URL = "/Floor.jpg"
