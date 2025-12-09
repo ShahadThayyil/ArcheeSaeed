@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 
-// --- THEME CONFIGURATION (Your Palette) ---
+// --- THEME CONFIGURATION ---
 const THEME = {
   bg: "#F8F7F5",        // Soft Alabaster
   text: "#1A1A1A",      // Deep Charcoal
@@ -17,45 +17,33 @@ const stats = [
   { id: 3, value: "98", label: "Client Satisfaction", sub: "Percent" },
 ];
 
-// --- PARTICLE NUMBER COMPONENT (Adapted for Light Theme) ---
-// --- PARTICLE NUMBER COMPONENT (FULL FIXED VERSION) ---
+// --- UPDATED PARTICLE NUMBER COMPONENT ---
 const ParticleNumber = ({ value, label, sub, containerInView }) => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
   const mouse = useRef({ x: -9999, y: -9999, radius: 100 });
+  
+  // Ref to store the animation frame so we can cancel it cleanly
+  const animationRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    const container = containerRef.current;
+    if (!canvas || !container) return;
+
     const ctx = canvas.getContext("2d", { willReadFrequently: true });
-
-    // Responsive dynamic width
-    const rect = containerRef.current.getBoundingClientRect();
-    const width = rect.width;
-    const height = 240;
-
-    const dpr = window.devicePixelRatio || 1;
-
-    // Canvas setup
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    canvas.style.width = width + "px";
-    canvas.style.height = height + "px";
-    ctx.scale(dpr, dpr);
-
     let particles = [];
-    let animationFrameId;
-
+    
+    // --- PARTICLE CLASS ---
     class Particle {
-      constructor(x, y) {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
+      constructor(x, y, canvasWidth, canvasHeight) {
+        this.x = Math.random() * canvasWidth;
+        this.y = Math.random() * canvasHeight;
         this.originX = x;
         this.originY = y;
-        this.size = Math.random() * 2 + 1;
-
-        // Terracotta + charcoal palette
+        this.size = Math.random() * 2 + 1; // Slight size variation
         this.color = Math.random() > 0.7 ? THEME.accent : THEME.text;
-
+        
         this.vx = 0;
         this.vy = 0;
         this.friction = 0.92;
@@ -77,16 +65,18 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
           const angle = Math.atan2(dy, dx);
           const pushX = Math.cos(angle) * force;
           const pushY = Math.sin(angle) * force;
-
           this.vx -= pushX * 0.08;
           this.vy -= pushY * 0.08;
         }
 
+        // Return to origin if in view, else float
         if (containerInView) {
           this.x += (this.originX - this.x) * this.ease;
           this.y += (this.originY - this.y) * this.ease;
         } else {
-          this.y += Math.random() * 2;
+          // Subtle float when out of view
+          this.y -= Math.random() * 0.5;
+          this.x += (Math.random() - 0.5) * 0.5;
         }
 
         this.x += this.vx;
@@ -96,31 +86,47 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
       }
     }
 
-    const init = async () => {
+    // --- INITIALIZATION LOGIC ---
+    const initParticles = async () => {
+      // 1. Get exact dimensions from the container
+      const rect = container.getBoundingClientRect();
+      const width = rect.width;
+      const height = rect.height; // Use ACTUAL container height
+      const dpr = window.devicePixelRatio || 1;
+
+      // 2. Set Canvas Size
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      
+      // Reset scale for new drawing
+      ctx.setTransform(1, 0, 0, 1, 0, 0); 
+      ctx.scale(dpr, dpr);
+
       particles = [];
 
-      // Wait for fonts
+      // Wait for font to ensure accurate pixel scanning
       await document.fonts.ready;
 
-      // Ensure layout fully settled
-      await new Promise((resolve) => requestAnimationFrame(resolve));
-
-      // Dynamic responsive scale
-      const scale = Math.min(width, height) * 0.45;
-
-      // Draw number in center
+      // 3. Draw Text to Scan
+      // Increase font scaling slightly for better visibility on mobile
+      const fontSize = Math.min(width, height) * 0.5; 
+      
       ctx.clearRect(0, 0, width, height);
       ctx.fillStyle = "black";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.font = `900 ${scale}px 'Inter', sans-serif`;
+      ctx.font = `900 ${fontSize}px 'Inter', sans-serif`;
       ctx.fillText(value, width / 2, height / 2);
 
-      // Scan pixels
-      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // 4. Scan Pixels
+      const imageData = ctx.getImageData(0, 0, width * dpr, height * dpr);
+      // We clear immediately after scanning
+      ctx.clearRect(0, 0, canvas.width, canvas.height); 
 
-      const gap = 6 * dpr;
+      // Adjust gap based on screen size (denser particles on mobile for legibility)
+      const gap = width < 500 ? 4 : 5; 
 
       for (let y = 0; y < canvas.height; y += gap) {
         for (let x = 0; x < canvas.width; x += gap) {
@@ -128,31 +134,49 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
           const alpha = imageData.data[index + 3];
 
           if (alpha > 128) {
+            // Convert back to CSS coordinates
             const posX = x / dpr;
             const posY = y / dpr;
-            particles.push(new Particle(posX, posY));
+            particles.push(new Particle(posX, posY, width, height));
           }
         }
       }
     };
 
+    // --- ANIMATION LOOP ---
     const animate = () => {
-      ctx.clearRect(0, 0, width, height);
+      // Clear using raw canvas dimensions to be safe
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
       particles.forEach((p) => {
         p.draw();
         p.update();
       });
 
-      animationFrameId = requestAnimationFrame(animate);
+      animationRef.current = requestAnimationFrame(animate);
     };
 
-    init();
-    animate();
+    // --- RESIZE OBSERVER ---
+    // This ensures if the browser resizes or layout changes, we rebuild the particles
+    const resizeObserver = new ResizeObserver(() => {
+        initParticles();
+    });
+    
+    resizeObserver.observe(container);
 
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [value, containerInView]);
+    // Start
+    initParticles().then(() => {
+        animate();
+    });
+
+    return () => {
+      resizeObserver.disconnect();
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    };
+  }, [value, containerInView]); // Re-run if value changes
 
   const handleMouseMove = (e) => {
+    if (!canvasRef.current) return;
     const rect = canvasRef.current.getBoundingClientRect();
     mouse.current.x = e.clientX - rect.left;
     mouse.current.y = e.clientY - rect.top;
@@ -166,13 +190,18 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
   return (
     <div
       ref={containerRef}
-      className="flex flex-col items-center justify-center w-full h-full relative group cursor-crosshair py-12"
+      // h-full ensures it takes the parent's 400px height
+      className="flex flex-col items-center justify-center w-full h-full relative group cursor-crosshair overflow-hidden"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      <canvas ref={canvasRef} className="block w-full pointer-events-none z-10" />
+      <canvas 
+        ref={canvasRef} 
+        className="absolute inset-0 block w-full h-full pointer-events-none z-10" 
+      />
 
-      <div className="text-center mt-2 z-20">
+      {/* Label is positioned absolute bottom or relative to ensure it doesn't conflict with canvas flow */}
+      <div className="absolute bottom-12 left-0 w-full text-center z-20 pointer-events-none">
         <h4 className="text-[#1A1A1A] text-lg font-bold uppercase tracking-widest font-sans">
           {label}
         </h4>
@@ -181,7 +210,6 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
     </div>
   );
 };
-
 
 // --- MAIN SECTION ---
 const ModernStats = () => {
@@ -204,7 +232,7 @@ const ModernStats = () => {
         className="relative w-full min-h-screen py-24 px-4 md:px-12 overflow-hidden flex flex-col justify-center"
         style={{ backgroundColor: THEME.bg }}
     >
-      {/* --- BACKGROUND GRIDS (Architectural Paper) --- */}
+      {/* --- BACKGROUND GRIDS --- */}
       <div className="absolute inset-0 pointer-events-none" 
            style={{ 
              backgroundImage: `linear-gradient(${THEME.border} 1px, transparent 1px), linear-gradient(90deg, ${THEME.border} 1px, transparent 1px)`, 
@@ -213,7 +241,7 @@ const ModernStats = () => {
            }}>
       </div>
       
-      {/* Decorative Noise for Paper Texture */}
+      {/* Decorative Noise */}
       <div className="absolute inset-0 opacity-[0.4] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cardboard-flat.png')]"></div>
 
       {/* --- HEADER --- */}
@@ -244,16 +272,15 @@ const ModernStats = () => {
             
             {/* Column 1 */}
             <motion.div style={{ y: y1 }} className="md:border-r border-[#E0E0E0] md:pr-8">
-                <div className="bg-white/50 backdrop-blur-sm border border-[#E0E0E0] h-[400px] flex items-center justify-center hover:shadow-2xl transition-shadow duration-500">
+                <div className="bg-white/50 backdrop-blur-sm border border-[#E0E0E0] h-[300px] md:h-[400px] flex items-center justify-center hover:shadow-2xl transition-shadow duration-500 w-full">
                      <ParticleNumber {...stats[0]} containerInView={isInView} />
                 </div>
             </motion.div>
 
             {/* Column 2 */}
             <motion.div style={{ y: y2 }} className="md:px-8 mt-12 md:mt-32">
-                 <div className="bg-white/50 backdrop-blur-sm border border-[#E0E0E0] h-[400px] flex items-center justify-center hover:shadow-2xl transition-shadow duration-500 relative">
-                     {/* Decorative Tag */}
-                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#1A1A1A] text-white text-xs px-3 py-1 font-mono uppercase">
+                 <div className="bg-white/50 backdrop-blur-sm border border-[#E0E0E0] h-[300px] md:h-[400px] flex items-center justify-center hover:shadow-2xl transition-shadow duration-500 relative w-full">
+                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#1A1A1A] text-white text-xs px-3 py-1 font-mono uppercase z-30">
                         Current Status
                      </div>
                      <ParticleNumber {...stats[1]} containerInView={isInView} />
@@ -262,7 +289,7 @@ const ModernStats = () => {
 
             {/* Column 3 */}
             <motion.div style={{ y: y3 }} className="md:border-l border-[#E0E0E0] md:pl-8 mt-24 md:mt-0">
-                 <div className="bg-white/50 backdrop-blur-sm border border-[#E0E0E0] h-[400px] flex items-center justify-center hover:shadow-2xl transition-shadow duration-500">
+                 <div className="bg-white/50 backdrop-blur-sm border border-[#E0E0E0] h-[300px] md:h-[400px] flex items-center justify-center hover:shadow-2xl transition-shadow duration-500 w-full">
                      <ParticleNumber {...stats[2]} containerInView={isInView} />
                 </div>
             </motion.div>

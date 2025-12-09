@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef, useState, useMemo } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowUpRight, Plus, Minus } from "lucide-react";
+import { Plus, Minus } from "lucide-react";
 // Replace with your actual import
 import { projects as originalProjects } from "../data/projects";
 
@@ -10,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 const CATEGORIES = ["All", "Residential", "Commercial", "Interior", "Landscape"];
 
 // --- ARCHITECTURAL GRID LOGIC ---
+// Kept your existing pattern but ensured it only kicks in at 'md' breakpoint
 const getGridClass = (index) => {
   const pattern = [
     "md:col-span-2 md:row-span-2 lg:col-span-2 lg:row-span-2", // 0: Large Square (Hero)
@@ -38,14 +39,14 @@ const Projects = () => {
       
       gsap.fromTo(
         cards,
-        { y: 30, opacity: 0 },
+        { y: 50, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.6,
+          duration: 0.8,
           stagger: 0.05,
-          ease: "power2.out",
-          overwrite: true,
+          ease: "power3.out",
+          overwrite: true, // Prevents conflicts during rapid filtering
         }
       );
     }, containerRef);
@@ -68,23 +69,24 @@ const Projects = () => {
       />
 
       {/* --- HEADER --- */}
-      <header className="pt-32 pb-10 px-6 md:px-12 max-w-[1920px] mx-auto border-b border-[#E0E0E0]">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+      {/* Adjusted padding and text size for mobile responsiveness */}
+      <header className="pt-24 md:pt-32 pb-8 md:pb-10 px-4 md:px-12 max-w-[1920px] mx-auto border-b border-[#E0E0E0]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8">
             <div>
-                <span className="text-[#BC4B32] font-mono text-xs tracking-widest uppercase block mb-2">
+                <span className="text-[#BC4B32] font-mono text-[10px] md:text-xs tracking-widest uppercase block mb-2">
                     // Project Index
                 </span>
-                <h1 className="text-[#1A1A1A] font-serif text-5xl md:text-7xl leading-none">
+                <h1 className="text-[#1A1A1A] font-serif text-4xl sm:text-5xl md:text-7xl leading-[0.9]">
                     Built <span className="italic text-[#666666] font-light">Environment</span>
                 </h1>
             </div>
             
-            {/* Total Count Display */}
-            <div className="hidden md:block text-right">
-                <span className="text-[#1A1A1A] font-mono text-xl block">
+            {/* Total Count Display - Visible on Desktop, simplified for mobile */}
+            <div className="flex items-center gap-2 md:block md:text-right">
+                <span className="text-[#1A1A1A] font-mono text-lg md:text-xl block">
                     {filteredProjects.length.toString().padStart(2, '0')}
                 </span>
-                <span className="text-[#666666] text-xs uppercase tracking-widest">
+                <span className="text-[#666666] text-[10px] md:text-xs uppercase tracking-widest">
                     Projects Displayed
                 </span>
             </div>
@@ -93,15 +95,15 @@ const Projects = () => {
 
       {/* --- RESPONSIVE CATEGORY BAR --- */}
       <div className="sticky top-0 z-40 bg-[#F8F7F5]/95 backdrop-blur-md border-b border-[#E0E0E0]">
-        <div className="max-w-[1920px] mx-auto px-6 md:px-12 py-4"> 
-            {/* UPDATED: justify-center for mobile, justify-start for desktop */}
-            <div className="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-3">
+        <div className="max-w-[1920px] mx-auto px-4 md:px-12 py-4"> 
+            <div className="flex flex-wrap justify-start gap-x-6 gap-y-3">
                 {CATEGORIES.map((cat) => (
                     <button
                         key={cat}
                         onClick={() => setActiveCategory(cat)}
                         className={`
-                            relative text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] transition-colors duration-300 pb-1
+                            relative text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] transition-all duration-300 pb-1
+                            active:scale-95 origin-left
                             ${activeCategory === cat ? "text-[#BC4B32]" : "text-[#666666] hover:text-[#1A1A1A]"}
                         `}
                     >
@@ -117,7 +119,8 @@ const Projects = () => {
       </div>
 
       {/* --- ARCHITECTURAL BENTO GRID --- */}
-      <section className="relative z-10 px-6 md:px-12 py-12 max-w-[1920px] mx-auto">
+      <section className="relative z-10 px-4 md:px-12 py-8 md:py-12 max-w-[1920px] mx-auto">
+        {/* Mobile: 1 Col | Tablet: 2 Col | Desktop: 4 Col */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 grid-flow-dense">
           
           {filteredProjects.map((project, index) => {
@@ -129,20 +132,22 @@ const Projects = () => {
                 className={`
                     project-card group relative bg-[#E0E0E0] overflow-hidden cursor-pointer
                     border border-transparent hover:border-[#BC4B32] transition-colors duration-500
+                    /* Mobile: Square aspect ratio is cleaner. Desktop: Auto based on grid */
                     aspect-square md:aspect-auto
                     ${gridClass}
                 `}
-                style={{ minHeight: '300px' }}
+                style={{ minHeight: '300px' }} // Ensures cards aren't too small on any screen
               >
                 {/* 1. IMAGE LAYER */}
                 <div className="w-full h-full relative overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover grayscale-0 md:grayscale md:group-hover:grayscale-0 transition-all duration-700 ease-out"
+                    className="w-full h-full object-cover grayscale-0 md:grayscale md:group-hover:grayscale-0 transition-all duration-700 ease-out transform group-hover:scale-105"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-[#1A1A1A]/20 group-hover:bg-[#1A1A1A]/40 transition-colors duration-500" />
+                  {/* Darker overlay on mobile to ensure text pop */}
+                  <div className="absolute inset-0 bg-[#1A1A1A]/30 md:bg-[#1A1A1A]/20 group-hover:bg-[#1A1A1A]/40 transition-colors duration-500" />
                 </div>
 
                 {/* 2. CORNER MARKERS */}
@@ -153,12 +158,12 @@ const Projects = () => {
                     <Plus size={12} strokeWidth={3} />
                 </div>
 
-                {/* 3. DESKTOP HOVER OVERLAY (The Big Slide Up Card) */}
+                {/* 3. DESKTOP HOVER OVERLAY (Slide Up) */}
                 <div className="
                     hidden md:block
                     absolute inset-x-4 bottom-4 top-auto
                     z-20 p-6
-                    bg-[#1A1A1A]/60 backdrop-blur-xl saturate-150
+                    bg-[#1A1A1A]/90 backdrop-blur-xl saturate-150
                     border border-white/5 group-hover:border-white/20
                     border-t-white/10 group-hover:border-t-white/40
                     shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)]
@@ -178,17 +183,14 @@ const Projects = () => {
                                 {project.location} • {project.year || "2027"}
                             </p>
                         </div>
-                        {/* <div className="w-8 h-8 flex items-center justify-center bg-white/10 rounded-none border border-white/20 group-hover:bg-[#BC4B32] group-hover:border-[#BC4B32] transition-all duration-300 delay-200">
-                            <ArrowUpRight size={16} className="text-white" />
-                        </div> */}
                     </div>
                 </div>
 
-                {/* 4. MOBILE / IDLE STATE CARD (The Small Glass Card) */}
-                {/* This stays visible on Mobile, fades out on Desktop Hover */}
-                <div className="absolute bottom-4 left-4 z-10 group-hover:opacity-0 transition-opacity duration-300 delay-75">
+                {/* 4. MOBILE / IDLE STATE CARD (Visible on Mobile) */}
+                {/* On desktop, this fades out on hover. On mobile, it stays. */}
+                <div className="absolute bottom-4 left-4 z-10 group-hover:opacity-0 transition-opacity duration-300 delay-75 max-w-[85%]">
                     <div className="
-                        bg-[#1A1A1A]/40 backdrop-blur-md 
+                        bg-[#1A1A1A]/80 backdrop-blur-md 
                         border border-white/10 
                         px-4 py-3
                         shadow-lg
@@ -196,7 +198,7 @@ const Projects = () => {
                         <h3 className="text-white font-serif text-lg leading-none tracking-wide">
                             {project.title}
                         </h3>
-                        {/* Show location only on mobile to keep it informative */}
+                        {/* Location visible on mobile for context */}
                         <p className="md:hidden text-[#BC4B32] text-[10px] font-mono uppercase mt-1 tracking-wider">
                             {project.location}
                         </p>
@@ -209,11 +211,11 @@ const Projects = () => {
 
           {/* EMPTY STATE */}
           {filteredProjects.length === 0 && (
-            <div className="col-span-full py-32 text-center border border-dashed border-[#E0E0E0]">
+            <div className="col-span-full py-24 md:py-32 text-center border border-dashed border-[#E0E0E0] mx-4 md:mx-0">
               <div className="inline-block p-4 bg-[#E0E0E0] mb-4">
                   <Minus size={24} className="text-[#666666]" />
               </div>
-              <p className="text-[#666666] font-serif text-xl">No projects in this sector.</p>
+              <p className="text-[#666666] font-serif text-lg md:text-xl">No projects in this sector.</p>
               <button onClick={() => setActiveCategory("All")} className="mt-6 px-6 py-2 bg-[#1A1A1A] text-white hover:bg-[#BC4B32] transition-colors font-mono text-xs uppercase tracking-widest">
                 Reset Filter
               </button>
@@ -223,13 +225,13 @@ const Projects = () => {
       </section>
 
       {/* --- FOOTER CTA --- */}
-      <section className="border-t border-[#E0E0E0] bg-[#F8F7F5] py-24 px-6 md:px-12 text-center">
-          <h2 className="text-[#1A1A1A] font-serif text-4xl md:text-6xl mb-8">
+      <section className="border-t border-[#E0E0E0] bg-[#F8F7F5] py-16 md:py-24 px-6 md:px-12 text-center">
+          <h2 className="text-[#1A1A1A] font-serif text-3xl md:text-6xl mb-6 md:mb-8">
               Have a vision?
           </h2>
-          <button className="group relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-[#1A1A1A] hover:bg-[#BC4B32] transition-colors duration-300 rounded-none">
+          <button className="group relative inline-flex items-center justify-center px-8 md:px-10 py-3 md:py-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-[#1A1A1A] hover:bg-[#BC4B32] transition-colors duration-300 rounded-none">
             <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#BC4B32] rounded-full group-hover:w-56 group-hover:h-56"></span>
-            <span className="relative uppercase tracking-widest text-xs">Start Discussion</span>
+            <span className="relative uppercase tracking-widest text-[10px] md:text-xs">Start Discussion</span>
           </button>
       </section>
     </div>

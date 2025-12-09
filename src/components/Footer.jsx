@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import { motion, useSpring, useTransform, useMotionValue } from "framer-motion";
 import { Link } from "react-router-dom"; // Ensure react-router-dom is installed
+import { useNavigate } from "react-router-dom";
+
 
 // --- THEME CONFIGURATION ---
 const THEME = {
@@ -50,12 +52,17 @@ const MagneticButton = () => {
     x.set(0);
     y.set(0);
   };
+const navigate = useNavigate();
 
   const handleClick = () => {
     setIsClicked(true);
-    setTimeout(() => {
-    window.location.href = "/contact";
-  }, 800); 
+  
+setTimeout(() => {
+  setIsClicked(false);   // reset the big explosion circle
+    x.set(0);
+    y.set(0);
+  navigate("/contact");
+}, 800);
     // Optional: Add navigation logic here after a delay
     // setTimeout(() => window.location.href = 'mailto:archizaidofficial@gmail.com', 800);
   };

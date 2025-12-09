@@ -89,7 +89,7 @@ const Contact = () => {
   const handleBlur = () => setFocusedField(null);
 
   return (
-    <div ref={containerRef} className="relative w-full min-h-screen selection:bg-[#BC4B32] selection:text-white overflow-hidden flex items-center justify-center py-14 px-8 md:py-28 md:px-16">
+    <div ref={containerRef} className="relative w-full min-h-screen selection:bg-[#BC4B32] selection:text-white overflow-hidden flex items-center justify-center py-14 px-2 md:py-28 md:px-16">
       
       {/* --- BACKGROUND --- */}
       <div className="absolute inset-0 z-0 pointer-events-none bg-[#F8F7F5]">

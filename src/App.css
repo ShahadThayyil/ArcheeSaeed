@@ -4,7 +4,7 @@ body, html, #root {
   padding: 0;
   width: 100%;
   /* Removed height: 100% to allow body to grow with content */
-  background: #111136;   /* deep dark background like ReactBits */
+  background: #F8F7F5;   /* deep dark background like ReactBits */
   color: white;
   font-family: 'Arial', sans-serif;
   
