@@ -1,12 +1,43 @@
-# React + Vite
+# Archizaid | Modern Architecture Studio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Archizaid Banner](https://via.placeholder.com/1200x400/18181b/ffffff?text=ARCHIZAID+Architecture+Studio+Kerala)
 
-Currently, two official plugins are available:
+> **"Designing timeless, innovative, and functional spaces that blend tradition with modern aesthetics."**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Live Website:** [https://www.archizaid.in](https://www.archizaid.in)  
+**Location:** Malappuram, Kerala, India
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🏗️ Project Overview
+
+**Archizaid** is a high-performance portfolio website for a premier architecture studio based in Kerala. Built to reflect the precision of architectural design, the site features a minimalist aesthetic, smooth interactions, and a focus on visual storytelling.
+
+The platform serves as a digital gallery for residential projects, commercial designs, and 3D visualizations, optimized for speed and SEO.
+
+---
+
+## 🚀 Key Features
+
+* **⚡ High Performance:** Engineered with `React.lazy` code-splitting and Vite for lightning-fast load times.
+* **🎥 Smooth Scroll Experience:** Integrated **Lenis Scroll** for a buttery-smooth, high-end navigation feel.
+* **🎨 Architectural Aesthetics:** Custom UI components, minimalist typography, and a "blueprint" styled 404 error page.
+* **📱 Fully Responsive:** Adaptive layout ensuring a stunning experience on mobile, tablet, and 4K desktop screens.
+* **🔍 SEO Optimized:** Pre-configured meta tags targeting local queries in Malappuram & Kerala.
+* **✨ Interactive Animations:** Subtle micro-interactions and transitions powered by CSS and modern React hooks.
+
+---
+
+## 🛠️ Tech Stack
+
+| Category | Technologies |
+| :--- | :--- |
+| **Framework** | [React.js](https://react.dev/) (Vite Build Tool) |
+| **Styling** | [Tailwind CSS](https://tailwindcss.com/) |
+| **Routing** | [React Router DOM](https://reactrouter.com/) (v6) |
+| **Motion** | [Lenis](https://github.com/studio-freight/lenis) (Smooth Scroll) |
+| **Icons** | [FontAwesome](https://fontawesome.com/) |
+| **Deployment** | Vercel / Netlify (Recommended) |
+
+---
+

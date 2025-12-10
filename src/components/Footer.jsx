@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { motion, useSpring, useTransform, useMotionValue } from "framer-motion";
 import { Link } from "react-router-dom"; // Ensure react-router-dom is installed
 import { useNavigate } from "react-router-dom";

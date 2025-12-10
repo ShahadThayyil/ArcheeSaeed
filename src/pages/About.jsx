@@ -96,7 +96,7 @@ const About = () => {
                 <span className="font-mono text-xs text-[#666666]">N 34° 01' 44" / W 118° 28' 22"</span>
             </div>
            
-        </div>
+        </div> 
 
         {/* Massive Typography */}
         <div className="relative z-10">
@@ -138,7 +138,7 @@ const About = () => {
             </div>
             <div ref={imageRef} className="w-[120%] h-[120%] -mt-[10%] -ml-[10%]">
                  <img 
-                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2574&auto=format&fit=crop" 
+                   src="./profile-about.avif" 
                    alt="Architect" 
                    className="w-full h-full object-cover grayscale contrast-125"
                  />

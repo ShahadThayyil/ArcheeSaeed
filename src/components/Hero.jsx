@@ -82,7 +82,7 @@ export default function HeroSection() {
           <video
             autoPlay loop muted playsInline
             className="w-full h-full object-cover"
-          >
+          > 
             {/* Keeping your video */}
             <source src="/video.mp4" type="video/mp4" />
           </video>

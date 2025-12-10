@@ -1,20 +1,5 @@
 export const stats = [
-  {
-    value: 5,
-    suffix: "+",
-    title: "Years of Experience",
-    desc: "Decades of experience in delivering exceptional projects.",
-  },
-  {
-    value: 20,
-    suffix: "+",
-    title: "Projects Delivered",
-    desc: "Decades of experience in delivering exceptional projects.",
-  },
-  {
-    value: 98,
-    suffix: "%",
-    title: "Client Satisfaction",
-    desc: "I build long-term partnerships through proven results.",
-  },
+  { id: 1, value: "05", label: "Years of Excellence", sub: "Since 2025" },
+  { id: 2, value: "24", label: "Global Projects", sub: "Delivered" },
+  { id: 3, value: "98", label: "Client Satisfaction", sub: "Percent" },
 ];

@@ -70,7 +70,7 @@ const GlowingGaugeTube = ({ scrollYProgress }) => {
         <div className="absolute left-0 md:left-8 top-8 bottom-32 w-8 md:w-12 z-10">
             
             {/* Measurement Ticks (Hidden on very small screens to reduce clutter) */}
-            <div className="absolute right-full mr-1 md:mr-2 top-0 bottom-0 flex flex-col justify-between py-4 opacity-30 hidden sm:flex">
+            <div className="absolute right-full mr-1 md:mr-2 top-0 bottom-0  flex-col justify-between py-4 opacity-30 hidden sm:flex">
                 {[...Array(15)].map((_, i) => (
                     <div key={i} className="w-2 h-[1px] bg-[#BC4B32]"></div>
                 ))}

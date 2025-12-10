@@ -1,8 +1,7 @@
-import React, { useLayoutEffect, useRef, useState, useMemo } from "react";
+import  { useLayoutEffect, useRef, useState, useMemo } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Plus, Minus } from "lucide-react";
-// Replace with your actual import
 import { projects as originalProjects } from "../data/projects";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -224,16 +223,7 @@ const Projects = () => {
         </div>
       </section>
 
-      {/* --- FOOTER CTA --- */}
-      <section className="border-t border-[#E0E0E0] bg-[#F8F7F5] py-16 md:py-24 px-6 md:px-12 text-center">
-          <h2 className="text-[#1A1A1A] font-serif text-3xl md:text-6xl mb-6 md:mb-8">
-              Have a vision?
-          </h2>
-          <button className="group relative inline-flex items-center justify-center px-8 md:px-10 py-3 md:py-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-[#1A1A1A] hover:bg-[#BC4B32] transition-colors duration-300 rounded-none">
-            <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#BC4B32] rounded-full group-hover:w-56 group-hover:h-56"></span>
-            <span className="relative uppercase tracking-widest text-[10px] md:text-xs">Start Discussion</span>
-          </button>
-      </section>
+    
     </div>
   );
 };

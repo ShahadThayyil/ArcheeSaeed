@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 const CONTACT_DETAILS = [
   { id: "01", label: "Location / HQ", value: "124 Concrete Ave, Ste 400\nLos Angeles, CA 90012", icon: <MapPin size={18} /> },
   { id: "02", label: "Inquiries / Email", value: "hello@arch-studio.com", icon: <Mail size={18} /> },
-  { id: "03", label: "Direct Line / Phone", value: "+1 (310) 555-0192", icon: <Phone size={18} /> },
+  { id: "03", label: "Direct Line / Phone", value: "+91 (310) 555-0192", icon: <Phone size={18} /> },
 ];
 
 const PROJECT_TYPES = [

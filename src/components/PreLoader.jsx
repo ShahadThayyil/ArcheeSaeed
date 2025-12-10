@@ -103,10 +103,8 @@ export default function Preloader({ onLoaded }) {
       }
     });
 
-    // -------------------------
-    // THE IMPORTANT ADDITION:
-    // Browser-level full-load trigger
-    // -------------------------
+   
+    
     const handleWindowLoad = () => finishLoading();
     window.addEventListener("load", handleWindowLoad);
 
@@ -154,9 +152,11 @@ export default function Preloader({ onLoaded }) {
           }`}
         >
           {/* Text Logo */}
-          <h1 className="font-serif text-5xl md:text-7xl text-[#1A1A1A] tracking-tighter">
-            ARCH<span className="text-[#BC4B32]">.</span>
-          </h1>
+          <img 
+  src="./logo.png"      // <-- path to your logo
+  alt="ARCH Logo"
+  className="h-12 md:h-16 lg:h-20 w-auto object-contain"
+/>
 
           {/* Rotating ring */}
           <div className="absolute inset-[-20px] border border-dashed border-[#BC4B32]/30 rounded-full animate-[spin_10s_linear_infinite]" />

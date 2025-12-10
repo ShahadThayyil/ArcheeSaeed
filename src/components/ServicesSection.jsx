@@ -1,15 +1,5 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { Box, Layers, Triangle, Ruler, Plus, Scan, Compass } from "lucide-react";
-
-// --- THEME CONFIGURATION ---
-// Background: #F8F7F5 (Alabaster)
-// Text Main: #1A1A1A (Charcoal)
-// Text Sub: #666666 (Slate)
-// Accent: #BC4B32 (Terracotta)
-// Border: #E0E0E0 (Concrete)
-
-// --- 1. Technical Wireframes (Subtle Backgrounds) ---
 const WireframeAbstract = () => (
   <svg className="absolute top-0 right-0 w-full h-full opacity-[0.03] pointer-events-none" viewBox="0 0 100 100">
     <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
@@ -19,7 +9,6 @@ const WireframeAbstract = () => (
   </svg>
 );
 
-// --- 2. Architectural Service Card (The "Tight" Layout) ---
 const ArchCard = ({ id, title, subtitle, description, icon: Icon, meta, className }) => {
   return (
     <motion.div 
