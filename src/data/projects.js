@@ -48,9 +48,9 @@ export const projects = [
   },
   {
     id: 10,
-    image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765642663/1_3_1_i9yaqo.png",
+    image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765644531/enhanced_9_1_jdoxlo.png",
     category: "Interior",
-  },//repeating image
+  },//repeating image change the image url 
   {
     id: 11,
     image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765642663/1_3_1_i9yaqo.png",
