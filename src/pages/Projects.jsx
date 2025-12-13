@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef, useState, useMemo, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Plus, Minus, X, MapPin } from "lucide-react"; 
+import { Plus, Minus, X, ArrowUpRight } from "lucide-react"; 
 import { projects as originalProjects } from "../data/projects";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -52,50 +52,36 @@ const Projects = () => {
     return () => ctx.revert();
   }, [activeCategory]);
 
-  // --- POPUP ANIMATION ---
+  // --- POPUP ANIMATION (MODIFIED FOR IMAGE ONLY) ---
   useEffect(() => {
     if (selectedProject) {
         document.body.style.overflow = "hidden"; 
-        
         const tl = gsap.timeline();
         
-        // 1. Fade in Backdrop
+        // 1. Backdrop fade
         tl.fromTo(".popup-overlay", 
             { opacity: 0 }, 
-            { opacity: 1, duration: 0.4, ease: "power2.out" }
+            { opacity: 1, duration: 0.5, ease: "power2.out" }
         )
-        // 2. Zoom in Glass Modal
+        // 2. Image Container smooth scale and fade up
         .fromTo(".popup-content",
-            { scale: 0.95, opacity: 0, y: 30 },
-            { scale: 1, opacity: 1, y: 0, duration: 0.5, ease: "expo.out" },
-            "-=0.2"
-        )
-        // 3. Stagger Text Elements inside
-        .fromTo(".popup-text", 
-            { y: 20, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.4, stagger: 0.1, ease: "power2.out" },
+            { scale: 0.92, opacity: 0, y: 40 },
+            { scale: 1, opacity: 1, y: 0, duration: 0.8, ease: "expo.out" },
             "-=0.3"
         );
-
     } else {
         document.body.style.overflow = "auto"; 
     }
   }, [selectedProject]);
 
   const handleClosePopup = () => {
-    const tl = gsap.timeline({
-        onComplete: () => setSelectedProject(null)
-    });
-
-    tl.to(".popup-content", { scale: 0.95, opacity: 0, duration: 0.3, ease: "power2.in" })
+    const tl = gsap.timeline({ onComplete: () => setSelectedProject(null) });
+    tl.to(".popup-content", { scale: 0.92, opacity: 0, y: 20, duration: 0.4, ease: "power3.in" })
       .to(".popup-overlay", { opacity: 0, duration: 0.3 }, "-=0.2");
   };
 
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full min-h-screen bg-[#F8F7F5] selection:bg-[#BC4B32] selection:text-white"
-    >
+    <div ref={containerRef} className="relative w-full min-h-screen bg-[#F8F7F5] selection:bg-[#BC4B32] selection:text-white">
       {/* BACKGROUND GRID */}
       <div 
         className="fixed inset-0 pointer-events-none z-0 opacity-[0.03]"
@@ -116,7 +102,6 @@ const Projects = () => {
                     Built <span className="italic text-[#666666] font-light">Environment</span>
                 </h1>
             </div>
-            
             <div className="flex items-center gap-2 md:block md:text-right">
                 <span className="text-[#1A1A1A] font-mono text-lg md:text-xl block">
                     {filteredProjects.length.toString().padStart(2, '0')}
@@ -177,54 +162,21 @@ const Projects = () => {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover grayscale-0 md:grayscale md:group-hover:grayscale-0 transition-all duration-700 ease-out transform group-hover:scale-105"
+                    className="w-full h-full object-cover grayscale-0   transition-transform duration-700 ease-out "
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-[#1A1A1A]/30 md:bg-[#1A1A1A]/20 group-hover:bg-[#1A1A1A]/40 transition-colors duration-500" />
+                  {/* Subtle Gradient only at the bottom for text readability */}
+                  <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent opacity-60 transition-opacity duration-300" />
                 </div>
 
-                {/* Corner Markers */}
-                <div className="absolute top-4 left-4 text-white/50 group-hover:opacity-0 transition-opacity duration-300">
-                    <Plus size={12} strokeWidth={3} />
+                {/* Top Right Arrow (Appears on Hover) */}
+                <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
+                    <div className="w-8 h-8 flex items-center justify-center bg-white/20 backdrop-blur-md rounded-full text-white border border-white/20">
+                        <ArrowUpRight size={16} />
+                    </div>
                 </div>
-                <div className="absolute bottom-4 right-4 text-white/50 group-hover:opacity-0 transition-opacity duration-300">
-                    <Plus size={12} strokeWidth={3} />
-                </div>
 
-
-
-                {/* Mobile Card Label */}
-              <div className="absolute bottom-4 left-4 z-10 group-hover:opacity-0 transition-opacity duration-300 delay-75 max-w-[85%]">
-  <div
-    className="
-      relative
-      px-4 py-3
-
-      /* iOS Glass Core */
-      bg-white/10
-      backdrop-blur-2xl
-      backdrop-saturate-200
-      border border-white/20
-      rounded-xl
-      shadow-[0_8px_32px_rgba(0,0,0,0.25)]
-
-      /* Subtle Glow Ring */
-      before:absolute before:inset-0 before:rounded-xl
-      before:p-[1px]
-      before:bg-gradient-to-br before:from-white/40 before:to-white/5
-      before:opacity-40
-      before:pointer-events-none
-    "
-  >
-    <h3 className="relative z-10 text-white font-serif text-lg leading-none tracking-wide">
-      {project.title}
-    </h3>
-
-    <p className="relative z-10 md:hidden text-[#BC4B32] text-[10px] font-mono uppercase mt-1 tracking-wider">
-      {project.location}
-    </p>
-  </div>
-</div>
+               
 
               </div>
             );
@@ -244,80 +196,43 @@ const Projects = () => {
         </div>
       </section>
 
-      {/* --- GLASSMORPHIC POPUP --- */}
+      {/* --- NATURAL SIZE IMAGE POPUP --- */}
       {selectedProject && (
         <div 
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
             role="dialog"
         >
             {/* Backdrop */}
             <div 
-                className="popup-overlay absolute inset-0 bg-black/60 backdrop-blur-sm cursor-pointer"
+                className="popup-overlay absolute inset-0 bg-[#1A1A1A]/90 backdrop-blur-md cursor-pointer"
                 onClick={handleClosePopup}
             />
 
-            {/* Glass Content Container */}
+            {/* Container fits the image */}
             <div className="
                 popup-content 
-                relative w-full max-w-5xl max-h-[85vh] 
-                bg-[#1A1A1A]/85 backdrop-blur-2xl 
-                border border-white/10 shadow-2xl
-                flex flex-col md:flex-row 
-                overflow-hidden rounded-sm
+                relative 
+                w-auto h-auto max-w-[95vw] max-h-[90vh]
+                flex items-center justify-center
+                rounded-xl overflow-hidden
+                shadow-2xl border border-white/10
+                bg-[#1A1A1A]
             ">
                 
-                {/* Close Button (Floating) */}
+                {/* Close Button */}
                 <button 
                     onClick={handleClosePopup}
-                    className="absolute top-4 right-4 z-50 p-2 bg-black/20 hover:bg-[#BC4B32] text-white border border-white/10 backdrop-blur-md transition-colors rounded-full"
+                    className="absolute top-4 right-4 z-50 p-2 bg-black/30 hover:bg-[#BC4B32] text-white border border-white/20 backdrop-blur-md transition-colors rounded-full"
                 >
-                    <X size={18} />
+                    <X size={20} />
                 </button>
 
-                {/* Left: Image (Hero) */}
-                <div className="w-full md:w-[65%] h-[40vh] md:h-auto relative bg-[#1A1A1A]">
-                    <img 
-                        src={selectedProject.image} 
-                        alt={selectedProject.title}
-                        className="w-full h-full object-cover"
-                    />
-                    {/* Gradient overlay for text readability if needed */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/80 via-transparent to-transparent md:hidden" />
-                </div>
-
-                {/* Right: Info (Glass Pane) */}
-                <div className="w-full md:w-[35%] p-6 md:p-10 flex flex-col justify-center relative">
-                    
-                    {/* Decoration Line */}
-                    <div className="popup-text w-10 h-[2px] bg-[#BC4B32] mb-6" />
-
-                    {/* Category */}
-                    <span className="popup-text font-mono text-[#BC4B32] text-[10px] uppercase tracking-[0.2em] mb-3 block">
-                        {selectedProject.category}
-                    </span>
-
-                    {/* Title */}
-                    <h2 className="popup-text font-serif text-3xl md:text-4xl text-[#F8F7F5] leading-[1.1] mb-4">
-                        {selectedProject.title}
-                    </h2>
-
-                    {/* Metadata */}
-                    <div className="popup-text flex items-center gap-3 text-white/40 text-[10px] font-mono uppercase tracking-wider mb-6 pb-6 border-b border-white/10">
-                        <div className="flex items-center gap-1">
-                            <MapPin size={10} />
-                            <span>{selectedProject.location}</span>
-                        </div>
-                        <span>•</span>
-                        <span>{selectedProject.year || "2027"}</span>
-                    </div>
-
-                    {/* Short Description */}
-                    <p className="popup-text text-white/70 text-sm leading-relaxed font-light">
-                        A modern approach to {selectedProject.category.toLowerCase()} design. 
-                        Focusing on sustainable materials and open spaces to create a seamless flow between the interior and the built environment.
-                    </p>
-
-                </div>
+                {/* Image drives the size */}
+                <img 
+                    src={selectedProject.image} 
+                    alt={selectedProject.title}
+                    className="block w-auto h-auto max-w-full max-h-[90vh] object-contain"
+                />
             </div>
         </div>
       )}
