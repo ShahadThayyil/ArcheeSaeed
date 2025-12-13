@@ -35,7 +35,7 @@ const ParallaxCard = ({ data, index }) => {
           <img
             src={data.image}
             alt={data.name}
-            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
+            className="w-full h-full object-cover transition-all duration-700 ease-in-out"
           />
         </div>
         

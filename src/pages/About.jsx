@@ -13,9 +13,9 @@ const SOCIAL_LINKS = [
 ];
 
 const STATS = [
-  { label: "Est.", value: "2016" },
-  { label: "Built", value: "42" },
-  { label: "Awards", value: "12" },
+  { label: "Est.", value: "2020" },
+  { label: "Built", value: "200" },
+  { label: "Experience", value: "5" },
 ];
 
 const PHILOSOPHY = [

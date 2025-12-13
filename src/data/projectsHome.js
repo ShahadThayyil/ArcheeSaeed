@@ -1,30 +1,30 @@
 export const projects = [
   {
     id: 1,
-    title: "Malabar Courtyard",
-    location: "Calicut",
-    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000&auto=format&fit=crop",
-    year: "2024"
+    title: "Kerala Startup Pods",
+    location: "Kochi, Kerala",
+    image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1765555470/F_CMPR_aqveqy.png",
+    year: "2025"
   },
   {
     id: 2,
-    title: "Skyline Villa",
+    title: "Aigosys Innovation",
     location: "Cochin",
-    image: "/images/projects/p-2-2.jpeg", 
-    year: "2023"
+    image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1765555459/f_cmprs_i5mqr7.jpg", 
+    year: "2025"
   },
   {
     id: 3,
-    title: "Urban Retreat",
-    location: "Trivandrum",
-    image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2000&auto=format&fit=crop",
-    year: "2024"
+    title: "Master Bedroom Design",
+    location: "Malappuram",
+    image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1765555469/f_mpwxhr.jpg",
+    year: "2025"
   },
   {
     id: 4,
-    title: "The Stone House",
-    location: "Wayanad",
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2000&auto=format&fit=crop",
+    title: "Grama Cafe Interior",
+    location: "Calicut",
+    image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1765555458/f_cmprs_1_w1oxx4.jpg",
     year: "2025"
   },
 ];

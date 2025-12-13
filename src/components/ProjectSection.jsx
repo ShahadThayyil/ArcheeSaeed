@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects } from "../data/projectsHome";
 gsap.registerPlugin(ScrollTrigger);
 
-const coverImage = "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000&auto=format&fit=crop";
+const coverImage = "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1765555470/F_CMPR_aqveqy.png";
 
 const ModernHorizontalStack = () => {
   const wrapperRef = useRef(null);
@@ -129,6 +129,7 @@ const ModernHorizontalStack = () => {
                     ref={coverImageRef} 
                     src={coverImage} 
                     alt="Cover" 
+                    loading="lazy"
                     className="w-full h-full object-cover scale-110"
                     style={{ filter: "blur(10px) grayscale(100%) brightness(50%)" }}
                 />
@@ -156,7 +157,9 @@ const ModernHorizontalStack = () => {
                 {projects.map((project, index) => (
                 <div key={project.id} className="project-panel w-[100vw] h-full flex relative shrink-0 overflow-hidden">
                     <div className="w-full h-full overflow-hidden relative group">
-                        <img src={project.image} alt={project.title} className="w-full h-full object-cover origin-center" />
+                        <img 
+                        loading="lazy"
+                        src={project.image} alt={project.title} className="w-full h-full object-cover origin-center" />
                         
                         {/* Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80"></div>
@@ -169,17 +172,12 @@ const ModernHorizontalStack = () => {
                                 </span>
                                 <span className="text-sm md:text-base font-bold text-[#BC4B32]"> — {project.year}</span>
                             </div>
-                            <h2 className="font-serif text-5xl md:text-8xl leading-[0.9] tracking-tight mix-blend-overlay opacity-90 drop-shadow-2xl">
+                            <h2 className="font-serif text-2xl md:text-4xl leading-[0.9] tracking-tight mix-blend-overlay opacity-90 drop-shadow-2xl">
                                 {project.title}
                             </h2>
                         </div>
 
-                        {/* Index Number */}
-                        <div className="absolute top-1/2 right-6 md:right-32 -translate-y-1/2 z-20 pointer-events-none mix-blend-overlay opacity-50">
-                            <h1 className="font-serif text-[25vw] leading-none text-transparent" style={{ WebkitTextStroke: "2px rgba(255,255,255,0.5)" }}>
-                                0{index + 1}
-                            </h1>
-                        </div>
+                      
                     </div>
                 </div>
                 ))}

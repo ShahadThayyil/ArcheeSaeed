@@ -153,11 +153,13 @@ useEffect(() => {
             className="w-full h-full relative cursor-none overflow-hidden rounded-sm shadow-xl md:shadow-none bg-[#E0E0E0] group"
           >
              {/* 1. Base Layer: The Sketch */}
-             <img 
-                src="/sketch.png" 
-                alt="Sketch" 
-                className="absolute inset-0 w-full h-full object-cover sketch-filter opacity-90 pointer-events-none" 
-             />
+            <img 
+  loading="lazy"
+  src="https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1765554617/1_n83oyj.jpg"
+  alt="Sketch"
+  className="absolute inset-0 w-full h-full object-cover sketch-filter opacity-90 pointer-events-none"
+/>
+
              <div className="absolute inset-0 border-[1px] border-white/30 m-4 pointer-events-none"></div>
 
              {/* 2. The Moving Lens (Window) */}
@@ -174,8 +176,9 @@ useEffect(() => {
     height: imgSize.h
   }}              > 
                     <img 
-                        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop" 
-                        alt="Real" 
+                        src="https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1765554617/1_n83oyj.jpg
+"                       loading="lazy"
+                        alt="Real Image" 
                         // 🔥 CHANGED: Removed scale-125. Now it's normal size.
                         className="w-full h-full object-cover" 
                     /> 

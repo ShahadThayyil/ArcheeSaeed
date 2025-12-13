@@ -104,9 +104,9 @@ const LogoCard = ({ logo }) => (
         <img 
             src={logo.img} 
             alt={logo.name} 
-            className="w-12 h-12 md:w-24 md:h-24 object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 mb-3 md:mb-4" 
+            className="w-12 h-12 md:w-24 md:h-24 object-contain    opacity-100 transition-all duration-500 mb-3 md:mb-4" 
         />
-        <p className="font-manrope text-[8px] md:text-xs font-bold uppercase tracking-widest text-[#1A1A1A]/40 group-hover:text-[#BC4B32] transition-colors">
+        <p className="font-manrope text-[8px] md:text-xs font-bold uppercase tracking-widest text-[#1A1A1A]/40 text-[#BC4B32] transition-colors">
             {logo.name}
         </p>
      </div>

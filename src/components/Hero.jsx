@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -12,6 +12,34 @@ export default function HeroSection() {
   const videoRef = useRef(null);
   const contentRef = useRef(null);
   const overlayRef = useRef(null);
+
+  // --- 1. SMART VIDEO SOURCE LOGIC ---
+  // Rendu video file paths ivide kodukkuka
+  const desktopVideo = "https://res.cloudinary.com/dmtzmgbkj/video/upload/11_r1mhql.mp4 ";         // High Res for Desktop
+  const mobileVideo = "https://res.cloudinary.com/dmtzmgbkj/video/upload/11_r1mhql.mp4";   // Portrait/Low Res for Mobile
+
+  const [videoSrc, setVideoSrc] = useState(desktopVideo);
+
+  useEffect(() => {
+    const handleResize = () => {
+      // 768px is the standard breakpoint for tablets/mobiles
+      if (window.innerWidth < 768) {
+        setVideoSrc(mobileVideo);
+      } else {
+        setVideoSrc(desktopVideo);
+      }
+    };
+
+    // Initial check on load
+    handleResize();
+
+    // Listen for window resize events
+    window.addEventListener("resize", handleResize);
+    
+    // Cleanup listener
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  // -----------------------------------
 
   useGSAP(() => {
     // 1. MAIN HERO TIMELINE
@@ -79,13 +107,16 @@ export default function HeroSection() {
         
         {/* A. VIDEO LAYER */}
         <div ref={videoRef} className="absolute inset-0 z-0 w-full h-full">
+          {/* Changed: Added 'src' and 'key' for dynamic switching */}
           <video
-            autoPlay loop muted playsInline
+            key={videoSrc} // Important: Forces React to reload video when source changes
+            src={videoSrc}
+            autoPlay 
+            loop 
+            muted 
+            playsInline
             className="w-full h-full object-cover"
-          > 
-            {/* Keeping your video */}
-            <source src="/video.mp4" type="video/mp4" />
-          </video>
+          />
           
           <div className="absolute inset-0 bg-black/20"></div>
 
@@ -176,11 +207,11 @@ export default function HeroSection() {
             </h1>
         </div>
 
-     
+      
 
       </div>
 
-     
+      
     </div>
   );
 }

@@ -293,16 +293,6 @@ const ModernStats = () => {
         </div>
       </div>
 
-      {/* --- FOOTER DECORATION --- */}
-      <div className="absolute bottom-12 left-0 w-full overflow-hidden whitespace-nowrap opacity-10 pointer-events-none">
-          <motion.div 
-            animate={{ x: [0, -1000] }}
-            transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
-            className="text-[10rem] font-bold text-[#1A1A1A] font-['Inter'] leading-none"
-          >
-            EST. 2026 — ARCHITECTURE — DIGITAL — STRUCTURE — EST. 2026 —
-          </motion.div>
-      </div>
 
     </section>
   );
