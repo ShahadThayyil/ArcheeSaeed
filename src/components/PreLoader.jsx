@@ -28,7 +28,7 @@ export default function Preloader({ onLoaded }) {
       setIsExiting(true);
       setTimeout(() => {
         if (onLoaded) onLoaded();
-      }, 800);
+      }, 100);
     }, 800);
   };
 

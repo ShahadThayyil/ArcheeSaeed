@@ -101,11 +101,11 @@ const ServicesSection = () => {
                  <h4 className="font-mono text-xs font-bold text-[#1A1A1A] tracking-[0.3em] uppercase">Services Overview</h4>
               </div>
               <h2 className="font-serif text-5xl md:text-6xl text-[#1A1A1A]">
-                 Design <span className="italic text-[#666666]">Manifesto</span>
+                 Our <span className="italic text-[#666666]">Services</span>
               </h2>
            </div>
            <p className="font-manrope text-sm text-[#666666] max-w-sm text-right mt-4 md:mt-0">
-             [SCALE 1:100] We construct narratives through space, light, and material precision.
+              We construct narratives through space, light, and material precision.
            </p>
         </div>
 

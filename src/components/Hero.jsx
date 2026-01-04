@@ -3,7 +3,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-// Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroSection() {
@@ -12,206 +11,198 @@ export default function HeroSection() {
   const videoRef = useRef(null);
   const contentRef = useRef(null);
   const overlayRef = useRef(null);
+  const scrollIndicatorRef = useRef(null); // Ref for scroll indicator
+  
+  // Mobile specific refs
+  const mobileHeroRef = useRef(null);
+  const mobileImageRef = useRef(null);
 
-  // --- 1. SMART VIDEO SOURCE LOGIC ---
-  // Rendu video file paths ivide kodukkuka
-  const desktopVideo = "https://res.cloudinary.com/dmtzmgbkj/video/upload/11_r1mhql.mp4 ";         // High Res for Desktop
-  const mobileVideo = "https://res.cloudinary.com/dmtzmgbkj/video/upload/11_r1mhql.mp4";   // Portrait/Low Res for Mobile
+  const desktopVideo = "https://res.cloudinary.com/dmtzmgbkj/video/upload/11_r1mhql.mp4";
+  // Premium architectural stock image for mobile
+  const mobileStockImage = "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767510730/mobile-hero_ljefwl.png"; 
 
-  const [videoSrc, setVideoSrc] = useState(desktopVideo);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      // 768px is the standard breakpoint for tablets/mobiles
-      if (window.innerWidth < 768) {
-        setVideoSrc(mobileVideo);
-      } else {
-        setVideoSrc(desktopVideo);
-      }
+      setIsMobile(window.innerWidth < 768);
     };
-
-    // Initial check on load
-    handleResize();
-
-    // Listen for window resize events
-    window.addEventListener("resize", handleResize);
     
-    // Cleanup listener
+    handleResize();
+    window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  // -----------------------------------
 
   useGSAP(() => {
-    // 1. MAIN HERO TIMELINE
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top top",
-        end: "+=250%", 
-        scrub: 1, 
-        pin: true, 
-        anticipatePin: 1,
-      },
+    let mm = gsap.matchMedia();
+
+    // ---------------------------------------------------------
+    // DESKTOP: Original Pinning and Zoom Animation
+    // ---------------------------------------------------------
+    mm.add("(min-width: 768px)", () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "+=250%",
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
+        },
+      });
+
+      tl.to(textRef.current, {
+        scale: 100,
+        duration: 5,
+        ease: "power2.inOut",
+      })
+      // Fade out scroll indicator as we zoom in
+      .to(scrollIndicatorRef.current, {
+        opacity: 0,
+        y: 20,
+        duration: 1,
+      }, 0) 
+      .to(textRef.current, {
+        opacity: 0,
+        duration: 1,
+      }, "-=1")
+      .to(overlayRef.current, {
+        opacity: 1,
+        duration: 1,
+      }, "<");
     });
 
-    // Step A: Zoom In Text
-    tl.to(textRef.current, {
-      scale: 100, 
-      duration: 5, 
-      ease: "power2.inOut",
-    })
-    
-    // Step B: Fade Out "ARCHIZAID" Text & Background
-    .to(textRef.current, {
-      opacity: 0, 
-      duration: 1,
-    }, "-=1")
-    
-    // Step C: Fade In Overlay HUD
-    .to(overlayRef.current, {
-      opacity: 1, 
-      duration: 1,
-    }, "<");
+    // ---------------------------------------------------------
+    // MOBILE: Clean Static Architectural Layout
+    // ---------------------------------------------------------
+    mm.add("(max-width: 767px)", () => {
+      const tl = gsap.timeline();
+
+      tl.fromTo(mobileImageRef.current, 
+        { clipPath: "inset(100% 0% 0% 0%)" },
+        { clipPath: "inset(0% 0% 0% 0%)", duration: 1.4, ease: "power4.inOut" }
+      )
+      .from(".mobile-fade-up", {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power3.out"
+      }, "-=0.6")
+      .from(".scute-accent", {
+        scaleX: 0,
+        transformOrigin: "left",
+        duration: 1,
+        ease: "expo.out"
+      }, "-=0.4");
+    });
 
   }, { scope: containerRef });
 
-
-  // 2. NEXT SECTION PARALLAX ENTRY
-  useGSAP(() => {
-    gsap.fromTo(contentRef.current, 
-      { y: 150, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1.5,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: contentRef.current,
-          start: "top bottom",
-          end: "top center",
-          scrub: 1,
-        }
-      }
-    );
-  }, { scope: contentRef });
-
   return (
-    // THEME BACKGROUND
-    <div className="relative bg-[#F8F7F5]">
+    <div ref={containerRef} className="relative bg-[#F8F7F5] overflow-hidden">
       
-      {/* 1. HERO PINNED CONTAINER */}
-      <div 
-        ref={containerRef} 
-        className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-[#F8F7F5]"
-      >
-        
-        {/* A. VIDEO LAYER */}
-        <div ref={videoRef} className="absolute inset-0 z-0 w-full h-full">
-          {/* Changed: Added 'src' and 'key' for dynamic switching */}
-          <video
-            key={videoSrc} // Important: Forces React to reload video when source changes
-            src={videoSrc}
-            autoPlay 
-            loop 
-            muted 
-            playsInline
-            className="w-full h-full object-cover"
-          />
-          
-          <div className="absolute inset-0 bg-black/20"></div>
-
-          {/* --- ARCHITECTURAL HUD OVERLAY (Initially Hidden) --- */}
-          <div 
-            ref={overlayRef}
-            className="absolute inset-0 z-10 p-6 md:p-12 flex flex-col justify-between pointer-events-none opacity-0"
-          >
-              {/* Top Row */}
-              <div className="flex justify-between items-start opacity-70">
-                  <div className="font-mono text-white text-[10px] tracking-[0.2em] leading-loose">
-                      CAM_01 <br/> 
-                      REC <span className="text-red-500 animate-pulse">●</span>
-                  </div>
-                  <div className="font-mono text-white text-[10px] tracking-[0.2em] text-right leading-loose">
-                      ISO 800 <br/> 
-                      4K RAW
-                  </div>
-              </div>
-
-              {/* Center Element */}
-              <div className="flex items-center justify-center">
-                  <div className="text-center">
-                      <p className="text-white/80 font-light text-xs md:text-sm tracking-[0.6em] uppercase mb-2">
-                          Kerala • Modernist
-                      </p>
-                      <div className="h-[1px] w-12 bg-white/50 mx-auto"></div>
-                  </div>
-              </div>
-
-              {/* Bottom Row */}
-              <div className="flex justify-between items-end opacity-70">
-                  <div className="flex items-center gap-4">
-                      <div className="h-[1px] w-12 bg-white/50"></div>
-                      <div className="font-mono text-white text-[10px] tracking-[0.2em]">
-                          ELEVATION: +45m
-                      </div>
-                  </div>
-                  <div className="font-mono text-white text-[10px] tracking-[0.2em]">
-                      10.85°N / 76.27°E
-                  </div>
-              </div>
+      {/* 1. DESKTOP VIEWPORT */}
+      {!isMobile && (
+        <div className="relative h-screen w-full flex items-center justify-center">
+          <div ref={videoRef} className="absolute inset-0 z-0 w-full h-full">
+            <video
+              src={desktopVideo}
+              autoPlay loop muted playsInline
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/30"></div>
+            
+            {/* Desktop HUD Overlay */}
+            <div ref={overlayRef} className="absolute inset-0 z-30 p-12 flex flex-col justify-between pointer-events-none opacity-0">
+                <div className="flex justify-between items-start opacity-70">
+                    <div className="font-mono text-white text-[9px] tracking-[0.2em] leading-loose">
+                        PROJECT_V.01 <br/> STATUS: ACTIVE <span className="text-red-500 animate-pulse">●</span>
+                    </div>
+                    <div className="font-mono text-white text-[9px] tracking-[0.2em] text-right leading-loose">
+                        KERALA, IN <br/> 2025-2028
+                    </div>
+                </div>
+                <div className="flex justify-between items-end opacity-70 text-white">
+                    <div className="flex items-center gap-4">
+                        <div className="h-[1px] w-12 bg-white/50"></div>
+                        <div className="font-mono text-[9px] tracking-[0.2em]">ARCHIZAID</div>
+                    </div>
+                    <div className="font-mono text-[9px] tracking-[0.2em]">ARCHITECTURE • DESIGN</div>
+                </div>
+            </div>
           </div>
-          {/* --- END OVERLAY --- */}
 
+          {/* Desktop Mask Layer */}
+          <div ref={textRef} className="relative z-10 w-full h-full flex items-center justify-center bg-[#F8F7F5] mix-blend-screen origin-center overflow-hidden">
+             <h1 className="text-[12vw] font-black text-black leading-none tracking-tighter text-center uppercase select-none">
+                ARCHIZAID
+             </h1>
+          </div>
+
+          {/* --- SCROLL INDICATOR (Desktop Only) --- */}
+          <div 
+            ref={scrollIndicatorRef}
+            className="absolute bottom-10 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center gap-3 pointer-events-none"
+          >
+             <span className="font-mono text-[9px] tracking-[0.5em] uppercase text-[#BC4B32]">Scroll To Explore</span>
+             <div className="w-[1px] h-12 bg-white/20 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-full bg-[#BC4B32] -translate-y-full animate-[scroll-reveal_2s_ease-in-out_infinite]"></div>
+             </div>
+          </div>
+
+          <style>{`
+            @keyframes scroll-reveal {
+              0% { transform: translateY(-100%); }
+              50% { transform: translateY(0%); }
+              100% { transform: translateY(100%); }
+            }
+          `}</style>
         </div>
+      )}
 
-        {/* B. MASK LAYER (CLEAN ARCHITECTURAL BACKGROUND) */}
-        <div 
-          ref={textRef} 
-          className="relative z-10 w-full h-full flex items-center justify-center bg-[#F8F7F5] mix-blend-screen origin-center overflow-hidden"
-        >
-            
-            {/* --- 1. CLEAN GRID (AutoCAD Style) --- */}
-            <svg className="absolute inset-0 w-full h-full opacity-[0.1] pointer-events-none z-0" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    {/* Small Grid Unit */}
-                    <pattern id="smallGrid" width="20" height="20" patternUnits="userSpaceOnUse">
-                        <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1A1A1A" strokeWidth="0.5"/>
-                    </pattern>
-                    {/* Large Grid Block (100x100) */}
-                    <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
-                        <rect width="100" height="100" fill="url(#smallGrid)"/>
-                        <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#1A1A1A" strokeWidth="1"/>
-                    </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#grid)" />
-            </svg>
-
-            {/* --- 2. TECHNICAL MARKERS (Clean Lines) --- */}
-            {/* Left Vertical Ruler */}
-            <div className="absolute left-8 top-1/2 -translate-y-1/2 h-40 w-[1px] bg-[#1A1A1A] opacity-20 hidden md:block">
-                <div className="absolute top-0 left-[-4px] w-3 h-[1px] bg-[#1A1A1A]"></div>
-                <div className="absolute bottom-0 left-[-4px] w-3 h-[1px] bg-[#1A1A1A]"></div>
-                <div className="absolute top-1/2 left-[-8px] w-5 h-[1px] bg-[#1A1A1A]"></div>
-            </div>
-            
-            {/* Right Vertical Ruler */}
-            <div className="absolute right-8 top-1/2 -translate-y-1/2 h-40 w-[1px] bg-[#1A1A1A] opacity-20 hidden md:block">
-                <div className="absolute top-0 right-[-4px] w-3 h-[1px] bg-[#1A1A1A]"></div>
-                <div className="absolute bottom-0 right-[-4px] w-3 h-[1px] bg-[#1A1A1A]"></div>
-                <div className="absolute top-1/2 right-[-8px] w-5 h-[1px] bg-[#1A1A1A]"></div>
-            </div>
-
-            {/* --- MAIN TEXT --- */}
-            <h1 className="relative z-20 w-full text-[14vw] md:text-[12vw] font-black text-black leading-none tracking-tighter text-center uppercase select-none px-4 md:px-12">
-              ARCHIZAID
+      {/* 2. MOBILE VIEWPORT */}
+      {isMobile && (
+        <div className="min-h-screen w-full flex flex-col bg-[#F2F0ED] px-6 pt-24 pb-20">
+          <div className="mb-10">
+            <h1 className="mobile-fade-up text-[16vw] font-black text-[#2C3639] leading-[0.85] tracking-tighter uppercase">
+              ARCHI
             </h1>
+            <div className="flex items-center gap-4">
+               <div className="scute-accent h-[2px] flex-grow bg-[#BC4B32]"></div>
+               <h1 className="mobile-fade-up text-[16vw] font-black text-[#BC4B32] leading-[0.85] tracking-tighter uppercase">
+                 ZAID
+               </h1>
+            </div>
+          </div>
+
+          <div ref={mobileImageRef} className="relative w-full aspect-[4/5] overflow-hidden rounded-sm mb-10 shadow-2xl">
+            <img 
+              src={mobileStockImage} 
+              alt="Modern Architecture" 
+              className="w-full h-full object-cover grayscale-[30%]"
+            />
+            <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+               <p className="text-white font-mono text-[8px] tracking-[0.2em] uppercase bg-black/20 backdrop-blur-md p-2">
+                 Ref. Concrete_Minimalism
+               </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-8 mb-12">
+            <div className="mobile-fade-up col-span-2 border-l-2 border-[#BC4B32] pl-4 mb-2">
+              <p className="text-[14px] leading-relaxed text-[#2C3639] font-semibold uppercase tracking-tight">
+                Defining the silhouette of modern living through contextual and sustainable architecture.
+              </p>
+              <p className="text-[12px] leading-relaxed text-[#2C3639]/70 mt-2">
+                At Archizaid, we believe that space should not only be functional but should tell a story of the people who inhabit it.
+              </p>
+            </div>
+          </div>
         </div>
+      )}
 
-      
-
-      </div>
-
-      
+      {!isMobile && <div ref={contentRef} className="h-10"></div>}
     </div>
   );
 }

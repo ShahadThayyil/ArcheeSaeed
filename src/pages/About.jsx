@@ -6,10 +6,10 @@ import { ArrowUpRight, Plus, Minus } from "lucide-react";
 gsap.registerPlugin(ScrollTrigger);
 
 const SOCIAL_LINKS = [
-  { name: "Instagram", url: "#", id: "01" },
+  { name: "Instagram", url: "https://www.instagram.com/archizaid/", id: "01" },
   { name: "LinkedIn", url: "#", id: "02" },
-  { name: "Twitter / X", url: "#", id: "03" },
-  { name: "Email", url: "mailto:hello@arch.com", id: "04" },
+  { name: "Twitter / X", url: "https://www.twitter.com", id: "03" },
+  { name: "Email", url: "archizaidofficial@gmail.com", id: "04" },
 ];
 
 const STATS = [
@@ -19,9 +19,9 @@ const STATS = [
 ];
 
 const PHILOSOPHY = [
-  { id: "01", title: "Context", desc: "We build with the site, not just on it. Analyzing wind, sun, and soil." },
-  { id: "02", title: "Materiality", desc: "Honest textures. Exposed concrete, laterite, and timber that age well." },
-  { id: "03", title: "Sustainability", desc: "Passive cooling and carbon-negative practices embedded in the DNA." },
+  { id: "01", title: "Environment", desc: "We study every location to ensure our designs blend naturally with the surroundings, respecting the local climate and landscape." },
+  { id: "02", title: "Quality", desc: "We select high-quality materials that not only look beautiful today but age gracefully, giving your space a lasting character." },
+  { id: "03", title: "Efficiency", desc: "Our focus is on energy-efficient solutions and eco-friendly building practices to create a comfortable, healthy future." },
 ];
 
 const About = () => {
@@ -78,7 +78,7 @@ const About = () => {
   return (
     <div ref={containerRef} className="relative w-full bg-[#F8F7F5] text-[#1A1A1A] selection:bg-[#BC4B32] selection:text-white overflow-hidden">
       
-      {/* --- GRID BACKGROUND (Visible Architectural Lines) --- */}
+      {/* --- GRID BACKGROUND --- */}
       <div className="absolute inset-0 pointer-events-none z-0 flex justify-between px-6 md:px-12 max-w-[1920px] mx-auto">
         <div className="w-[1px] h-full bg-[#E0E0E0] grid-line" />
         <div className="w-[1px] h-full bg-[#E0E0E0] grid-line hidden md:block" />
@@ -86,68 +86,54 @@ const About = () => {
         <div className="w-[1px] h-full bg-[#E0E0E0] grid-line" />
       </div>
 
-      {/* --- SECTION 1: THE ARCHITECTURAL HEADLINE --- */}
+      {/* --- SECTION 1: THE HEADLINE --- */}
       <section className="relative pt-40 pb-20 px-6 md:px-12 max-w-[1920px] mx-auto min-h-[90vh] flex flex-col justify-between">
         
-        {/* Technical Header Data */}
         <div className="flex justify-between items-end border-b border-[#1A1A1A] pb-4 mb-12">
             <div className="flex flex-col">
-                <span className="font-mono text-xs uppercase tracking-widest text-[#BC4B32]">fig. 1.0 — Introduction</span>
-                <span className="font-mono text-xs text-[#666666]">N 34° 01' 44" / W 118° 28' 22"</span>
+                <span className="font-mono text-xs uppercase tracking-widest text-[#BC4B32]">fig. 1.0 — Our Vision</span>
+                <span className="font-mono text-xs text-[#666666]">DESIGNING BETTER WAYS TO LIVE</span>
             </div>
-           
         </div> 
 
-        {/* Massive Typography */}
         <div className="relative z-10">
           <h1 className="font-serif text-[13vw] leading-[0.8] tracking-tight uppercase mix-blend-multiply">
-            <span className="block hero-char">Sculpting</span>
-            <span className="block ml-[10vw] italic text-[#666666] hero-char">The Void</span>
+            <span className="block hero-char">Inspired</span>
+            <span className="block ml-[10vw] italic text-[#666666] hero-char">Design</span>
           </h1>
         </div>
 
-        {/* Bottom Description */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mt-12">
             <div className="md:col-span-5 md:col-start-8">
                 <p className="font-sans text-lg md:text-xl leading-relaxed text-[#1A1A1A] indent-12">
-                    Architecture is not about buildings; it is about framing life. 
-                    Operating at the intersection of <span className="text-[#BC4B32]">precision engineering</span> and poetic space.
+                    We believe that great architecture is more than just a structure. It is about creating 
+                    <span className="text-[#BC4B32]"> meaningful environments</span> that improve your daily life through thoughtful design.
                 </p>
             </div>
         </div>
       </section>
 
 
-      {/* --- SECTION 2: ASYMMETRICAL GRID (BIO & IMAGE) --- */}
+      {/* --- SECTION 2: BIO & IMAGE --- */}
       <section className="image-section relative border-t border-[#1A1A1A]">
         <div className="grid grid-cols-1 lg:grid-cols-12 min-h-screen">
           
-          {/* COL 1: Sticky Sidebar (Technical) */}
-          <div className="hidden lg:block lg:col-span-1 border-r border-[#1A1A1A] relative bg-[#F8F7F5] z-20">
-             <div className="sticky top-0 h-screen flex items-center justify-center">
-                <span className="writing-vertical-rl rotate-180 font-mono text-xs tracking-[0.3em] text-[#BC4B32] uppercase">
-                    Profile / Ar. John Doe
-                </span>
-             </div>
-          </div>
+      
 
-          {/* COL 2: Image (Parallax) */}
           <div className="lg:col-span-6 relative overflow-hidden h-[60vh] lg:h-auto border-r border-[#1A1A1A] group">
-            <div className="absolute top-4 left-4 z-20 mix-blend-difference text-white font-mono text-xs">
-                IMG_REF_001.JPG
+            <div className="absolute top-4 left-4 z-20 mix-blend-difference text-white font-mono text-xs uppercase">
+                Studio_Vibe_01.JPG
             </div>
             <div ref={imageRef} className="w-[120%] h-[120%] -mt-[10%] -ml-[10%]">
                  <img 
                    src="./profile-about.avif" 
-                   alt="Architect" 
+                   alt="Principal Architect" 
                    className="w-full h-full object-cover grayscale contrast-125"
                  />
             </div>
-            {/* Overlay Grid */}
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
           </div>
 
-          {/* COL 3: Content (Scrolls) */}
           <div className="lg:col-span-5 bg-[#F8F7F5] flex flex-col">
              
              {/* Stats Row */}
@@ -164,23 +150,22 @@ const About = () => {
              <div className="p-8 md:p-16 flex-grow flex flex-col justify-center">
                 <Plus className="mb-6 text-[#BC4B32]" />
                 <h2 className="font-serif text-3xl md:text-5xl mb-8 leading-tight">
-                    "Frozen music <br/> of our time."
+                    "Designing for <br/> living, built to last."
                 </h2>
                 <div className="space-y-6 font-sans text-[#666666] leading-relaxed max-w-md">
                     <p>
-                        With over a decade of experience, John approaches every project as a unique narrative. 
-                        We strip away the non-essential to reveal the structural truth.
+                        With years of expertise, our team treats every project as a partnership. We focus on what truly matters to you, turning complex ideas into simple, elegant realities.
                     </p>
                     <p>
-                        The void is as important as the solid. The silence between the notes.
+                        We believe that the best spaces are those that reflect the people who use them. For us, the small details are what make a house feel like a home.
                     </p>
                 </div>
              </div>
 
-             {/* Social Links (Table Style) */}
+             {/* Social Links */}
              <div className="border-t border-[#1A1A1A]">
                 {SOCIAL_LINKS.map((link) => (
-                    <a key={link.name} href={link.url} className="flex items-center justify-between p-6 border-b border-[#E0E0E0] last:border-b-0 hover:pl-10 transition-all duration-300 group bg-white hover:bg-[#1A1A1A]">
+                    <a key={link.name} href={link.url} target="_blank" className="flex items-center justify-between p-6 border-b border-[#E0E0E0] last:border-b-0 hover:pl-10 transition-all duration-300 group bg-white hover:bg-[#1A1A1A]">
                         <div className="flex items-center gap-4">
                             <span className="font-mono text-xs text-[#BC4B32] group-hover:text-white">{link.id}</span>
                             <span className="font-sans text-sm uppercase tracking-wider font-bold text-[#1A1A1A] group-hover:text-white">{link.name}</span>
@@ -194,11 +179,11 @@ const About = () => {
         </div>
       </section>
 
-      {/* --- SECTION 3: THE SPEC SHEET (PHILOSOPHY) --- */}
+      {/* --- SECTION 3: CORE PRINCIPLES --- */}
       <section className="px-6 md:px-12 py-32 max-w-[1920px] mx-auto">
         <div className="flex items-center gap-4 mb-16 grid-line-horz origin-left">
             <div className="h-[1px] w-12 bg-[#BC4B32]"></div>
-            <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-[#1A1A1A]">Core Principles</h3>
+            <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-[#1A1A1A]">Our Core Principles</h3>
         </div>
 
         <div className="space-y-0">
@@ -225,8 +210,6 @@ const About = () => {
             <div className="border-t border-[#E0E0E0]"></div>
         </div>
       </section>
-
-
     </div>
   );
 };

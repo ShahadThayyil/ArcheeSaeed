@@ -19,7 +19,6 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
   const containerRef = useRef(null);
   const mouse = useRef({ x: -9999, y: -9999, radius: 100 });
   
-  // Ref to store the animation frame so we can cancel it cleanly
   const animationRef = useRef(null);
 
   useEffect(() => {
@@ -30,14 +29,13 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
     const ctx = canvas.getContext("2d", { willReadFrequently: true });
     let particles = [];
     
-    // --- PARTICLE CLASS ---
     class Particle {
       constructor(x, y, canvasWidth, canvasHeight) {
         this.x = Math.random() * canvasWidth;
         this.y = Math.random() * canvasHeight;
         this.originX = x;
         this.originY = y;
-        this.size = Math.random() * 2 + 1; // Slight size variation
+        this.size = Math.random() * 2 + 1;
         this.color = Math.random() > 0.7 ? THEME.accent : THEME.text;
         
         this.vx = 0;
@@ -65,12 +63,10 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
           this.vy -= pushY * 0.08;
         }
 
-        // Return to origin if in view, else float
         if (containerInView) {
           this.x += (this.originX - this.x) * this.ease;
           this.y += (this.originY - this.y) * this.ease;
         } else {
-          // Subtle float when out of view
           this.y -= Math.random() * 0.5;
           this.x += (Math.random() - 0.5) * 0.5;
         }
@@ -82,31 +78,24 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
       }
     }
 
-    // --- INITIALIZATION LOGIC ---
     const initParticles = async () => {
-      // 1. Get exact dimensions from the container
       const rect = container.getBoundingClientRect();
       const width = rect.width;
-      const height = rect.height; // Use ACTUAL container height
+      const height = rect.height; 
       const dpr = window.devicePixelRatio || 1;
 
-      // 2. Set Canvas Size
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       
-      // Reset scale for new drawing
       ctx.setTransform(1, 0, 0, 1, 0, 0); 
       ctx.scale(dpr, dpr);
 
       particles = [];
 
-      // Wait for font to ensure accurate pixel scanning
       await document.fonts.ready;
 
-      // 3. Draw Text to Scan
-      // Increase font scaling slightly for better visibility on mobile
       const fontSize = Math.min(width, height) * 0.5; 
       
       ctx.clearRect(0, 0, width, height);
@@ -116,12 +105,9 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
       ctx.font = `900 ${fontSize}px 'Inter', sans-serif`;
       ctx.fillText(value, width / 2, height / 2);
 
-      // 4. Scan Pixels
       const imageData = ctx.getImageData(0, 0, width * dpr, height * dpr);
-      // We clear immediately after scanning
       ctx.clearRect(0, 0, canvas.width, canvas.height); 
 
-      // Adjust gap based on screen size (denser particles on mobile for legibility)
       const gap = width < 500 ? 4 : 5; 
 
       for (let y = 0; y < canvas.height; y += gap) {
@@ -130,7 +116,6 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
           const alpha = imageData.data[index + 3];
 
           if (alpha > 128) {
-            // Convert back to CSS coordinates
             const posX = x / dpr;
             const posY = y / dpr;
             particles.push(new Particle(posX, posY, width, height));
@@ -139,9 +124,7 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
       }
     };
 
-    // --- ANIMATION LOOP ---
     const animate = () => {
-      // Clear using raw canvas dimensions to be safe
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       particles.forEach((p) => {
@@ -152,15 +135,12 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
       animationRef.current = requestAnimationFrame(animate);
     };
 
-    // --- RESIZE OBSERVER ---
-    // This ensures if the browser resizes or layout changes, we rebuild the particles
     const resizeObserver = new ResizeObserver(() => {
         initParticles();
     });
     
     resizeObserver.observe(container);
 
-    // Start
     initParticles().then(() => {
         animate();
     });
@@ -169,7 +149,7 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
       resizeObserver.disconnect();
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
     };
-  }, [value, containerInView]); // Re-run if value changes
+  }, [value, containerInView]);
 
   const handleMouseMove = (e) => {
     if (!canvasRef.current) return;
@@ -186,7 +166,6 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
   return (
     <div
       ref={containerRef}
-      // h-full ensures it takes the parent's 400px height
       className="flex flex-col items-center justify-center w-full h-full relative group cursor-crosshair overflow-hidden"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -196,8 +175,7 @@ const ParticleNumber = ({ value, label, sub, containerInView }) => {
         className="absolute inset-0 block w-full h-full pointer-events-none z-10" 
       />
 
-      {/* Label is positioned absolute bottom or relative to ensure it doesn't conflict with canvas flow */}
-      <div className="absolute bottom-12 left-0 w-full text-center z-20 pointer-events-none">
+      <div className="absolute bottom-12 left-0 w-full text-center z-20 pointer-events-none px-4">
         <h4 className="text-[#1A1A1A] text-lg font-bold uppercase tracking-widest font-sans">
           {label}
         </h4>
@@ -212,15 +190,14 @@ const ModernStats = () => {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: false, margin: "-10% 0px" });
   
-  // Parallax Setup
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
   });
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [100, -100]); // Fast Up
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, 0]);       // Static
-  const y3 = useTransform(scrollYProgress, [0, 1], [150, -150]);  // Faster Up
+  const y1 = useTransform(scrollYProgress, [0, 1], [100, -100]); 
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, 0]);      
+  const y3 = useTransform(scrollYProgress, [0, 1], [150, -150]); 
 
   return (
     <section 
@@ -228,7 +205,6 @@ const ModernStats = () => {
         className="relative w-full min-h-screen py-24 px-4 md:px-12 overflow-hidden flex flex-col justify-center"
         style={{ backgroundColor: THEME.bg }}
     >
-      {/* --- BACKGROUND GRIDS --- */}
       <div className="absolute inset-0 pointer-events-none" 
            style={{ 
              backgroundImage: `linear-gradient(${THEME.border} 1px, transparent 1px), linear-gradient(90deg, ${THEME.border} 1px, transparent 1px)`, 
@@ -237,7 +213,6 @@ const ModernStats = () => {
            }}>
       </div>
       
-      {/* Decorative Noise */}
       <div className="absolute inset-0 opacity-[0.4] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cardboard-flat.png')]"></div>
 
       {/* --- HEADER --- */}
@@ -248,16 +223,16 @@ const ModernStats = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 className="block text-[#BC4B32] font-mono text-sm tracking-[0.3em] uppercase mb-4"
             >
-                /// Architectural Data
+                /// Our Impact
             </motion.span>
             <h2 className="text-5xl md:text-8xl font-bold text-[#1A1A1A] font-['Playfair_Display',_serif] leading-[0.9]">
-                FROZEN <br/> 
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#BC4B32] to-[#1A1A1A]">MUSIC</span>
+                CREATING <br/> 
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#BC4B32] to-[#1A1A1A]">SPACES</span>
             </h2>
         </div>
         <div className="md:col-span-4 pb-2">
             <p className="text-[#666666] text-lg leading-relaxed font-sans border-l-2 border-[#BC4B32] pl-6">
-                Structure meets fluidity. Our impact quantified through the lens of modern architecture and digital precision.
+                We design homes and offices that work for you. Here is a look at our progress and the work we have completed so far.
             </p>
         </div>
       </div>
@@ -277,7 +252,7 @@ const ModernStats = () => {
             <motion.div style={{ y: y2 }} className="md:px-8 mt-12 md:mt-32">
                  <div className="bg-white/50 backdrop-blur-sm border border-[#E0E0E0] h-[300px] md:h-[400px] flex items-center justify-center hover:shadow-2xl transition-shadow duration-500 relative w-full">
                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#1A1A1A] text-white text-xs px-3 py-1 font-mono uppercase z-30">
-                        Current Status
+                        Right Now
                      </div>
                      <ParticleNumber {...stats[1]} containerInView={isInView} />
                 </div>
@@ -292,8 +267,6 @@ const ModernStats = () => {
 
         </div>
       </div>
-
-
     </section>
   );
 };

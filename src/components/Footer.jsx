@@ -177,7 +177,7 @@ const Footer = () => {
             {/* Left: Copyright */}
             <div className="mb-6 md:mb-0 text-center md:text-left">
                 <p className="text-sm text-[#666666] font-medium tracking-wide">
-                    © 2025 ARCHIZAID.
+                    © 2026 ARCHIZAID.
                 </p>
                 <p className="text-xs text-[#BC4B32]/60 mt-1 font-mono">
                     DESIGNED IN KERALA
