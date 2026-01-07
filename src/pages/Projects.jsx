@@ -1,7 +1,8 @@
-import { useLayoutEffect, useRef, useState, useMemo, useEffect } from "react";
+import { useLayoutEffect, useRef, useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom"; // Navigation വേണ്ടി ചേർത്തു
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Plus, Minus, X, ArrowUpRight } from "lucide-react"; 
+import { Minus, ArrowUpRight } from "lucide-react"; 
 import { projects as originalProjects } from "../data/projects";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -22,8 +23,8 @@ const getGridClass = (index) => {
 
 const Projects = () => {
   const containerRef = useRef(null);
+  const navigate = useNavigate(); // Navigation hook
   const [activeCategory, setActiveCategory] = useState("All");
-  const [selectedProject, setSelectedProject] = useState(null); 
 
   const filteredProjects = useMemo(() => {
     if (activeCategory === "All") return originalProjects;
@@ -51,34 +52,6 @@ const Projects = () => {
 
     return () => ctx.revert();
   }, [activeCategory]);
-
-  // --- POPUP ANIMATION (MODIFIED FOR IMAGE ONLY) ---
-  useEffect(() => {
-    if (selectedProject) {
-        document.body.style.overflow = "hidden"; 
-        const tl = gsap.timeline();
-        
-        // 1. Backdrop fade
-        tl.fromTo(".popup-overlay", 
-            { opacity: 0 }, 
-            { opacity: 1, duration: 0.5, ease: "power2.out" }
-        )
-        // 2. Image Container smooth scale and fade up
-        .fromTo(".popup-content",
-            { scale: 0.92, opacity: 0, y: 40 },
-            { scale: 1, opacity: 1, y: 0, duration: 0.8, ease: "expo.out" },
-            "-=0.3"
-        );
-    } else {
-        document.body.style.overflow = "auto"; 
-    }
-  }, [selectedProject]);
-
-  const handleClosePopup = () => {
-    const tl = gsap.timeline({ onComplete: () => setSelectedProject(null) });
-    tl.to(".popup-content", { scale: 0.92, opacity: 0, y: 20, duration: 0.4, ease: "power3.in" })
-      .to(".popup-overlay", { opacity: 0, duration: 0.3 }, "-=0.2");
-  };
 
   return (
     <div ref={containerRef} className="relative w-full min-h-screen bg-[#F8F7F5] selection:bg-[#BC4B32] selection:text-white">
@@ -148,7 +121,8 @@ const Projects = () => {
             return (
               <div
                 key={project.id}
-                onClick={() => setSelectedProject(project)} 
+                // Navigate to dynamic details page instead of popup
+                onClick={() => navigate(`/projects/${project.id}`)} 
                 className={`
                     project-card group relative bg-[#E0E0E0] overflow-hidden cursor-pointer
                     border border-transparent hover:border-[#BC4B32] transition-colors duration-500
@@ -162,22 +136,26 @@ const Projects = () => {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover grayscale-0   transition-transform duration-700 ease-out "
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                     loading="lazy"
                   />
                   {/* Subtle Gradient only at the bottom for text readability */}
                   <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent opacity-60 transition-opacity duration-300" />
                 </div>
 
-                {/* Top Right Arrow (Appears on Hover) */}
+                {/* Project Title Overlay (Optional but recommended) */}
+                <div className="absolute bottom-6 left-6 z-20">
+                    <p className="text-white font-serif text-lg md:text-xl opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                        {project.title}
+                    </p>
+                </div>
+
+                {/* Top Right Arrow */}
                 <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
                     <div className="w-8 h-8 flex items-center justify-center bg-white/20 backdrop-blur-md rounded-full text-white border border-white/20">
                         <ArrowUpRight size={16} />
                     </div>
                 </div>
-
-               
-
               </div>
             );
           })}
@@ -195,48 +173,6 @@ const Projects = () => {
           )}
         </div>
       </section>
-
-      {/* --- NATURAL SIZE IMAGE POPUP --- */}
-      {selectedProject && (
-        <div 
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
-            role="dialog"
-        >
-            {/* Backdrop */}
-            <div 
-                className="popup-overlay absolute inset-0 bg-[#1A1A1A]/90 backdrop-blur-md cursor-pointer"
-                onClick={handleClosePopup}
-            />
-
-            {/* Container fits the image */}
-            <div className="
-                popup-content 
-                relative 
-                w-auto h-auto max-w-[95vw] max-h-[90vh]
-                flex items-center justify-center
-                rounded-xl overflow-hidden
-                shadow-2xl border border-white/10
-                bg-[#1A1A1A]
-            ">
-                
-                {/* Close Button */}
-                <button 
-                    onClick={handleClosePopup}
-                    className="absolute top-4 right-4 z-50 p-2 bg-black/30 hover:bg-[#BC4B32] text-white border border-white/20 backdrop-blur-md transition-colors rounded-full"
-                >
-                    <X size={20} />
-                </button>
-
-                {/* Image drives the size */}
-                <img 
-                    src={selectedProject.image} 
-                    alt={selectedProject.title}
-                    className="block w-auto h-auto max-w-full max-h-[90vh] object-contain"
-                />
-            </div>
-        </div>
-      )}
-
     </div>
   );
 };
