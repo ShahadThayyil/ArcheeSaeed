@@ -8,7 +8,7 @@ const CONTACT_DETAILS = [
   { id: "03", label: "Direct Phone", value: "+91 94009 87747", icon: <Phone size={20} />, link: "tel:+913105550192" },
 ];
 
-const WHATSAPP_NUMBER = "9400987747";
+const WHATSAPP_NUMBER = "+919400987747";
 
 const Contact = () => {
   const containerRef = useRef(null);
@@ -71,7 +71,7 @@ const Contact = () => {
             </a>
 
             <a
-              href="tel:+913105550192"
+              href="tel:+919400987747"
               className="group flex items-center justify-between gap-6 border border-[#1A1A1A]/10 bg-white/50 text-[#1A1A1A] px-8 py-5 rounded-sm transition-all duration-500 hover:border-[#BC4B32] w-full sm:w-auto"
             >
               <div className="flex items-center gap-3">
@@ -92,7 +92,7 @@ const Contact = () => {
                 <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#BC4B32] group-hover:w-full transition-all duration-500"></div>
               </a>
               
-              <a href="#" className="group relative flex items-center gap-3 px-6 py-4 bg-white border border-black/5 hover:border-[#BC4B32]/30 transition-all duration-500">
+              <a href="https://www.facebook.com/share/16vf9oEtTr/" className="group relative flex items-center gap-3 px-6 py-4 bg-white border border-black/5 hover:border-[#BC4B32]/30 transition-all duration-500">
                 <Facebook size={22} className="text-[#1A1A1A] group-hover:text-[#BC4B32] transition-colors" />
                 <span className="font-serif text-xl text-[#1A1A1A]">Facebook</span>
                 <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#BC4B32] group-hover:w-full transition-all duration-500"></div>

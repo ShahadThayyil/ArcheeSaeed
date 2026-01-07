@@ -180,7 +180,7 @@ const Footer = () => {
                     © 2026 ARCHIZAID.
                 </p>
                 <p className="text-xs text-[#BC4B32]/60 mt-1 font-mono">
-                    DESIGNED IN KERALA
+                    DESIGNED BY <a href="https://wa.me/919847512024" target="_blank">VYNX WEBWORKS</a>
                 </p>
             </div>
 

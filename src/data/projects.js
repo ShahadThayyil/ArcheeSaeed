@@ -266,16 +266,7 @@ export const projects = [
 }
 ,
  
-  {
-    id: 19,
-    title: "Urban Cafe Concept",
-    category: "Commercial",
-    image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765640635/enhanced_21_w1jxom.png",
-    client: "Brew & Bean",
-    description: "A cozy hangout spot using recycled materials and greenery.",
-    videoUrl: "https://www.youtube.com/embed/z3pD_f0XzO8",
-    gallery: ["https://images.unsplash.com/photo-1554118811-1e0d58224f24"]
-  },
+ 
   
 
   {
