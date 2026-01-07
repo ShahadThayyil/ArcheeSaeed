@@ -153,8 +153,8 @@ export default function Preloader({ onLoaded }) {
         >
           {/* Text Logo */}
           <img 
-  src="./logo.png"      // <-- path to your logo
-  alt="ARCH Logo"
+  src="https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767511092/logo_qztdnc.png"      // <-- path to your logo
+  alt="Archizaid Logo"
   className="h-12 md:h-16 lg:h-20 w-auto object-contain"
 />
 

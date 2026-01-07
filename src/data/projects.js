@@ -7,9 +7,6 @@ export const projects = [
   category: "Interior",
   image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765637709/freepik__enhance__45047_eml5af.png",
   client: "Mr. Haneefa",
-  year: "2024",
-  location: "Tirur, Malappuram",
-  status: "Completed",
   description: "Interior design of the living section of a modern house, focusing on simplicity, comfort, and efficient use of space. The design emphasizes clean finishes, balanced lighting, and a clutter-free layout to create a warm and welcoming living environment suitable for everyday family use.",
   videoUrl: "https://res.cloudinary.com/dmtzmgbkj/video/upload/v1767763029/1000152358_1_xiawhj.mp4",
   gallery: [
@@ -25,9 +22,6 @@ export const projects = [
   category: "Landscape",
   image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765637563/2_rlkwb8.jpg",
   client: "Mr. Riyas",
-  year: "2024",
-  location: "Kottakkal, Kerala",
-  status: "Completed",
   description: "A thoughtfully designed residential landscape for Riyas TR House, blending natural greenery with clean hardscape elements. The project focuses on creating a calm, welcoming outdoor space that complements the home’s architecture while ensuring low maintenance and long-term sustainability, perfectly suited for Kerala’s climate.",
    videoUrl: "https://res.cloudinary.com/dmtzmgbkj/video/upload/v1767716096/1000179201-1_d3lxrk.mp4",
   gallery: [
@@ -42,9 +36,6 @@ export const projects = [
   category: "Interior",
   image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767768956/1-enhanced_enhanced_1_sca4da.png",
   client: "Mr. Haneefa",
-  year: "2024",
-  location: "Tirur, Kerala",
-  status: "Completed",
   description: "Interior design of the ground floor master bedroom, planned for comfort, privacy, and everyday convenience. The space features clean finishes, warm lighting, and practical furniture arrangement, creating a relaxed and comfortable sleeping area. Simple design elements and efficient storage contribute to a neat and calming personal space.",
   gallery: [
     "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767768946/3-enhanced_enhanced_1_kgfnns.png",
@@ -62,9 +53,6 @@ export const projects = [
   category: "Interior",
   image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767772183/enhanced_1_k58yzp.png",
   client: "Mr. Abdul Basith",
-  year: "2025",
-  location: "Tirur, Kerala",
-  status: "Under Construction",
   description: "Interior design of the living area of Baithul Basith, planned with a modern and functional approach. The space focuses on comfortable seating, clean finishes, and balanced lighting to create a welcoming atmosphere for family and guests. Open planning and clear visual flow are emphasized to ensure a spacious and practical living environment. Currently under construction.",
   videoUrl: "https://res.cloudinary.com/dmtzmgbkj/video/upload/v1767772596/lv-0-20260105135726_lifvtx.mp4",
   gallery: [
@@ -81,9 +69,6 @@ export const projects = [
   category: "Residential",
   image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765638754/1_1_1_r1kexr.png",
   client: "Mr. Iqbal",
-  year: "2024",
-  location: "Manjeri, Kerala",
-  status: "Completed",
   description: "A climate-responsive residential design tailored for Kerala’s tropical conditions. The home emphasizes cross-ventilation, open floor planning, and ample natural light to ensure thermal comfort throughout the year. Simple forms, functional layouts, and thoughtful detailing create a balanced living environment that is both modern and practical.",
   gallery: [
     "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767718773/3_w1bwe4.png",
@@ -92,82 +77,97 @@ export const projects = [
   ]
 },
 
+{
+  id: 6,
+  title: "Timeless Living",
+  category: "Interior",
+  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767800081/cr_7_zdotpi.jpg",
+  client: "Mr. Abdul Basith",
+  description: "A thoughtfully designed residence that emphasizes natural light, comfort, and practical living spaces, creating a calm and energy-efficient home with a timeless appeal.",
+  gallery: [
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767800090/enhanced_5_2_kwnft8.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767800092/enhanced_3_4_z1jvrj.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767800096/corrected_1_tte0af.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767800105/enhanced_7_1_vz0m09.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767800175/enhanced_2_7_zbrhxx.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767800189/enhanced_6_1_ifcqsc.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767800189/enhanced_4_3_xvvjmp.png"
+  ]
+}
+,
   {
-    id: 6,
-    title: "Daylight Villa Concept",
-    category: "Residential",
-    image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765637766/Day_realistic_1_qmfafh.png",
-    client: "Mrs. Reema",
-    year: "2024",
-    location: "Nilambur, Kerala",
-    status: "Completed",
-    description: "A house designed to capture every bit of natural light, reducing energy consumption and boosting mood.",
-    videoUrl: "https://www.youtube.com/embed/z3pD_f0XzO8",
-    gallery: ["https://images.unsplash.com/photo-1600210492486-724fe5c67fb0"]
-  },
-  {
-    id: 7,
-    title: "Contemporary Kitchen Suite",
-    category: "Interior",
-    image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765640560/2_bke2qw.jpg",
-    client: "Chef Rahman",
-    year: "2023",
-    location: "Calicut, Kerala",
-    status: "Completed",
-    description: "High-end modular kitchen with integrated appliances and premium marble finishes.",
-    // videoUrl: "https://www.youtube.com/embed/fS5x_bXp_iQ",
-    gallery: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f",
-      
-    ]
-  },
-  {
-    id: 8,
-    title: "Corporate Hub Headquarters",
-    category: "Commercial",
-    image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765640561/10_reyp4a.png",
-    client: "MPT Group",
-    year: "2024",
-    location: "Cyberpark, Calicut",
-    status: "In Progress",
-    description: "A collaborative workspace designed for innovation, featuring open desks and private pods.",
-    videoUrl: "https://www.youtube.com/embed/z3pD_f0XzO8",
-    gallery: ["https://images.unsplash.com/photo-1497366216548-37526070297c"]
-  },
-  {
-    id: 9,
-    title: "Cozy Bedroom Retreat",
-    category: "Interior",
-    image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765640566/enhanced_2_1_hwiknj.png",
-    client: "Dr. Sameer",
-    year: "2024",
-    location: "Malappuram, Kerala",
-    status: "Completed",
-    description: "Using warm wood textures and ambient lighting to create a perfect space for relaxation.",
-    videoUrl: "https://www.youtube.com/embed/fS5x_bXp_iQ",
-    gallery: ["https://images.unsplash.com/photo-1540518614846-7eded433c457"]
-  },
-  {
-    id: 10,
-    title: "Luxury Penthouse Suite",
-    category: "Interior",
-    image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765644531/enhanced_9_1_jdoxlo.png",
-    client: "Mr. Hashim",
-    year: "2025",
-    location: "Kochi, Kerala",
-    status: "Under Construction",
-    description: "High-altitude living with floor-to-ceiling glass and custom-made furniture.",
-    videoUrl: "https://www.youtube.com/embed/z3pD_f0XzO8",
-    gallery: ["https://images.unsplash.com/photo-1512918766674-ed62b9039c35"]
-  },
+  id: 7,
+  title: "Modern Modular Kitchen",
+  category: "Interior",
+  image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765640560/2_bke2qw.jpg",
+  client: "Mr. Abdul Basith",
+  description: "A modern modular kitchen designed for efficiency and everyday comfort. The layout features well-planned storage, integrated appliances, and durable finishes that support smooth workflow. Clean cabinetry, practical counter space, and easy maintenance materials create a functional and organized cooking environment.",
+  gallery: [
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767796869/1_2_y88nsc.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767796871/3_hkgrk9.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767796878/4_gbpkbb.jpg",
+    
+  ]
+}
+,
+{
+  id: 8,
+  title: "Aigosys Innovation Academic Hub",
+  category: "Commercial",
+  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803477/enhanced_6_3_avyhcs.png",
+  client: "Aigosys Technologies",
+  description: "A modern academic and innovation hub designed to support collaboration, learning, and creative thinking. The workspace features open desk areas for teamwork along with private pods for focused study and discussions. Flexible layouts, clean interiors, and efficient space planning create an environment that encourages productivity and innovation. Currently in progress.",
+  videoUrl: "https://res.cloudinary.com/dmtzmgbkj/video/upload/v1767803672/1000250689_gddbsf.mp4",
+  gallery: [
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803474/enhanced_11_kstrrg.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803474/enhanced_12_j7wsns.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803468/enhanced_9_2_wncgux.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803465/enhanced_3_6_u5unk4.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803465/enhanced_2_9_beyhjh.png",
+   
+  ]
+}
+,
+ {
+  id: 9,
+  title: "Storage & Gym Room",
+  category: "Interior",
+  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767779509/enhanced_4_2_r5uhbk.png",
+  client: "Mr. Abdul Basith",
+  description: "Interior design of a combined storage and gym room, planned to balance functionality and usability. The space includes well-organized storage units along with a dedicated fitness area, ensuring efficient use of space. Durable finishes, proper lighting, and clear zoning support both everyday storage needs and regular workout activities.",
+  gallery: [
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767779509/enhanced_4_2_r5uhbk.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767779509/enhanced_3_3_lynrrj.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767779530/enhanced_1_2_znstrd.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767779559/enhanced_2_6_adkqvf.png",
+   
+  ]
+}
+,
+ {
+  id: 10,
+  title: "Modern Dining Area",
+  category: "Interior",
+  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767797766/enhanced_1_1_nht6n9.png",
+  client: "Mr. Abdul Basith",
+  description: "Interior design of a modern dining area, planned to support comfortable family meals and gatherings. The space focuses on clean finishes, balanced lighting, and a functional furniture layout that allows easy movement and visual openness. Thoughtful planning ensures the dining area integrates smoothly with adjacent living spaces. Currently under construction.",
+  gallery: [
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767797767/enhanced_3_1_jz8wjr.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767797768/8_corrected_fhcabj.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767797775/enhanced_8_2_msqtfc.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767797905/enhanced_2_1_cbvrrp.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767797987/enhanced_6_1_shy7zr.png",
+    
+  ]
+}
+
+,
 {
   id: 11,
   title: "Hussain's House",
   category: "Residential",
   image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765642663/1_3_1_i9yaqo.png",
   client: "Mr. Hussain",
-  year: "2023",
-  location: "Palakkad, Kerala",
-  status: "Completed",
   description: "A residential project that thoughtfully combines elements of traditional Kerala architecture with modern construction techniques. Sloped roof forms, natural proportions, and climate-responsive design are complemented by clean concrete finishes, resulting in a home that respects local heritage while offering modern comfort and durability.",
   gallery: [
     "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767761910/3_2_vcjcbd.jpg",
@@ -177,27 +177,27 @@ export const projects = [
 }
 ,
   {
-    id: 12,
-    title: "Executive Office Suite",
-    category: "Interior",
-    image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765640572/enhanced_2_a3y7pj.png",
-    client: "Techno Steel",
-    year: "2024",
-    location: "Valanchery, Kerala",
-    status: "Completed",
-    description: "A professional and sleek office environment designed for high-level meetings.",
-    videoUrl: "https://www.youtube.com/embed/z3pD_f0XzO8",
-    gallery: ["https://images.unsplash.com/photo-1497215842964-222b430dc094"]
-  },
+  id: 12,
+  title: "Master Bedroom",
+  category: "Interior",
+  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767804293/enhanced_2_8_xadivq.png",
+  client: "Mr. Abdul Basith",
+  description: "A calm and refined master bedroom designed for comfort and relaxation. Soft lighting, warm textures, and a balanced color palette create a peaceful atmosphere, while custom storage and thoughtful layout ensure both elegance and everyday functionality.",
+  gallery: [
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767804291/enhanced_6_2_tamg33.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767804290/enhanced_3_5_fhbemw.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767804294/enhanced_1_3_pvp9of.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767804295/enhanced_4_4_ghudd4.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767804296/enhanced_5_3_wal9jd.png"
+  ]
+}
+,
  {
   id: 13,
   title: "Commercial Building",
   category: "Commercial",
   image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765640568/1_2_nrqo9l.png",
   client: "AR Jubair",
-  year: "2024",
-  location: "Tirur, Kerala",
-  status: "Under Construction",
   description: "A contemporary commercial building designed to offer a seamless and engaging shopping experience. The project features wide corridors for smooth circulation, well-planned retail spaces, and interactive display zones that enhance visibility and customer engagement. Modern facade treatment and efficient spatial planning ensure long-term commercial value and flexibility for multiple businesses.",
   videoUrl: "https://res.cloudinary.com/dmtzmgbkj/video/upload/v1767761001/IMG-6817_dfsuuu.mp4",
   gallery: [
@@ -207,67 +207,55 @@ export const projects = [
   ]
 }
 ,
-  {
-    id: 14,
-    title: "Minimalist Dining Space",
-    category: "Interior",
-    image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765640613/enhanced_4_vk6dl7.png",
-    client: "Mr. Zain",
-    year: "2023",
-    location: "Malappuram, Kerala",
-    status: "Completed",
-    description: "Open plan dining that connects to the kitchen, perfect for family gatherings.",
-    videoUrl: "https://www.youtube.com/embed/z3pD_f0XzO8",
-    gallery: ["https://images.unsplash.com/photo-1533090161767-e6ffed986c88"]
-  },
-  {
-    id: 15,
-    title: "Lakeside Landscape",
-    category: "Landscape",
-    image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765640616/day_gjcmws.png",
-    client: "Resort Group",
-    year: "2024",
-    location: "Wayanad, Kerala",
-    status: "Completed",
-    description: "Terraced gardening and natural stone pathways overlooking the water.",
-    videoUrl: "https://www.youtube.com/embed/fS5x_bXp_iQ",
-    gallery: ["https://images.unsplash.com/photo-1585320806297-9794b3e4eeae"]
-  },
-  {
-    id: 16,
-    title: "Modern Boutique Hotel",
-    category: "Commercial",
-    image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765640624/enhanced_8_1_hpx3yd.png",
-    client: "Pentalks Hospitality",
-    year: "2025",
-    location: "Kochi, Kerala",
-    status: "Planning",
-    description: "Sustainable luxury hotel with a focus on local materials and modern comfort.",
-    videoUrl: "https://www.youtube.com/embed/z3pD_f0XzO8",
-    gallery: ["https://images.unsplash.com/photo-1566073771259-6a8506099945"]
-  },
-  {
-    id: 17,
-    title: "Studio Apartment Interior",
-    category: "Interior",
-    image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765640628/enhanced_8_nfwqlh.png",
-    client: "Archizaid Studio",
-    year: "2024",
-    location: "Bangalore, KA",
-    status: "Completed",
-    description: "Smart furniture solutions for a compact urban studio apartment.",
-    videoUrl: "https://www.youtube.com/embed/fS5x_bXp_iQ",
-    gallery: ["https://images.unsplash.com/photo-1522708323590-d24dbb6b0267"]
-  },
+ {
+  id: 14,
+  title: "Master Bedroom, Baithul Basith",
+  category: "Interior",
+  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767778239/enhanced_2_5_e8ruf2.png",
+  client: "Mr. Zain",
+  description: "Interior design of the master bedroom at Baithul Basith, planned to provide a calm, comfortable, and private personal space. The design features soft lighting, clean finishes, and practical furniture arrangement to support everyday living. Simple detailing and a balanced layout create a relaxed and peaceful bedroom environment.",
+  gallery: [
+    "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765640613/enhanced_4_vk6dl7.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767778244/enhanced_5_1_mpgsnu.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767778249/enhanced_3_2_fy4ycb.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767778308/enhanced_1_1_u2qlp8.png"
+  ]
+}
+,
+  
+{
+  id: 16,
+  title: "Aigosys Innovation Workspace",
+  category: "Commercial",
+  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803804/3_3_zgyq41.jpg",
+  client: "Aigosys Technologies",
+  description: "A thoughtfully planned innovation workspace designed to foster creativity, collaboration, and productivity. The project focuses on flexible work zones, collaborative meeting areas, and modern interiors that support startups, teams, and creative professionals. Smart space planning and sustainable design principles are integrated to create a future-ready commercial environment.",
+  videoUrl: "https://res.cloudinary.com/dmtzmgbkj/video/upload/v1767803672/1000250689_gddbsf.mp4",
+  gallery: [
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803805/4_2_retzzr.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803807/14_cuev37.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803809/11_nhgwec.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803810/14_gzofwv.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803821/16_n2rfkk.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803821/8_szkt0i.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803821/15_uih9yr.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803818/enhanced_19_k4esgs.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803816/13_sukppf.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803815/enhanced_1_5_qk3qqf.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803826/enhanced_21_1_fndf4e.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803812/22_je4pxb.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803817/10_1_oadmmj.png",
+    
+  ]
+}
+,
+ 
   {
   id: 18,
   title: "Modern Apartment",
   category: "Residential",
   image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765640628/day_2_hnl4a1.png",
   client: "Siddique & Bros",
-  year: "2024",
-  location: "Kondotty, Kerala",
-  status: "Completed",
   description: "A contemporary residential project featuring mirror-image apartment units designed for two brothers on a shared plot. The layout ensures privacy for each family while maintaining visual symmetry and architectural harmony. Modern elevations, efficient space planning, and ample natural light define the project, creating comfortable and functional urban living spaces.",
   gallery: [
     "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767719951/day_4_mbaohm.png",
@@ -277,82 +265,37 @@ export const projects = [
   ]
 }
 ,
+ 
   {
     id: 19,
-    title: "Fashion Boutique Store",
-    category: "Commercial",
-    image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765640687/enhanced_1_upfp6j.png",
-    client: "Lumina Wear",
-    year: "2023",
-    location: "Calicut, Kerala",
-    status: "Completed",
-    description: "A retail space with dramatic spotlighting and industrial design elements.",
-    videoUrl: "https://www.youtube.com/embed/fS5x_bXp_iQ",
-    gallery: ["https://images.unsplash.com/photo-1441986300917-64674bd600d8"]
-  },
-  {
-    id: 20,
     title: "Urban Cafe Concept",
     category: "Commercial",
     image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765640635/enhanced_21_w1jxom.png",
     client: "Brew & Bean",
-    year: "2024",
-    location: "Manjeri, Kerala",
-    status: "Completed",
     description: "A cozy hangout spot using recycled materials and greenery.",
     videoUrl: "https://www.youtube.com/embed/z3pD_f0XzO8",
     gallery: ["https://images.unsplash.com/photo-1554118811-1e0d58224f24"]
   },
+  
+
   {
-    id: 21,
-    title: "Automobile Showroom",
-    category: "Commercial",
-    image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765640629/enhanced_9_gfcdlk.png",
-    client: "Premium Motors",
-    year: "2025",
-    location: "Kochi, Kerala",
-    status: "In Progress",
-    description: "Sleek glass facade and wide display areas for premium vehicles.",
-    videoUrl: "https://www.youtube.com/embed/fS5x_bXp_iQ",
-    gallery: ["https://images.unsplash.com/photo-1562519819-016930ada31b"]
-  },
-  {
-    id: 22,
-    title: "Sunset Terrace House",
-    category: "Residential",
-    image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765640629/Day_realistic_2_s9mfq2.png",
-    client: "Mr. Musthafa",
-    year: "2024",
-    location: "Malappuram, Kerala",
-    status: "Completed",
-    description: "Featuring a rooftop infinity pool and sunset view deck.",
-    videoUrl: "https://www.youtube.com/embed/z3pD_f0XzO8",
-    gallery: ["https://images.unsplash.com/photo-1512917774080-9991f1c4c750"]
-  },
-  {
-  id: 23,
+  id: 20,
   title: "Shamsudeen House",
   category: "Residential",
   image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767716873/1_5_r2afbd.png",
   client: "Shamsudeen",
-  // year: "2024",
-  // location: "Malappuram, Kerala",
-  status: "Completed",
+ 
   description: "A modern residential project designed with a strong focus on luxury and leisure. The house features a rooftop infinity pool and a sunset view deck, creating a perfect space for relaxation and social gatherings. Clean architectural lines, open planning, and thoughtful detailing make this home both elegant and functional.",
-  // videoUrl: "https://www.youtube.com/embed/z3pD_f0XzO8",
-  // gallery: [
-  //   "https://images.unsplash.com/photo-1512917774080-9991f1c4c750"
-  // ]
+  gallery: [
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767716873/1_5_r2afbd.png"
+  ]
 },
 {
-  id: 24,
+  id: 21,
   title: "Modern Masjid",
   category: "Religious",
   image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767717658/enhanced_2_2_tra9aj.png",
   client: "Mr. Musthafa",
-  year: "2024",
-  location: "Malappuram, Kerala",
-  status: "Completed",
   description: "A contemporary masjid design that blends Islamic architectural values with modern aesthetics. The structure emphasizes simplicity, symmetry, and peaceful spatial planning, creating a serene environment for prayer and community gatherings. Natural light, clean forms, and thoughtful detailing enhance the spiritual atmosphere while maintaining a modern identity.",
   gallery: [
     "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767717659/enhanced_n3_qcgg44.png",
@@ -361,14 +304,11 @@ export const projects = [
   ]
 },
 {
-  id: 25,
+  id: 22,
   title: "Baithul Basith",
   category: "Residential",
   image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767761405/1_6_pdnqar.jpg",
   client: "Mr. Abdul Basith",
-  year: "2024",
-  location: "Malappuram, Kerala",
-  status: "Completed",
   description: "A modern residential house designed with simplicity and functionality at its core. The design emphasizes clean lines, practical space planning, and good natural ventilation, making the home comfortable for everyday living. Subtle elevation details and a straightforward layout reflect a modern yet modest architectural approach suited to the local context.",
   gallery: [
     "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767761405/1_6_pdnqar.jpg",
@@ -377,14 +317,11 @@ export const projects = [
 }
 ,
 {
-  id: 26,
+  id: 23,
   title: "Modern Dining, Living & Passage",
   category: "Interior",
   image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764088/freepik__enhance__53593_fyogqx.png",
   client: "Mr. Abdul Basith",
-  year: "2024",
-  location: "Malappuram, Kerala",
-  status: "Completed",
   description: "Interior design of the dining, living, and passage areas of a modern house, planned with a focus on simplicity and smooth spatial flow. The design highlights clean finishes, balanced lighting, and a clutter-free layout, ensuring comfort and visual continuity between spaces while supporting everyday family use.",
   gallery: [
     "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764088/freepik__enhance__66425_vdsfxq.png",
@@ -402,14 +339,11 @@ export const projects = [
 
 ,
 {
-  id: 27,
+  id: 24,
   title: "Master Bedroom Interior",
   category: "Interior",
   image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764612/1-enhanced_enhanced_fjk1rh.png",
   client: "Mr. Abdul Basith",
-  year: "2024",
-  location: "Malappuram, Kerala",
-  status: "Completed",
   description: "Interior design of the master bedroom of a modern house, focused on comfort, privacy, and relaxation. The design features a clean and soothing color palette, soft lighting, and functional furniture planning to create a calm sleeping environment. Minimal detailing and organized storage ensure a clutter-free and peaceful personal space.",
   gallery: [
     "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764585/11-enhanced_enhanced_fedorm.png",
@@ -421,10 +355,46 @@ export const projects = [
     "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764611/2-enhanced_enhanced_obaug0.png",
     "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764604/3-enhanced_enhanced_lfynvc.png"
   ]
+},
+{
+  id: 25,
+  title: "Grama Cafe",
+  category: "Commercial",
+  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767805517/enhanced_1_6_orrgtw.png",
+  client: "Team Grama Cafe",
+  description: "A warm and welcoming cafe interior inspired by traditional village aesthetics. The design blends earthy textures, natural materials, and soft ambient lighting to create a relaxed dining atmosphere. Thoughtful seating layout, handcrafted elements, and subtle rustic details enhance the customer experience while maintaining a modern and functional commercial space.",
+  videoUrl: "https://res.cloudinary.com/dmtzmgbkj/video/upload/v1767808318/lv-0-20260105133621_xywz1n.mp4",
+  gallery: [
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805521/enhanced_7_2_sbqbla.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805518/enhanced_10_onmi5m.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805521/enhanced_11_1_th2f38.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805516/enhanced_9_3_a7scks.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805512/enhanced_5_5_jlsush.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805524/enhanced_8_3_bgyaga.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805525/enhanced_15_ttbfh4.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805532/enhanced_3_NEW_jx2rxt.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805528/enhanced_18_lp0ied.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805657/enhanced_16_fseagp.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805624/enhanced_14_petoky.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805523/enhanced_6_4_t7jant.png"
+  ]
 }
-
-
 ,
-
-
+{
+  id: 26,
+  title: "Rashid Cafe",
+  category: "Commercial",
+  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767806169/enhanced_8_4_bgfuho.png",
+  client: "Team Rashid Cafe",
+  description: "A cozy cafe interior designed with a village-inspired theme, blending earthy textures, natural finishes, and warm ambient lighting. The layout is planned for comfortable seating and smooth movement, creating a relaxed dining experience. Subtle rustic elements combined with simple modern detailing make the space both inviting and practical for everyday commercial use.",
+  gallery: [
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767806167/enhanced_3_7_kzo0o5.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767806167/enhanced_2_10_vmupoo.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767806169/enhanced_10_1_rydffq.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767806170/enhanced_1_7_tpwy8b.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767806171/enhanced_6_5_oqetxd.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767806240/enhanced_5_6_btzwfl.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767806253/enhanced_4_6_v7ccfh.png",
+  ]
+}
 ];
