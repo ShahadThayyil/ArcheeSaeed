@@ -94,7 +94,7 @@ const ServicesSection = () => {
       <div className="max-w-[1600px] mx-auto relative z-10">
         
         {/* Header Block */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 pb-6 border-b border-[#1A1A1A]">
+        <div className="flex flex-col md:flex-row justify-between items-start mb-12 pb-6 border-b border-[#1A1A1A]">
            <div>
               <div className="flex items-center gap-2 mb-3">
                  <div className="w-2 h-2 bg-[#BC4B32]"></div>
