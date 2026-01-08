@@ -42,13 +42,20 @@ const ProjectDetails = () => {
       
       {/* 1. MINIMAL HEADER */}
       <div className="pt-24 md:pt-32 px-6 md:px-12 max-w-[1800px] mx-auto">
-        <button 
-          onClick={() => navigate(-1)} 
-          className="flex items-center gap-3 text-[#666666] hover:text-[#BC4B32] mb-12 group transition-all duration-500"
-        >
-          <ArrowLeft size={16} className="group-hover:-translate-x-2 transition-transform" />
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em]">Back to Projects</span>
-        </button>
+       <button 
+  onClick={() => navigate(-1)} 
+  className="flex items-center gap-3   border border-[#BC4B32] rounded-md px-4 py-2 mb-12 group
+             bg-[#BC4B32] text-white transition-all duration-500 ease-in-out shadow-sm hover:shadow-lg"
+>
+  <ArrowLeft 
+    size={16} 
+    className="group-hover:-translate-x-2 transition-transform duration-500 ease-in-out" 
+  />
+  <span className="font-mono text-[10px] uppercase tracking-[0.3em]">
+    Back to Projects
+  </span>
+</button>
+
 
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 md:mb-20">
           <div className="header-text max-w-5xl">
@@ -150,19 +157,23 @@ const ProjectDetails = () => {
           </div>
         </div>
 
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 md:gap-8 space-y-6 md:space-y-8">
-          {project.gallery && project.gallery.map((imgUrl, index) => (
-            <div key={index} className="gallery-item overflow-hidden rounded-xl md:rounded-2xl bg-[#E0E0E0] group relative transition-all duration-700 break-inside-avoid">
-              <img 
-                src={imgUrl} 
-                alt={`${project.title} visualization ${index}`} 
-                className="w-full h-auto object-cover grayscale-0 transition-all duration-700"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-            </div>
-          ))}
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+  {project.gallery && project.gallery.map((imgUrl, index) => (
+    <div
+      key={index}
+      className="overflow-hidden rounded-xl md:rounded-2xl bg-[#E0E0E0] group relative transition-all duration-700"
+    >
+      <img
+        src={imgUrl}
+        alt={`${project.title} visualization ${index}`}
+        className="w-full h-auto object-cover transition-all duration-700"
+        loading="lazy"
+      />
+      <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+    </div>
+  ))}
+</div>
+
       </section>
     </div>
   );

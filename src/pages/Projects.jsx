@@ -9,19 +9,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const CATEGORIES = ["All", "Residential", "Commercial", "Interior", "Landscape"];
 
-// Updated pattern to handle different image orientations better
-const getGridClass = (index) => {
-  const pattern = [
-    "md:col-span-2 md:row-span-2", // Big feature
-    "md:col-span-1 md:row-span-1", // Standard
-    "md:col-span-1 md:row-span-2", // Vertical/Portrait focus
-    "md:col-span-2 md:row-span-1", // Horizontal/Landscape focus
-    "md:col-span-1 md:row-span-1", // Standard
-    "md:col-span-1 md:row-span-1", // Standard
-  ];
-  return pattern[index % pattern.length];
-};
-
 const Projects = () => {
   const containerRef = useRef(null);
   const navigate = useNavigate();
@@ -37,15 +24,18 @@ const Projects = () => {
       ScrollTrigger.refresh();
       const cards = gsap.utils.toArray(".project-card");
       
-      gsap.set(cards, { opacity: 0, y: 60 });
+      gsap.set(cards, { opacity: 0, y: 50 });
 
       gsap.to(cards, {
           y: 0,
           opacity: 1,
-          duration: 1,
+          duration: 1.2,
           stagger: 0.1, 
-          ease: "expo.out", 
-          overwrite: "auto",
+          ease: "power3.out", 
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 80%",
+          }
         }
       );
     }, containerRef);
@@ -72,15 +62,15 @@ const Projects = () => {
                     // Project Index
                 </span>
                 <h1 className="text-[#1A1A1A] font-serif text-4xl sm:text-5xl md:text-7xl leading-[0.9]">
-                    My <span className="italic text-[#666666] font-light">Projects</span>
+                    Built <span className="italic text-[#666666] font-light">Works</span>
                 </h1>
             </div>
             <div className="flex items-center gap-2 md:block md:text-right">
-                <span className="text-[#1A1A1A] font-mono text-lg md:text-xl block">
+                <span className="text-[#1A1A1A] font-mono text-lg md:text-xl block leading-none">
                     {filteredProjects.length.toString().padStart(2, '0')}
                 </span>
                 <span className="text-[#666666] text-[10px] md:text-xs uppercase tracking-widest">
-                    Projects Displayed
+                    Archive List
                 </span>
             </div>
         </div>
@@ -111,71 +101,74 @@ const Projects = () => {
         </div>
       </div>
 
-      {/* BENTO GRID - Fixed for image visibility */}
-      <section className="relative z-10 px-6 md:px-12 py-8 md:py-12 max-w-[1920px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 grid-flow-dense">
-          
-          {filteredProjects.map((project, index) => {
-            const gridClass = getGridClass(index);
+      {/* MASONRY LAYOUT WITH BORDER ANIMATION */}
+      <section className="relative z-10 px-6 md:px-12 py-12 md:py-20 max-w-[1920px] mx-auto">
+     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+  {filteredProjects.map((project) => (
+    <div
+      key={project.id}
+      onClick={() => navigate(`/projects/${project.id}`)}
+      className="project-card group relative cursor-pointer flex flex-col"
+    >
+      {/* Image Container */}
+      <div className="w-full h-auto overflow-hidden bg-[#EAE8E4] rounded-sm relative">
 
-            return (
-              <div
-                key={project.id}
-                onClick={() => navigate(`/projects/${project.id}`)} 
-                className={`
-                    project-card group relative bg-[#EAE8E4] overflow-hidden cursor-pointer
-                    border border-transparent hover:border-[#BC4B32]/30 transition-all duration-500
-                    flex flex-col
-                    ${gridClass}
-                `}
-                style={{ minHeight: '350px' }} 
-              >
-                {/* Image Container - Adjusted to ensure visibility */}
-                <div className="flex-grow w-full h-full relative overflow-hidden bg-[#D1D1D1]">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-1000 ease-out "
-                    loading="lazy"
-                  />
-                  
-                  {/* Overlay Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
-                </div>
+        {/* Animated Border Lines */}
+        <span className="absolute top-0 left-0 h-[2px] w-0 bg-[#BC4B32] z-20 transition-all duration-300 group-hover:w-full" />
+        <span className="absolute top-0 right-0 w-[2px] h-0 bg-[#BC4B32] z-20 transition-all duration-300 delay-150 group-hover:h-full" />
+        <span className="absolute bottom-0 right-0 h-[2px] w-0 bg-[#BC4B32] z-20 transition-all duration-300 delay-300 group-hover:w-full" />
+        <span className="absolute bottom-0 left-0 w-[2px] h-0 bg-[#BC4B32] z-20 transition-all duration-300 delay-[450ms] group-hover:h-full" />
 
-                {/* Info Overlay */}
-                <div className="absolute inset-0 p-6 flex flex-col justify-between pointer-events-none">
-                    <div className="flex justify-end">
-                        <div className="w-10 h-10 flex items-center justify-center bg-white/10 backdrop-blur-md rounded-full text-white border border-white/20 opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-500">
-                            <ArrowUpRight size={18} />
-                        </div>
-                    </div>
-                    
-                    <div className="translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                        <span className="text-[#BC4B32] font-mono text-[9px] uppercase tracking-[0.3em] block mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                          {project.category}
-                        </span>
-                        <h3 className="text-white font-serif text-xl md:text-2xl leading-tight">
-                            {project.title || "Untitled Project"}
-                        </h3>
-                    </div>
-                </div>
-              </div>
-            );
-          })}
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-auto block transition-transform duration-1000 ease-out"
+          loading="lazy"
+        />
 
-          {filteredProjects.length === 0 && (
-            <div className="col-span-full py-32 text-center border border-dashed border-[#E0E0E0]">
-              <div className="inline-block p-4 bg-[#E0E0E0] mb-4">
-                  <Minus size={24} className="text-[#666666]" />
-              </div>
-              <p className="text-[#666666] font-serif text-xl">No projects found in this sector.</p>
-              <button onClick={() => setActiveCategory("All")} className="mt-6 px-8 py-3 bg-[#1A1A1A] text-white hover:bg-[#BC4B32] transition-colors font-mono text-xs uppercase tracking-[0.2em]">
-                View All Works
-              </button>
-            </div>
-          )}
+        <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+        <div className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center bg-white/90 backdrop-blur-sm rounded-full text-[#1A1A1A] shadow-sm translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 z-30">
+          <ArrowUpRight size={18} />
         </div>
+      </div>
+
+      {/* Meta */}
+      <div className="mt-5 flex justify-between items-start">
+        <div className="max-w-[85%]">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="w-6 h-[1px] bg-[#BC4B32]"></span>
+            <span className="text-[#BC4B32] font-mono text-[9px] uppercase tracking-[0.3em]">
+              {project.category}
+            </span>
+          </div>
+          <h3 className="text-[#1A1A1A] font-serif text-2xl md:text-3xl leading-tight group-hover:text-[#BC4B32] transition-colors duration-500">
+            {project.title || "Selected Works"}
+          </h3>
+        </div>
+        <div className="pt-2">
+          <span className="font-mono text-[10px] text-[#999]">
+            // 0{project.id}
+          </span>
+        </div>
+      </div>
+
+      <div className="w-full h-[1px] bg-[#E0E0E0] mt-6 origin-left scale-x-[0.2] group-hover:scale-x-100 group-hover:bg-[#BC4B32]/30 transition-all duration-700 ease-in-out" />
+    </div>
+  ))}
+</div>
+
+
+        {/* Empty State */}
+        {filteredProjects.length === 0 && (
+          <div className="w-full py-40 text-center border border-dashed border-[#E0E0E0]">
+            <Minus size={24} className="text-[#666666] mx-auto mb-4" />
+            <p className="text-[#666666] font-serif text-xl italic">No works found in this sector.</p>
+            <button onClick={() => setActiveCategory("All")} className="mt-8 px-10 py-4 bg-[#1A1A1A] text-white hover:bg-[#BC4B32] transition-colors font-mono text-[10px] uppercase tracking-[0.2em]">
+              Return to Full Archive
+            </button>
+          </div>
+        )}
       </section>
     </div>
   );

@@ -3,7 +3,7 @@
 export const projects = [
  {
   id: 1,
-  title: "Modern Living Interior",
+  title: "Minimalist Living Room Concept",
   category: "Interior",
   image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765637709/freepik__enhance__45047_eml5af.png",
   client: "Mr. Haneefa",
@@ -16,6 +16,27 @@ export const projects = [
   ]
 }
 ,
+{
+  id: 20,
+  title: "Modern Dining, Living & Passage",
+  category: "Interior",
+  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764088/freepik__enhance__53593_fyogqx.png",
+  client: "Mr. Abdul Basith",
+  description: "Interior design of the dining, living, and passage areas of a modern house, planned with a focus on simplicity and smooth spatial flow. The design highlights clean finishes, balanced lighting, and a clutter-free layout, ensuring comfort and visual continuity between spaces while supporting everyday family use.",
+  gallery: [
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764088/freepik__enhance__66425_vdsfxq.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764088/freepik__enhance__91933_xjffz3.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764088/freepik__enhance__91934_ewjt1s.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764089/freepik__enhance__92145_gsnhf5.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764089/freepik__enhance__36994_ty0zb0.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764089/freepik__enhance__7256_r0k3vd.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764089/freepik__enhance__53592_sbyt1g.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764090/freepik__enhance__92144_d5fhxf.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764090/freepik__enhance__7257_jpggo7.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764094/freepik__enhance__36995_qx2aed.png",
+  ]
+}
+,
   {
   id: 2,
   title: "Riyas's House",
@@ -25,14 +46,27 @@ export const projects = [
   description: "A thoughtfully designed residential landscape for Riyas TR House, blending natural greenery with clean hardscape elements. The project focuses on creating a calm, welcoming outdoor space that complements the home’s architecture while ensuring low maintenance and long-term sustainability, perfectly suited for Kerala’s climate.",
    videoUrl: "https://res.cloudinary.com/dmtzmgbkj/video/upload/v1767716096/1000179201-1_d3lxrk.mp4",
   gallery: [
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767713922/Firefly_20240813205808_hc3cwv.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767714019/Firefly_20240816174359_bjcqpt.png"
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767937528/Firefly_20240816174359_bjcqpt_y7rdtr.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767937532/Firefly_20240813205808_hc3cwv_g1mcay.jpg"
   ]
 },
-
+{
+  id: 14,
+  title: "Prime Bedroom",
+  category: "Interior",
+  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767778308/enhanced_1_1_u2qlp8.png",
+  client: "Mr. Zain",
+  description: "Interior design of the master bedroom at Baithul Basith, planned to provide a calm, comfortable, and private personal space. The design features soft lighting, clean finishes, and practical furniture arrangement to support everyday living. Simple detailing and a balanced layout create a relaxed and peaceful bedroom environment.",
+  gallery: [
+    "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765640613/enhanced_4_vk6dl7.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767778244/enhanced_5_1_mpgsnu.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767778249/enhanced_3_2_fy4ycb.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767778239/enhanced_2_5_e8ruf2.png",  ]
+}
+,
 {
   id: 3,
-  title: "Ground Floor Master Bedroom",
+  title: "Luxury Master Bedroom Suite",
   category: "Interior",
   image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767768956/1-enhanced_enhanced_1_sca4da.png",
   client: "Mr. Haneefa",
@@ -49,7 +83,7 @@ export const projects = [
 ,
   {
   id: 4,
-  title: "Modern Living – Baithul Basith",
+  title: "Modern Lounge Space",
   category: "Interior",
   image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767772183/enhanced_1_k58yzp.png",
   client: "Mr. Abdul Basith",
@@ -95,73 +129,111 @@ export const projects = [
   ]
 }
 ,
-  {
-  id: 7,
-  title: "Modern Modular Kitchen",
-  category: "Interior",
-  image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765640560/2_bke2qw.jpg",
-  client: "Mr. Abdul Basith",
-  description: "A modern modular kitchen designed for efficiency and everyday comfort. The layout features well-planned storage, integrated appliances, and durable finishes that support smooth workflow. Clean cabinetry, practical counter space, and easy maintenance materials create a functional and organized cooking environment.",
+
+
+{
+  id: 8,
+  title: "Aigosys Innovation Academic Hub",
+  category: "Commercial",
+  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803465/enhanced_2_9_beyhjh.png",
+  client: "Aigosys Technologies",
+  description: "A modern academic and innovation hub designed to support collaboration, learning, and creative thinking. The workspace features open desk areas for teamwork along with private pods for focused study and discussions. Flexible layouts, clean interiors, and efficient space planning create an environment that encourages productivity and innovation. Currently in progress.",
+  videoUrl: "https://res.cloudinary.com/dmtzmgbkj/video/upload/v1767803672/1000250689_gddbsf.mp4",
   gallery: [
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767796869/1_2_y88nsc.jpg",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767796871/3_hkgrk9.jpg",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767796878/4_gbpkbb.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803465/enhanced_2_9_beyhjh.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767928836/enhanced_1_8_uag61x.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767928836/enhanced_8_4_hdd2it.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803468/enhanced_9_2_wncgux.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803465/enhanced_3_6_u5unk4.png",
+    
+   
+  ]
+}
+,
+{
+  id: 15,
+  title: "Aigosys Creative Work Hub",
+  category: "Commercial",
+  image:"https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803805/4_2_retzzr.png",
+  client: "Aigosys Technologies",
+  description: "A thoughtfully planned innovation workspace designed to foster creativity, collaboration, and productivity. The project focuses on flexible work zones, collaborative meeting areas, and modern interiors that support startups, teams, and creative professionals. Smart space planning and sustainable design principles are integrated to create a future-ready commercial environment.",
+  videoUrl: "https://res.cloudinary.com/dmtzmgbkj/video/upload/v1767803672/1000250689_gddbsf.mp4",
+  gallery: [
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803804/3_3_zgyq41.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803807/14_cuev37.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803809/11_nhgwec.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803810/14_gzofwv.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803821/16_n2rfkk.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803821/8_szkt0i.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803821/15_uih9yr.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803818/enhanced_19_k4esgs.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803816/13_sukppf.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803815/enhanced_1_5_qk3qqf.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803826/enhanced_21_1_fndf4e.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803812/22_je4pxb.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803817/10_1_oadmmj.png",
     
   ]
 }
 ,
 {
-  id: 8,
-  title: "Aigosys Innovation Academic Hub",
+  id: 22,
+  title: "Grama Cafe",
   category: "Commercial",
-  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803477/enhanced_6_3_avyhcs.png",
-  client: "Aigosys Technologies",
-  description: "A modern academic and innovation hub designed to support collaboration, learning, and creative thinking. The workspace features open desk areas for teamwork along with private pods for focused study and discussions. Flexible layouts, clean interiors, and efficient space planning create an environment that encourages productivity and innovation. Currently in progress.",
-  videoUrl: "https://res.cloudinary.com/dmtzmgbkj/video/upload/v1767803672/1000250689_gddbsf.mp4",
+  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767805532/enhanced_3_NEW_jx2rxt.jpg",
+  client: "Team Grama Cafe",
+  description: "A warm and welcoming cafe interior inspired by traditional village aesthetics. The design blends earthy textures, natural materials, and soft ambient lighting to create a relaxed dining atmosphere. Thoughtful seating layout, handcrafted elements, and subtle rustic details enhance the customer experience while maintaining a modern and functional commercial space.",
+  videoUrl: "https://res.cloudinary.com/dmtzmgbkj/video/upload/v1767808318/lv-0-20260105133621_xywz1n.mp4",
   gallery: [
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803474/enhanced_11_kstrrg.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803474/enhanced_12_j7wsns.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803468/enhanced_9_2_wncgux.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803465/enhanced_3_6_u5unk4.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803465/enhanced_2_9_beyhjh.png",
-   
-  ]
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767805525/enhanced_15_ttbfh4.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767805512/enhanced_5_5_jlsush.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767805521/enhanced_11_1_th2f38.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767805521/enhanced_7_2_sbqbla.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767805624/enhanced_14_petoky.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767805657/enhanced_16_fseagp.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767805523/enhanced_6_4_t7jant.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767805524/enhanced_8_3_bgyaga.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767805516/enhanced_9_3_a7scks.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767805518/enhanced_10_onmi5m.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767805528/enhanced_18_lp0ied.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767805517/enhanced_1_6_orrgtw.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767805532/enhanced_3_NEW_jx2rxt.jpg"
+  ] 
 }
 ,
+{
+  id: 18,
+  title: "Modern Masjid",
+  category: "Religious",
+  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767932509/enhanced_n1_drgjy1_avl0i5.jpg",
+  client: "SR Developers",
+  description: "A contemporary masjid design that blends Islamic architectural values with modern aesthetics. The structure emphasizes simplicity, symmetry, and peaceful spatial planning, creating a serene environment for prayer and community gatherings. Natural light, clean forms, and thoughtful detailing enhance the spiritual atmosphere while maintaining a modern identity.",
+  gallery: [
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767932509/enhanced_n1_drgjy1_avl0i5.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767717658/enhanced_2_2_tra9aj.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767932509/enhanced_n2_gkdhr0_nooglr.jpg"
+  ]
+},
+
  {
   id: 9,
-  title: "Storage & Gym Room",
+  title: "Modern Minimal Bedroom",
   category: "Interior",
-  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767779509/enhanced_4_2_r5uhbk.png",
+  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767929599/enhanced_1_crctd_pmp1mk.jpg",
   client: "Mr. Abdul Basith",
-  description: "Interior design of a combined storage and gym room, planned to balance functionality and usability. The space includes well-organized storage units along with a dedicated fitness area, ensuring efficient use of space. Durable finishes, proper lighting, and clear zoning support both everyday storage needs and regular workout activities.",
+  description: "A compact modern bedroom designed with a minimalist approach to maximize comfort and visual clarity. Clean lines, neutral tones, and smart furniture planning create a calm and spacious feel despite the limited area. Soft lighting and functional storage solutions enhance everyday usability while maintaining a refined, modern aesthetic.",
   gallery: [
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767779509/enhanced_4_2_r5uhbk.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767779509/enhanced_3_3_lynrrj.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767779530/enhanced_1_2_znstrd.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767779559/enhanced_2_6_adkqvf.png",
-   
-  ]
-}
-,
- {
-  id: 10,
-  title: "Modern Dining Area",
-  category: "Interior",
-  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767797766/enhanced_1_1_nht6n9.png",
-  client: "Mr. Abdul Basith",
-  description: "Interior design of a modern dining area, planned to support comfortable family meals and gatherings. The space focuses on clean finishes, balanced lighting, and a functional furniture layout that allows easy movement and visual openness. Thoughtful planning ensures the dining area integrates smoothly with adjacent living spaces. Currently under construction.",
-  gallery: [
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767797767/enhanced_3_1_jz8wjr.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767797768/8_corrected_fhcabj.jpg",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767797775/enhanced_8_2_msqtfc.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767797905/enhanced_2_1_cbvrrp.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767797987/enhanced_6_1_shy7zr.png",
-    
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767929589/enhanced_3_crctyd_ypjhr6.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767929590/enhanced_2_new_h8bmrz.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767929591/enhanced_5_crct_mgozhl.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767929595/enhanced_4_crctd_hlruo5.jpg"
   ]
 }
 
 ,
+ 
+
+
 {
   id: 11,
   title: "Hussain's House",
@@ -178,7 +250,7 @@ export const projects = [
 ,
   {
   id: 12,
-  title: "Master Bedroom",
+  title: "Elegant Master Suite",
   category: "Interior",
   image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767804293/enhanced_2_8_xadivq.png",
   client: "Mr. Abdul Basith",
@@ -207,53 +279,16 @@ export const projects = [
   ]
 }
 ,
- {
-  id: 14,
-  title: "Master Bedroom, Baithul Basith",
-  category: "Interior",
-  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767778239/enhanced_2_5_e8ruf2.png",
-  client: "Mr. Zain",
-  description: "Interior design of the master bedroom at Baithul Basith, planned to provide a calm, comfortable, and private personal space. The design features soft lighting, clean finishes, and practical furniture arrangement to support everyday living. Simple detailing and a balanced layout create a relaxed and peaceful bedroom environment.",
-  gallery: [
-    "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765640613/enhanced_4_vk6dl7.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767778244/enhanced_5_1_mpgsnu.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767778249/enhanced_3_2_fy4ycb.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767778308/enhanced_1_1_u2qlp8.png"
-  ]
-}
-,
+ 
+
   
-{
-  id: 16,
-  title: "Aigosys Innovation Workspace",
-  category: "Commercial",
-  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803804/3_3_zgyq41.jpg",
-  client: "Aigosys Technologies",
-  description: "A thoughtfully planned innovation workspace designed to foster creativity, collaboration, and productivity. The project focuses on flexible work zones, collaborative meeting areas, and modern interiors that support startups, teams, and creative professionals. Smart space planning and sustainable design principles are integrated to create a future-ready commercial environment.",
-  videoUrl: "https://res.cloudinary.com/dmtzmgbkj/video/upload/v1767803672/1000250689_gddbsf.mp4",
-  gallery: [
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803805/4_2_retzzr.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803807/14_cuev37.jpg",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803809/11_nhgwec.jpg",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803810/14_gzofwv.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803821/16_n2rfkk.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803821/8_szkt0i.jpg",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803821/15_uih9yr.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803818/enhanced_19_k4esgs.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803816/13_sukppf.jpg",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803815/enhanced_1_5_qk3qqf.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803826/enhanced_21_1_fndf4e.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803812/22_je4pxb.jpg",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767803817/10_1_oadmmj.png",
-    
-  ]
-}
-,
+
+
  
   {
-  id: 18,
+  id: 16,
   title: "Modern Apartment",
-  category: "Residential",
+  category: "Commercial",
   image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765640628/day_2_hnl4a1.png",
   client: "Siddique & Bros",
   description: "A contemporary residential project featuring mirror-image apartment units designed for two brothers on a shared plot. The layout ensures privacy for each family while maintaining visual symmetry and architectural harmony. Modern elevations, efficient space planning, and ample natural light define the project, creating comfortable and functional urban living spaces.",
@@ -270,32 +305,20 @@ export const projects = [
   
 
   {
-  id: 20,
+  id: 17,
   title: "Shamsudeen House",
   category: "Residential",
   image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767716873/1_5_r2afbd.png",
   client: "Shamsudeen",
- 
   description: "A modern residential project designed with a strong focus on luxury and leisure. The house features a rooftop infinity pool and a sunset view deck, creating a perfect space for relaxation and social gatherings. Clean architectural lines, open planning, and thoughtful detailing make this home both elegant and functional.",
   gallery: [
     "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767716873/1_5_r2afbd.png"
   ]
 },
+
+
 {
-  id: 21,
-  title: "Modern Masjid",
-  category: "Religious",
-  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767717658/enhanced_2_2_tra9aj.png",
-  client: "Mr. Musthafa",
-  description: "A contemporary masjid design that blends Islamic architectural values with modern aesthetics. The structure emphasizes simplicity, symmetry, and peaceful spatial planning, creating a serene environment for prayer and community gatherings. Natural light, clean forms, and thoughtful detailing enhance the spiritual atmosphere while maintaining a modern identity.",
-  gallery: [
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767717659/enhanced_n3_qcgg44.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767717660/enhanced_n1_drgjy1.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767717669/enhanced_n2_gkdhr0.png"
-  ]
-},
-{
-  id: 22,
+  id: 19,
   title: "Baithul Basith",
   category: "Residential",
   image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767761405/1_6_pdnqar.jpg",
@@ -307,34 +330,15 @@ export const projects = [
   ]
 }
 ,
-{
-  id: 23,
-  title: "Modern Dining, Living & Passage",
-  category: "Interior",
-  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764088/freepik__enhance__53593_fyogqx.png",
-  client: "Mr. Abdul Basith",
-  description: "Interior design of the dining, living, and passage areas of a modern house, planned with a focus on simplicity and smooth spatial flow. The design highlights clean finishes, balanced lighting, and a clutter-free layout, ensuring comfort and visual continuity between spaces while supporting everyday family use.",
-  gallery: [
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764088/freepik__enhance__66425_vdsfxq.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764088/freepik__enhance__91933_xjffz3.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764088/freepik__enhance__91934_ewjt1s.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764089/freepik__enhance__92145_gsnhf5.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764089/freepik__enhance__36994_ty0zb0.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764089/freepik__enhance__7256_r0k3vd.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764089/freepik__enhance__53592_sbyt1g.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764090/freepik__enhance__92144_d5fhxf.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764090/freepik__enhance__7257_jpggo7.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764094/freepik__enhance__36995_qx2aed.png",
-  ]
-}
 
-,
+
+
 {
-  id: 24,
-  title: "Master Bedroom Interior",
+  id: 21,
+  title: "Refined Master Suite",
   category: "Interior",
   image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764612/1-enhanced_enhanced_fjk1rh.png",
-  client: "Mr. Abdul Basith",
+  client: "Mr. Haneefa",
   description: "Interior design of the master bedroom of a modern house, focused on comfort, privacy, and relaxation. The design features a clean and soothing color palette, soft lighting, and functional furniture planning to create a calm sleeping environment. Minimal detailing and organized storage ensure a clutter-free and peaceful personal space.",
   gallery: [
     "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764585/11-enhanced_enhanced_fedorm.png",
@@ -347,45 +351,70 @@ export const projects = [
     "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767764604/3-enhanced_enhanced_lfynvc.png"
   ]
 },
+
+
 {
-  id: 25,
-  title: "Grama Cafe",
-  category: "Commercial",
-  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767805517/enhanced_1_6_orrgtw.png",
-  client: "Team Grama Cafe",
-  description: "A warm and welcoming cafe interior inspired by traditional village aesthetics. The design blends earthy textures, natural materials, and soft ambient lighting to create a relaxed dining atmosphere. Thoughtful seating layout, handcrafted elements, and subtle rustic details enhance the customer experience while maintaining a modern and functional commercial space.",
-  videoUrl: "https://res.cloudinary.com/dmtzmgbkj/video/upload/v1767808318/lv-0-20260105133621_xywz1n.mp4",
-  gallery: [
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805521/enhanced_7_2_sbqbla.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805518/enhanced_10_onmi5m.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805521/enhanced_11_1_th2f38.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805516/enhanced_9_3_a7scks.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805512/enhanced_5_5_jlsush.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805524/enhanced_8_3_bgyaga.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805525/enhanced_15_ttbfh4.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805532/enhanced_3_NEW_jx2rxt.jpg",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805528/enhanced_18_lp0ied.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805657/enhanced_16_fseagp.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805624/enhanced_14_petoky.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767805523/enhanced_6_4_t7jant.png"
-  ]
-}
-,
-{
-  id: 26,
+  id: 23,
   title: "Rashid Cafe",
   category: "Commercial",
-  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767806169/enhanced_8_4_bgfuho.png",
+  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767806167/enhanced_3_7_kzo0o5.png",
   client: "Team Rashid Cafe",
   description: "A cozy cafe interior designed with a village-inspired theme, blending earthy textures, natural finishes, and warm ambient lighting. The layout is planned for comfortable seating and smooth movement, creating a relaxed dining experience. Subtle rustic elements combined with simple modern detailing make the space both inviting and practical for everyday commercial use.",
   gallery: [
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767806167/enhanced_3_7_kzo0o5.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767806169/enhanced_8_4_bgfuho.png",
     "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767806167/enhanced_2_10_vmupoo.png",
     "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767806169/enhanced_10_1_rydffq.png",
     "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767806170/enhanced_1_7_tpwy8b.png",
     "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767806171/enhanced_6_5_oqetxd.png",
     "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767806240/enhanced_5_6_btzwfl.png",
     "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767806253/enhanced_4_6_v7ccfh.png",
+  ]
+},
+{
+  id: 24,
+  title: "Compact Modern Bedroom",
+  category: "Interior",
+  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767934749/7_1_kldlya.png",
+  client: "Mr. Haneefa",
+  description: "A thoughtfully designed compact bedroom that embraces modern minimalism to maximize comfort and space efficiency. Clean lines, a neutral color palette, and smart furniture placement create an open and calming atmosphere. Subtle lighting and functional storage solutions enhance everyday usability while maintaining a refined, contemporary look.",
+  gallery: [
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767934751/1_7_eyne2m.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767934785/3_3_1_zlasuy.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767934762/2_4_ew03pe.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767934752/4_3_rzramg.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767934757/8_mabmhi.png"
+  ]
+}
+,
+  {
+  id: 7,
+  title: "Modern Modular Kitchen",
+  category: "Interior",
+  image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765640560/2_bke2qw.jpg",
+  client: "Mr. Abdul Basith",
+  description: "A modern modular kitchen designed for efficiency and everyday comfort. The layout features well-planned storage, integrated appliances, and durable finishes that support smooth workflow. Clean cabinetry, practical counter space, and easy maintenance materials create a functional and organized cooking environment.",
+  gallery: [
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767796869/1_2_y88nsc.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767796871/3_hkgrk9.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767796878/4_gbpkbb.jpg",
+    
+  ]
+}
+,
+{
+  id: 10,
+  title: "Elegant Dining Space",
+  category: "Interior",
+  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767797767/enhanced_3_1_jz8wjr.png",
+  client: "Mr. Abdul Basith",
+  description: "Interior design of a modern dining area, planned to support comfortable family meals and gatherings. The space focuses on clean finishes, balanced lighting, and a functional furniture layout that allows easy movement and visual openness. Thoughtful planning ensures the dining area integrates smoothly with adjacent living spaces. Currently under construction.",
+  gallery: [
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767797766/enhanced_1_1_nht6n9.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767797768/8_corrected_fhcabj.jpg",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767797775/enhanced_8_2_msqtfc.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767797905/enhanced_2_1_cbvrrp.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767797987/enhanced_6_1_shy7zr.png",
+    
   ]
 }
 ];
