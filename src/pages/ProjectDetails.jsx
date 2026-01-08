@@ -65,13 +65,13 @@ const ProjectDetails = () => {
         </div>
       </div>
 
-      {/* 2. CINEMATIC HERO SECTION - Optimized for full image visibility */}
+      {/* 2. CINEMATIC HERO SECTION - FIX: Removed fixed aspect ratio and object-cover to show full image */}
       <section className="px-6 md:px-12 max-w-[1800px] mx-auto mb-16 md:mb-32 hero-container">
-        <div className="relative w-full rounded-2xl md:rounded-[2.5rem] overflow-hidden bg-[#EAE8E4] shadow-xl md:shadow-2xl aspect-[16/10] sm:aspect-video lg:max-h-[85vh]">
+        <div className="relative w-full rounded-2xl md:rounded-[2.5rem] overflow-hidden bg-[#EAE8E4] shadow-xl md:shadow-2xl">
           <img 
             src={project.image} 
             alt={project.title} 
-            className="w-full h-full object-cover" // object-cover ensures no empty space, while aspect-ratio ensures visibility
+            className="w-full h-auto"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/5" />
         </div>
@@ -123,12 +123,15 @@ const ProjectDetails = () => {
 
             <div className="flex justify-center lg:justify-end relative z-10 order-1 lg:order-2">
               <div className="w-full max-w-[380px] aspect-[9/16] bg-black rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border-4 border-[#2A2A2A]">
-                <iframe 
-                  src={project.videoUrl} 
-                  className="w-full h-full" 
-                  allowFullScreen 
-                  title="Project Video"
-                />
+               <video
+  src={project.videoUrl}
+  className="w-full h-full object-cover"
+  controls
+  controlsList="nodownload noremoteplayback"
+  disablePictureInPicture
+  onContextMenu={(e) => e.preventDefault()}
+/>
+
               </div>
             </div>
 
@@ -153,7 +156,7 @@ const ProjectDetails = () => {
               <img 
                 src={imgUrl} 
                 alt={`${project.title} visualization ${index}`} 
-                className="w-full h-auto object-cover grayscale-0  transition-all duration-700"
+                className="w-full h-auto object-cover grayscale-0 transition-all duration-700"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />

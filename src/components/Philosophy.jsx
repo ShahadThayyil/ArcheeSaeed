@@ -218,7 +218,7 @@ const PhilosophySection = () => {
              <div className="flex justify-between items-end border-t border-black/10 pt-6">
                 <div>
                   <span className="block font-manrope text-[10px] text-gray-500 uppercase tracking-widest mb-1">Lead Architect</span>
-                  <span className="block font-manrope text-sm font-extrabold text-[#1A1A1A] tracking-tight">ARCHIZAID</span>
+                  <span className="block font-manrope text-sm font-extrabold text-[#1A1A1A] tracking-tight">Mohammmed Saeed</span>
                 </div>
                 <button className="group flex items-center gap-2">
                   <span className="font-manrope text-[10px] font-bold uppercase tracking-widest group-hover:text-[#BC4B32] transition-colors">Manifesto</span>
