@@ -4,8 +4,9 @@ import { ArrowUpRight, Mail, MapPin, Phone, MessageCircle, Instagram, Facebook }
 
 const CONTACT_DETAILS = [
   { id: "01", label: "Studio Location", value: "Tirur , Malappuram District, Kerala, India", icon: <MapPin size={20} /> },
-  { id: "02", label: "Email Address", value: "archizaidofficial@gmail.com", icon: <Mail size={20} />, link: "mailto:hello@archizaid.com" },
-  { id: "03", label: "Direct Phone", value: "+91 94009 87747", icon: <Phone size={20} />, link: "tel:+913105550192" },
+  { id: "02", label: "Email Address", value: "archizaidofficial@gmail.com", icon: <Mail size={20} />, link: "mailto:archizaidofficial@gmail.com" },
+  { id: "03", label: "Primary Phone", value: "+91 94009 87747", icon: <Phone size={20} />, link: "tel:+919400987747" },
+  { id: "04", label: "Secondary Phone", value: "+91 75929 87747", icon: <Phone size={20} />, link: "tel:+917592987747" },
 ];
 
 const WHATSAPP_NUMBER = "+919400987747";
@@ -82,7 +83,7 @@ const Contact = () => {
             </a>
           </div>
 
-          {/* SOCIAL MEDIA - HIGHLIGHTED FIX */}
+          {/* SOCIAL MEDIA */}
           <div className="reveal-item pt-8">
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#666666] block mb-6">Digital Presence —</span>
             <div className="flex flex-wrap gap-4">

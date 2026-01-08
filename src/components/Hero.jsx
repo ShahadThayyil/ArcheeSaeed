@@ -145,7 +145,7 @@ export default function HeroSection() {
             ref={scrollIndicatorRef}
             className="absolute bottom-10 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center gap-3 pointer-events-none"
           >
-             <span className="font-mono text-[9px] tracking-[0.5em] uppercase text-[#BC4B32]">Scroll To Explore</span>
+             <span className="font-mono text-[14px] tracking-[0.5em] uppercase text-[#BC4B32]">Scroll To Explore</span>
              <div className="w-[1px] h-12 bg-white/20 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-full bg-[#BC4B32] -translate-y-full animate-[scroll-reveal_2s_ease-in-out_infinite]"></div>
              </div>

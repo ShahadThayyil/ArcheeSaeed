@@ -12,7 +12,7 @@ const coverImage = "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v17
 const ProjectButton = ({ isMobile = false }) => (
   <Link 
     to="/projects" 
-    className={`group relative flex items-center justify-center gap-4 overflow-hidden rounded-full border border-[#1A1A1A]/10 bg-transparent transition-all duration-500 hover:border-[#BC4B32]
+    className={`group relative flex items-center justify-center gap-4 overflow-hidden rounded-sm border border-[#1A1A1A]/10 bg-transparent transition-all duration-500 hover:border-[#BC4B32]
       ${isMobile ? "w-full py-6 mt-10" : "px-12 py-6"}
     `}
   >

@@ -2,7 +2,7 @@ export const projects = [
   {
     id: 1,
     title: "Kerala Startup Pods",
-    location: "Tiruvandipuram, Kerala",
+    location: "Thiruvananthapuram, Kerala",
     image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1765555470/F_CMPR_aqveqy.png",
     year: "2025"
   },
