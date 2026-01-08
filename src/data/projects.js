@@ -39,8 +39,8 @@ export const projects = [
 ,
   {
   id: 2,
-  title: "Riyas's House",
-  category: "Landscape",
+  title: "Riyas Residence",
+  category: "Residential",
   image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765637563/2_rlkwb8.jpg",
   client: "Mr. Riyas",
   description: "A thoughtfully designed residential landscape for Riyas TR House, blending natural greenery with clean hardscape elements. The project focuses on creating a calm, welcoming outdoor space that complements the home’s architecture while ensuring low maintenance and long-term sustainability, perfectly suited for Kerala’s climate.",
@@ -66,24 +66,24 @@ export const projects = [
 ,
 {
   id: 3,
-  title: "Luxury Master Bedroom Suite",
+  title: "Minimal Master Bedrooom",
   category: "Interior",
-  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767768956/1-enhanced_enhanced_1_sca4da.png",
+  image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767768926/7-enhanced_enhanced_1_kxwxxc.png",
   client: "Mr. Haneefa",
   description: "Interior design of the ground floor master bedroom, planned for comfort, privacy, and everyday convenience. The space features clean finishes, warm lighting, and practical furniture arrangement, creating a relaxed and comfortable sleeping area. Simple design elements and efficient storage contribute to a neat and calming personal space.",
   gallery: [
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767768946/3-enhanced_enhanced_1_kgfnns.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767768932/5-enhanced_enhanced_1_kwxmzn.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767768933/4-enhanced_enhanced_1_xwbsp3.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767768929/2-enhanced_enhanced_1_hd1nhb.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767768927/6-enhanced_enhanced_1_mtw9qz.png",
-    "https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767768926/7-enhanced_enhanced_1_kxwxxc.png"
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767768946/3-enhanced_enhanced_1_kgfnns.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767768932/5-enhanced_enhanced_1_kwxmzn.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767768933/4-enhanced_enhanced_1_xwbsp3.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767768929/2-enhanced_enhanced_1_hd1nhb.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767768927/6-enhanced_enhanced_1_mtw9qz.png",
+    "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767768956/1-enhanced_enhanced_1_sca4da.png",
   ]
 }
 ,
   {
   id: 4,
-  title: "Modern Lounge Space",
+  title: "Modern Formal Living",
   category: "Interior",
   image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767772183/enhanced_1_k58yzp.png",
   client: "Mr. Abdul Basith",
@@ -236,7 +236,7 @@ export const projects = [
 
 {
   id: 11,
-  title: "Hussain's House",
+  title: "Hussain Residence",
   category: "Residential",
   image: "https://res.cloudinary.com/djhhhp6ik/image/upload/f_webp/v1765642663/1_3_1_i9yaqo.png",
   client: "Mr. Hussain",
@@ -306,7 +306,7 @@ export const projects = [
 
   {
   id: 17,
-  title: "Shamsudeen House",
+  title: "Shamsudeen's House",
   category: "Residential",
   image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767716873/1_5_r2afbd.png",
   client: "Shamsudeen",
