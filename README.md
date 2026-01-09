@@ -1,6 +1,6 @@
 # Archizaid | Modern Architecture Studio
 
-![Archizaid Banner](https://via.placeholder.com/1200x400/18181b/ffffff?text=ARCHIZAID+Architecture+Studio+Kerala)
+![Archizaid Banner](https://res.cloudinary.com/dmtzmgbkj/image/upload/v1767764088/freepik__enhance__53593_fyogqx.png)
 
 > **"Designing timeless, innovative, and functional spaces that blend tradition with modern aesthetics."**
 
