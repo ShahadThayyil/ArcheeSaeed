@@ -333,7 +333,7 @@ export const projects = [
 {
   id: 29,
   title: "Modern Residential Design",
-  category: "Interior",
+  category: "Residential",
   image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767968491/7-enhanced_vlnrio.png",
   client: "Kas Studio",
   description: "A contemporary house design centered on spatial clarity, natural light, and refined material choices. The interiors are thoughtfully planned to ensure smooth transitions between living, dining, and private areas, enhancing both comfort and functionality. Clean lines, balanced lighting, and a calm color palette define the modern character of the home, creating a timeless and livable residential environment.",
@@ -440,7 +440,7 @@ export const projects = [
 {
   id: 28,
   title: "Vishal's Residence",
-  category: "Interior",
+  category: "Residential",
   image: "https://res.cloudinary.com/dmtzmgbkj/image/upload/f_webp/v1767968155/6-enhanced_kd4i7t.png",
   client: "Kas Studio",
   description: "Modern residence design focused on spatial harmony, natural light, and refined detailing.The interiors are planned to create a seamless flow between living, dining, and private spaces, enhancing everyday comfort and usability. A neutral material palette, balanced lighting, and thoughtfully selected finishes bring a calm, modern character to the home. The layout prioritizes openness, functionality, and long-term livability while maintaining a subtle sense of luxury. Currently under construction.",
